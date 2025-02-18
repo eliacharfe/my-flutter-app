@@ -1,11 +1,11 @@
 {
-    "name": "my_flutter_app",
-    "short_name": "my_flutter_app",
+    "name": "hartman_web_view",
+    "short_name": "hartman_web_view",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Android/iOS/Web app",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

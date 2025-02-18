@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "503171612283",
+    "project_id": "hartman-connect",
+    "storage_bucket": "hartman-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503171612283:android:585d2f5af6929ad035ecde",
+        "android_client_info": {
+          "package_name": "com.hartman.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503171612283-3kvom5n3njq92fq86nlbkb43rm9jjb1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7di_kEFfnAFaSKFxPOd0U6uzguOzRX3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503171612283-3kvom5n3njq92fq86nlbkb43rm9jjb1k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "503171612283-4covlhjgaqe7pb335dtfie7lstiop67c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pdac.hartmanWebView"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

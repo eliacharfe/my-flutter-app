@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>503171612283-4covlhjgaqe7pb335dtfie7lstiop67c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.503171612283-4covlhjgaqe7pb335dtfie7lstiop67c</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCSf7M-t7lRpaGkxUdXwyVSHoTf6H65GGc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>503171612283</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hartman.connect</string>
+	<key>PROJECT_ID</key>
+	<string>hartman-connect</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hartman-connect.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:503171612283:ios:7ef52d3a9c75646a35ecde</string>
+</dict>
+</plist>
