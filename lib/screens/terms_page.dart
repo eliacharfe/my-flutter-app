@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hartman_web_view/constants/app_colors.dart';
-import 'package:hartman_web_view/ui_components/top_app_bar.dart';
+import 'package:eliachar_feig/constants/app_colors.dart';
+import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 
 class TermsPage extends StatelessWidget {
   TermsPage({super.key});

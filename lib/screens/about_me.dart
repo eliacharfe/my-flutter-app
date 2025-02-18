@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hartman_web_view/constants/app_colors.dart';
-import 'package:hartman_web_view/helpers/logger.dart';
-import 'package:hartman_web_view/ui_components/top_app_bar.dart';
+import 'package:eliachar_feig/constants/app_colors.dart';
+import 'package:eliachar_feig/helpers/logger.dart';
+import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

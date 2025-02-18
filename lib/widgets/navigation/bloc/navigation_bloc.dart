@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:hartman_web_view/widgets/navigation/bloc/navigation_event.dart';
-import 'package:hartman_web_view/widgets/navigation/bloc/navigation_state.dart';
+import 'package:eliachar_feig/widgets/navigation/bloc/navigation_event.dart';
+import 'package:eliachar_feig/widgets/navigation/bloc/navigation_state.dart';
 
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   final Connectivity connectivity;

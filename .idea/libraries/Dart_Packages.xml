@@ -254,6 +254,62 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_inappwebview">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview-6.1.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_android">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_android-1.1.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_internal_annotations">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_internal_annotations-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_ios">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_ios-1.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_macos">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_macos-1.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_platform_interface">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_platform_interface-1.3.0+1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_web">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_web-1.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_inappwebview_windows">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_windows-0.6.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_launcher_icons">
           <value>
             <list>
@@ -758,6 +814,13 @@
             </list>
           </value>
         </entry>
+        <entry key="youtube_player_flutter">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_flutter-9.1.1/lib" />
+            </list>
+          </value>
+        </entry>
       </option>
     </properties>
     <CLASSES>
@@ -796,6 +859,14 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.6.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.10.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_bloc-9.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview-6.1.5/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_android-1.1.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_internal_annotations-1.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_ios-1.1.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_macos-1.1.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_platform_interface-1.3.0+1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_web-1.1.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_inappwebview_windows-0.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_launcher_icons-0.13.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.4/lib" />
@@ -865,6 +936,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_flutter-9.1.1/lib" />
       <root url="file://$USER_HOME$/development/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$USER_HOME$/development/flutter/packages/flutter/lib" />
       <root url="file://$USER_HOME$/development/flutter/packages/flutter_test/lib" />

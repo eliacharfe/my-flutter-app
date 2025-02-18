@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hartman_web_view/screens/home/bloc/web_view_event.dart';
-import 'package:hartman_web_view/screens/home/bloc/web_view_state.dart';
+import 'package:eliachar_feig/screens/home/bloc/web_view_event.dart';
+import 'package:eliachar_feig/screens/home/bloc/web_view_state.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hartman_web_view/constants/app_colors.dart';
-import 'package:hartman_web_view/helpers/logger.dart';
-import 'package:hartman_web_view/widgets/navigation/navigation_container.dart';
+import 'package:eliachar_feig/constants/app_colors.dart';
+import 'package:eliachar_feig/helpers/logger.dart';
+import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
 import 'firebase_setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 

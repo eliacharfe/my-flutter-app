@@ -27,7 +27,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.hartman.connect"
+    namespace "com.eliachar.feig"
     compileSdkVersion 34
     ndkVersion "28.0.13004108"
 
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hartman.connect"
+        applicationId "com.eliachar.feig"
         minSdkVersion 23
         targetSdkVersion 34
         versionCode flutterVersionCode

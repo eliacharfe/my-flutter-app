@@ -6,7 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart'
     show PlatformDispatcher, TargetPlatform, debugPrint, defaultTargetPlatform, kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:hartman_web_view/helpers/logger.dart';
+import 'package:eliachar_feig/helpers/logger.dart';
 import 'main.dart';
 
 Future<void> initializeFirebase() async {
@@ -118,7 +118,7 @@ class DefaultFirebaseOptions {
     projectId: 'hartman-connect',
     storageBucket: 'hartman-connect.appspot.com',
     iosClientId: '503171612283-kfejgumale891jkahnjq2l91ell1luap.apps.googleusercontent.com',
-    iosBundleId: 'com.hartman.connect',
+    iosBundleId: 'com.eliachar.feig',
   );
 }
 

@@ -1,15 +1,15 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hartman_web_view/screens/about_me.dart';
-import 'package:hartman_web_view/screens/contact_me.dart';
-import 'package:hartman_web_view/screens/home/home.dart';
-import 'package:hartman_web_view/screens/no_connection.dart';
-import 'package:hartman_web_view/screens/terms_page.dart';
-import 'package:hartman_web_view/ui_components/bottom_nav_icon.dart';
-import 'package:hartman_web_view/widgets/navigation/bloc/navigation_bloc.dart';
-import 'package:hartman_web_view/widgets/navigation/bloc/navigation_event.dart';
-import 'package:hartman_web_view/widgets/navigation/bloc/navigation_state.dart';
+import 'package:eliachar_feig/screens/about_me.dart';
+import 'package:eliachar_feig/screens/contact_me.dart';
+import 'package:eliachar_feig/screens/home/home.dart';
+import 'package:eliachar_feig/screens/no_connection.dart';
+import 'package:eliachar_feig/screens/terms_page.dart';
+import 'package:eliachar_feig/ui_components/bottom_nav_icon.dart';
+import 'package:eliachar_feig/widgets/navigation/bloc/navigation_bloc.dart';
+import 'package:eliachar_feig/widgets/navigation/bloc/navigation_event.dart';
+import 'package:eliachar_feig/widgets/navigation/bloc/navigation_state.dart';
 
 class NavigationContainer extends StatelessWidget {
   const NavigationContainer({super.key});
@@ -38,7 +38,7 @@ class _NavigationContainerContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     pages = [
-      Home(myWebViewController: myWebViewController),
+      Home(),
       AboutMe(),
       TermsPage(),
       ContactMe(),
@@ -57,10 +57,7 @@ class _NavigationContainerContent extends StatelessWidget {
           body: SafeArea(
             child: Center(
               child: Stack(
-                children: [
-                  Home(myWebViewController: myWebViewController),
-                  if (selectedIndex != 0) pages.elementAt(selectedIndex)
-                ],
+                children: [Home(), if (selectedIndex != 0) pages.elementAt(selectedIndex)],
               ),
             ),
           ),

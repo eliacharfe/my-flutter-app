@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hartman.connect">
+    package="com.eliachar.feig">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Hartman Connect"
+        android:label="Eliachar App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
