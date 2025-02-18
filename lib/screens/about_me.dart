@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hartman_web_view/constants/app_colors.dart';
 import 'package:hartman_web_view/helpers/logger.dart';
+import 'package:hartman_web_view/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -31,7 +31,7 @@ class AboutMeState extends State<AboutMe> {
         if (appVesion.hasData) {
           widget = Material(
             child: Scaffold(
-              appBar: buildAppBar(),
+              appBar: topAppBar(),
               body: Stack(
                 children: [
                   SingleChildScrollView(
@@ -55,7 +55,7 @@ class AboutMeState extends State<AboutMe> {
                                   Text(
                                     "My work focuses on",
                                     style: TextStyle(
-                                      color: AppColors.hmLightBlue,
+                                      color: Colors.grey,
                                       fontSize: 17.5,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -173,7 +173,7 @@ class AboutMeState extends State<AboutMe> {
               Text(
                 title,
                 style: TextStyle(
-                  color: AppColors.hmLightBlue,
+                  color: Colors.grey,
                   fontSize: 17.5,
                   fontWeight: FontWeight.w300,
                 ),
@@ -236,25 +236,6 @@ class AboutMeState extends State<AboutMe> {
           ),
         ),
       ],
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: AppColors.hmDarkBlue,
-      toolbarHeight: 50,
-      title: Row(
-        children: [
-          Spacer(),
-          SizedBox(
-            height: 40,
-            width: 40,
-            child: ClipRRect(child: SvgPicture.asset('assets/images/hartman_logo.svg')),
-          ),
-          Spacer(),
-        ],
-      ),
     );
   }
 

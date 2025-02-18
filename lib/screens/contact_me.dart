@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hartman_web_view/constants/app_colors.dart';
 import 'package:hartman_web_view/helpers/logger.dart';
+import 'package:hartman_web_view/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactMe extends StatelessWidget {
@@ -11,7 +11,7 @@ class ContactMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: topAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -45,7 +45,7 @@ United States""",
               child: Text(
                 "Email",
                 style: TextStyle(
-                  color: AppColors.hmLightBlue,
+                  color: Colors.grey,
                   fontSize: 17.5,
                   fontWeight: FontWeight.w300,
                 ),
@@ -79,7 +79,7 @@ United States""",
             child: Text(
               "Phone",
               style: TextStyle(
-                color: AppColors.hmLightBlue,
+                color: Colors.grey,
                 fontSize: 17.5,
                 fontWeight: FontWeight.w300,
               ),
@@ -124,7 +124,7 @@ United States""",
               Text(
                 title,
                 style: TextStyle(
-                  color: AppColors.hmLightBlue,
+                  color: Colors.grey,
                   fontSize: 17.5,
                   fontWeight: FontWeight.w300,
                 ),
@@ -207,22 +207,4 @@ United States""",
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: AppColors.hmDarkBlue,
-      toolbarHeight: 50,
-      title: Row(
-        children: [
-          Spacer(),
-          SizedBox(
-            height: 40,
-            width: 40,
-            child: ClipRRect(child: SvgPicture.asset('assets/images/hartman_logo.svg')),
-          ),
-          Spacer(),
-        ],
-      ),
-    );
-  }
 }

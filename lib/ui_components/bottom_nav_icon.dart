@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hartman_web_view/constants/app_colors.dart';
 
 class BottomNavIcon extends StatelessWidget {
   final IconData iconData;
@@ -30,14 +29,14 @@ class BottomNavIcon extends StatelessWidget {
             child: Icon(
               iconData,
               size: 20,
-              color: isSelected ? AppColors.hmLightBlue : Colors.white,
+              color: isSelected ? Colors.grey : Colors.white,
             ),
           ),
           Text(
             label,
             style: TextStyle(
               fontSize: 12,
-              color: isSelected ? AppColors.hmLightBlue : Colors.white,
+              color: isSelected ? Colors.grey : Colors.white,
               fontWeight: FontWeight.w400,
             ),
           )

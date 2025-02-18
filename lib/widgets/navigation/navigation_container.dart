@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hartman_web_view/constants/app_colors.dart';
 import 'package:hartman_web_view/screens/about_me.dart';
 import 'package:hartman_web_view/screens/contact_me.dart';
 import 'package:hartman_web_view/screens/home/home.dart';
@@ -54,7 +53,7 @@ class _NavigationContainerContent extends StatelessWidget {
         final selectedIndex = getSelectedIndex(state);
 
         return Scaffold(
-          backgroundColor: AppColors.hmDarkBlue,
+          backgroundColor: Colors.black,
           body: SafeArea(
             child: Center(
               child: Stack(
@@ -90,13 +89,13 @@ class _NavigationContainerContent extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: AppColors.hmLightBlue,
+            color: Colors.black,
             width: 0.3,
           ),
         ),
       ),
       child: BottomAppBar(
-        color: AppColors.hmDarkBlue,
+        color: Colors.black,
         child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),

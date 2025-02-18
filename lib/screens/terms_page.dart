@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hartman_web_view/constants/app_colors.dart';
+import 'package:hartman_web_view/ui_components/top_app_bar.dart';
 
 class TermsPage extends StatelessWidget {
   TermsPage({super.key});
@@ -10,7 +10,7 @@ class TermsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: topAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -32,7 +32,7 @@ class TermsPage extends StatelessWidget {
             Flexible(
               child: Text.rich(
                 TextSpan(children: [
-                  TextSpan(text: 'Introduction', style: TextStyle(color: AppColors.hmLightBlue, fontSize: 17.5)),
+                  TextSpan(text: 'Introduction', style: TextStyle(color: Colors.grey, fontSize: 17.5)),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
@@ -42,7 +42,7 @@ class TermsPage extends StatelessWidget {
         
         Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes."""),
                   TextSpan(text: '\n\n\n'),
-                  TextSpan(text: 'Overview', style: TextStyle(color: AppColors.hmLightBlue, fontSize: 17.5)),
+                  TextSpan(text: 'Overview', style: TextStyle(color: Colors.grey, fontSize: 17.5)),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
@@ -50,7 +50,7 @@ class TermsPage extends StatelessWidget {
                   TextSpan(text: "\n\n\n"),
                   TextSpan(
                       text: "Information we collect directly from you",
-                      style: TextStyle(color: AppColors.hmLightBlue, fontSize: 17.5)),
+                      style: TextStyle(color: Colors.grey, fontSize: 17.5)),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
@@ -177,7 +177,7 @@ Email: efeig15@gmail.com"""),
     return TextSpan(
         text: text,
         style: TextStyle(
-          color: AppColors.hmLightBlue,
+          color: Colors.grey,
           fontSize: 17.5,
         ));
   }
@@ -212,25 +212,6 @@ Email: efeig15@gmail.com"""),
               textAlign: TextAlign.left,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: AppColors.hmDarkBlue,
-      toolbarHeight: 50,
-      title: Row(
-        children: [
-          Spacer(),
-          SizedBox(
-            height: 40,
-            width: 40,
-            child: ClipRRect(child: SvgPicture.asset('assets/images/hartman_logo.svg')),
-          ),
-          Spacer(),
         ],
       ),
     );
