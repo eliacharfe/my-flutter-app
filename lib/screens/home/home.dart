@@ -49,9 +49,9 @@ class _HomeState extends State<Home> {
     VideoData(
       type: VideoCardType.image,
       imageAsset: "assets/images/structure.png",
-      title: "HousEye - Raspberry-Pi Project",
+      title: "HouseEye - Raspberry-Pi Project",
       description:
-          'Know your home at real-time with HousEye, secure your home, and direct chat between family members Backend: Firebase Cloud Database, Python, Flask, OpenCV, PIL, Twilio Frontend: JavaScript, HTML, CSS (Windows) Raspberry-Pi, Python, OpenCV, Raspberry-Pi camera (Linux)',
+          'Know your home at real-time with HouseEye, secure your home, and direct chat between family members Backend: Firebase Cloud Database, Python, Flask, OpenCV, PIL, Twilio Frontend: JavaScript, HTML, CSS (Windows) Raspberry-Pi, Python, OpenCV, Raspberry-Pi camera (Linux)',
       githubLink: 'https://github.com/ExcellentTeam22/raspberry-pi-houseye-eliachar-yaniv-orel-or.git',
     ),
     VideoData(

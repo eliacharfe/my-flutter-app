@@ -23,7 +23,7 @@ class ContactMe extends StatelessWidget {
                 buildEmailSection(),
                 buildTextSection(
                   "Website",
-                  "My Protfolio demo website: ",
+                  "My Portfolio demo website: ",
                   link: "https://www.eliacharfeig.com/",
                   linkTitle: "https://www.eliacharfeig.com/",
                 )
@@ -104,8 +104,8 @@ United States""",
                 text: "+972 587272372",
                 recognizer: TapGestureRecognizer()
                   ..onTap = () async {
-                    Uri phoneno = Uri.parse('tel: 0587272372');
-                    if (await launchUrl(phoneno)) {}
+                    Uri phone = Uri.parse('tel: 0587272372');
+                    if (await launchUrl(phone)) {}
                   }),
           ),
           Spacer()
@@ -167,11 +167,10 @@ United States""",
                             text: linkTitle,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () async {
-                                //on tap code here, you can navigate to other page or URL
                                 String urlString = link ?? "https://www.google.com";
                                 Uri url = Uri.parse(urlString);
-                                var urllaunchable = await canLaunchUrl(url);
-                                if (urllaunchable) {
+                                var canLaunch = await canLaunchUrl(url);
+                                if (canLaunch) {
                                   await launchUrl(url);
                                 } else {
                                   Logger.log("URL can't be launched: $url");
