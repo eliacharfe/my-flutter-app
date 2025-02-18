@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class VideoCard extends StatelessWidget {
+class ProjectCard extends StatelessWidget {
   final double width;
   final Widget child;
 
-  const VideoCard({super.key, required this.width, required this.child});
+  const ProjectCard({super.key, required this.width, required this.child});
 
   @override
   Widget build(BuildContext context) {

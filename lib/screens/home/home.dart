@@ -1,8 +1,10 @@
-import 'package:eliachar_feig/model/video_data.dart';
-import 'package:eliachar_feig/screens/home/widgets/video_card.dart';
+import 'package:eliachar_feig/model/project.dart';
+import 'package:eliachar_feig/screens/home/widgets/project_details_screen.dart';
+import 'package:eliachar_feig/screens/home/widgets/project_card.dart';
 import 'package:eliachar_feig/ui_components/extensions/build_context_extensions.dart';
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:eliachar_feig/ui_components/round_text_display.dart';
+import 'package:eliachar_feig/ui_components/route_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,65 +23,65 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  final List<VideoData> videos = [
-    VideoData(
-      type: VideoCardType.video,
+  final List<Project> projects = [
+    Project(
+      type: ProjectType.video,
       videoUrl: 'https://youtu.be/kyKP4AfDlYs',
       title: "Assemble Z' Army",
       description:
           'Real-Time Strategy multiplayer game online made in Unity engine. Coding with C#, using Mirror library',
       githubLink: 'https://github.com/eliacharfe/Assemble-Z-Army',
     ),
-    VideoData(
-      type: VideoCardType.video,
+    Project(
+      type: ProjectType.video,
       videoUrl: 'https://youtu.be/mfwwdH-bD9k',
       title: "Sonic",
       description:
           'Sonic Game coded with C++ at VS. The project was Object-Oriented Programming (OOP) and included the SFML library.',
       githubLink: 'https://github.com/eliacharfe/Sonic_GAME_OOP2_Project',
     ),
-    VideoData(
-      type: VideoCardType.video,
+    Project(
+      type: ProjectType.video,
       videoUrl: 'https://youtu.be/QmwvMqvJRSU',
       title: "Book Store Website",
       description:
           'A Book Store complete implementation responsive website using Spring Boot with Java at the Backend and JavaScript at the Frontend. The code uses Spring security, dealing with transactions, and the database is MySQL with APACHE Tomcat server via XAMPP',
       githubLink: 'https://github.com/Solange-s-Courses/ex4-spring-neviim-eliachar-feig-1.git',
     ),
-    VideoData(
-      type: VideoCardType.image,
+    Project(
+      type: ProjectType.image,
       imageAsset: "assets/images/structure.png",
       title: "HouseEye - Raspberry-Pi Project",
       description:
           'Know your home at real-time with HouseEye, secure your home, and direct chat between family members Backend: Firebase Cloud Database, Python, Flask, OpenCV, PIL, Twilio Frontend: JavaScript, HTML, CSS (Windows) Raspberry-Pi, Python, OpenCV, Raspberry-Pi camera (Linux)',
       githubLink: 'https://github.com/ExcellentTeam22/raspberry-pi-houseye-eliachar-yaniv-orel-or.git',
     ),
-    VideoData(
-      type: VideoCardType.image,
+    Project(
+      type: ProjectType.image,
       imageAsset: "assets/images/google.png",
       title: "Google Autocomplete Project",
       description:
           'Autocomplete Search Providing an autocomplete search for the user by developing an algorithm that takes into account possible spelling errors of the user. In addition, the algorithm takes into consideration memory and run-time limitations. Coded in Python.',
       githubLink: 'https://github.com/ExcellentTeam22/google-project-group-8',
     ),
-    VideoData(
-      type: VideoCardType.image,
+    Project(
+      type: ProjectType.image,
       imageAsset: "assets/images/mobileye.jpg",
       title: "Mobileye Project",
       description:
           'TFL Detection and Distance Estimation Detecting traffic lights within a given clip, estimating their distance from the vehicle using image processing technologies, Neural networks and SFM (Structure From Motion) for the distance estimation. Coded in Python.',
       githubLink: 'https://github.com/eliacharfe/Mobileye-Traffic-Lights-Project.git',
     ),
-    VideoData(
-      type: VideoCardType.image,
+    Project(
+      type: ProjectType.image,
       imageAsset: "assets/images/nasa.jpg",
       title: "NASA's Mars Photos Website Project",
       description:
           "Manipulations on Mars photos using NASA API made with Node-js at the Backend and JavaScript at the Frontend. Uses sessions and user's Authentication. Database: Sqlite3.",
       githubLink: 'https://github.com/eliacharfe/nasa-api',
     ),
-    VideoData(
-      type: VideoCardType.image,
+    Project(
+      type: ProjectType.image,
       imageAsset: "assets/images/react.png",
       title: "Weather - React Project",
       description:
@@ -120,15 +122,15 @@ class _HomeState extends State<Home> {
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
-                children: videos.map((video) {
-                  return VideoCard(
+                children: projects.map((video) {
+                  return ProjectCard(
                     width: (context.screenWidth - 30) / 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (video.type == VideoCardType.video)
+                        if (video.type == ProjectType.video)
                           buildVideoPlayer(video)
-                        else if (video.type == VideoCardType.image)
+                        else if (video.type == ProjectType.image)
                           buildImageDisplay(video),
                         buildITextSection(video),
                         if (video.githubLink != null)
@@ -139,6 +141,9 @@ class _HomeState extends State<Home> {
                               bgColor: Colors.black,
                               textColor: Colors.white,
                               isBold: false,
+                              icon: Icons.link,
+                              iconSize: 15,
+                              padding: EdgeInsets.all(2),
                             ).onTapWithCursor(
                               () {
                                 if (video.githubLink != null && video.githubLink!.isNotEmpty) {
@@ -149,7 +154,13 @@ class _HomeState extends State<Home> {
                           ),
                       ],
                     ),
-                  );
+                  ).onTapWithCursor(() {
+                    Navigator.of(context).push(
+                      RouteWrapper(
+                        page: ProjectDetailsScreen(video: video),
+                      ),
+                    );
+                  });
                 }).toList(),
               ),
             ],
@@ -159,8 +170,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildVideoPlayer(VideoData video) {
-    final videoId = YoutubePlayer.convertUrlToId(video.videoUrl!);
+  Widget buildVideoPlayer(Project project) {
+    final videoId = YoutubePlayer.convertUrlToId(project.videoUrl!);
     if (videoId == null) {
       return const Text('Invalid Video URL');
     }
@@ -172,18 +183,18 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildImageDisplay(VideoData video) {
-    return Image.asset(video.imageAsset!, fit: BoxFit.cover);
+  Widget buildImageDisplay(Project project) {
+    return Image.asset(project.imageAsset!, fit: BoxFit.cover);
   }
 
-  Widget buildITextSection(VideoData video) {
+  Widget buildITextSection(Project project) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            video.title,
+            project.title,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -191,7 +202,7 @@ class _HomeState extends State<Home> {
           ),
           const SizedBox(height: 4),
           Text(
-            video.description,
+            project.description,
             style: const TextStyle(fontSize: 14),
           ),
         ],

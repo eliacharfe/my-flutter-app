@@ -1,14 +1,14 @@
-enum VideoCardType { video, image }
+enum ProjectType { video, image }
 
-class VideoData {
-  final VideoCardType type;
+class Project {
+  final ProjectType type;
   final String? videoUrl;
   final String? imageAsset;
   final String title;
   final String description;
   final String? githubLink;
 
-  VideoData({
+  Project({
     required this.type,
     this.videoUrl,
     this.imageAsset,
