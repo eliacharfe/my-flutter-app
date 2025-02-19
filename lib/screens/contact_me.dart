@@ -1,16 +1,18 @@
+import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContactMe extends StatelessWidget {
-  const ContactMe({super.key});
+  final bool showAppBar;
+  const ContactMe({super.key, this.showAppBar = true});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: topAppBar(),
+      backgroundColor: AppColors.scaffoldColor,
+      appBar: showAppBar ? WidgetStyling.buildTopAppBar() : null,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(

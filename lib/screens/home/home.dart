@@ -1,4 +1,5 @@
 import 'package:eliachar_feig/constants/app_colors.dart';
+import 'package:eliachar_feig/constants/components.dart';
 import 'package:eliachar_feig/model/project.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_details_screen.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_card.dart';
@@ -6,8 +7,8 @@ import 'package:eliachar_feig/ui_components/extensions/build_context_extensions.
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:eliachar_feig/ui_components/round_text_display.dart';
 import 'package:eliachar_feig/ui_components/route_wrapper.dart';
+import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
     Project(
       type: ProjectType.image,
       imageAsset: "assets/images/structure.png",
-      title: "HouseEye - Raspberry-Pi Project",
+      title: "HouseEye",
       description:
           'Know your home at real-time with HouseEye, secure your home, and direct chat between family members Backend: Firebase Cloud Database, Python, Flask, OpenCV, PIL, Twilio Frontend: JavaScript, HTML, CSS (Windows) Raspberry-Pi, Python, OpenCV, Raspberry-Pi camera (Linux)',
       githubLink: 'https://github.com/ExcellentTeam22/raspberry-pi-houseye-eliachar-yaniv-orel-or.git',
@@ -60,9 +61,9 @@ class _HomeState extends State<Home> {
     Project(
       type: ProjectType.image,
       imageAsset: "assets/images/google.png",
-      title: "Google Autocomplete Project",
+      title: "Autocomplete",
       description:
-          'Autocomplete Search Providing an autocomplete search for the user by developing an algorithm that takes into account possible spelling errors of the user. In addition, the algorithm takes into consideration memory and run-time limitations. Coded in Python.',
+          'Google Autocomplete Search Providing an autocomplete search for the user by developing an algorithm that takes into account possible spelling errors of the user. In addition, the algorithm takes into consideration memory and run-time limitations. Coded in Python.',
       githubLink: 'https://github.com/ExcellentTeam22/google-project-group-8',
     ),
     Project(
@@ -76,7 +77,7 @@ class _HomeState extends State<Home> {
     Project(
       type: ProjectType.image,
       imageAsset: "assets/images/nasa.jpg",
-      title: "NASA's Mars Photos Website Project",
+      title: "NASA's Mars Photos Website ",
       description:
           "Manipulations on Mars photos using NASA API made with Node-js at the Backend and JavaScript at the Frontend. Uses sessions and user's Authentication. Database: Sqlite3.",
       githubLink: 'https://github.com/eliacharfe/nasa-api',
@@ -84,7 +85,7 @@ class _HomeState extends State<Home> {
     Project(
       type: ProjectType.image,
       imageAsset: "assets/images/react.png",
-      title: "Weather - React Project",
+      title: "Weather - React",
       description:
           "Showing weather for 7 next days by input location and show a forecast image of the next days - using the 7timer! API. Coded with React.js.",
       githubLink: 'https://github.com/eliacharfe/React---weather-website.git',
@@ -105,36 +106,33 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: topAppBar(),
+      appBar: WidgetStyling.buildTopAppBar(),
+      endDrawer: DrawersMobile(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Projects',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ).withPadding(EdgeInsets.symmetric(horizontal: 15)),
+              SansBold('Projects', 24).withPadding(EdgeInsets.symmetric(horizontal: 15)),
               SizedBox(height: 16),
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
-                children: projects.map((video) {
+                children: projects.map((project) {
                   return ProjectCard(
                     width: (context.screenWidth - 30) / 2,
+                    height: 280,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (video.type == ProjectType.video)
-                          buildVideoPlayer(video)
-                        else if (video.type == ProjectType.image)
-                          buildImageDisplay(video),
-                        buildITextSection(video),
-                        if (video.githubLink != null)
+                        if (project.type == ProjectType.video)
+                          buildVideoPlayer(project)
+                        else if (project.type == ProjectType.image)
+                          buildImageDisplay(project),
+                        buildITextSection(project),
+                        Spacer(),
+                        if (project.githubLink != null)
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: RoundTextDisplay(
@@ -147,8 +145,8 @@ class _HomeState extends State<Home> {
                               padding: EdgeInsets.all(2),
                             ).onTapWithCursor(
                               () {
-                                if (video.githubLink != null && video.githubLink!.isNotEmpty) {
-                                  launchURL(video.githubLink!);
+                                if (project.githubLink != null && project.githubLink!.isNotEmpty) {
+                                  launchURL(project.githubLink!);
                                 }
                               },
                             ),
@@ -158,7 +156,7 @@ class _HomeState extends State<Home> {
                   ).onTapWithCursor(() {
                     Navigator.of(context).push(
                       RouteWrapper(
-                        page: ProjectDetailsScreen(video: video),
+                        page: ProjectDetailsScreen(project: project),
                       ),
                     );
                   });
@@ -194,17 +192,13 @@ class _HomeState extends State<Home> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            project.title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          SansBold(project.title, 14),
           const SizedBox(height: 4),
           Text(
             project.description,
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 12),
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

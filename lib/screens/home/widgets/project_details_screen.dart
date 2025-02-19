@@ -6,9 +6,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
-  final Project video;
+  final Project project;
 
-  const ProjectDetailsScreen({super.key, required this.video});
+  const ProjectDetailsScreen({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ProjectDetailsScreen extends StatelessWidget {
           color: Colors.white,
         ),
         title: Text(
-          video.title,
+          project.title,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -30,26 +30,26 @@ class ProjectDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (video.type == ProjectType.video)
+            if (project.type == ProjectType.video)
               YoutubePlayer(
                 controller: YoutubePlayerController(
-                  initialVideoId: YoutubePlayer.convertUrlToId(video.videoUrl!)!,
+                  initialVideoId: YoutubePlayer.convertUrlToId(project.videoUrl!)!,
                   flags: const YoutubePlayerFlags(autoPlay: false, mute: false),
                 ),
               ),
-            if (video.type == ProjectType.image) Image.asset(video.imageAsset!, fit: BoxFit.cover),
+            if (project.type == ProjectType.image) Image.asset(project.imageAsset!, fit: BoxFit.cover),
             const SizedBox(height: 16),
             Text(
-              video.title,
+              project.title,
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              video.description,
+              project.description,
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
-            if (video.githubLink != null)
+            if (project.githubLink != null)
               RoundTextDisplay(
                 text: "View on GitHub",
                 bgColor: Colors.white,
@@ -60,11 +60,11 @@ class ProjectDetailsScreen extends StatelessWidget {
                 padding: EdgeInsets.all(7),
               ).onTapWithCursor(
                 () async {
-                  final Uri uri = Uri.parse(video.githubLink!);
+                  final Uri uri = Uri.parse(project.githubLink!);
                   if (await canLaunchUrl(uri)) {
                     await launchUrl(uri);
                   } else {
-                    throw 'Could not launch ${video.githubLink}';
+                    throw 'Could not launch ${project.githubLink}';
                   }
                 },
               ),

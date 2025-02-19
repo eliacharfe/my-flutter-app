@@ -1,16 +1,20 @@
+import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/ui_components/top_app_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TermsPage extends StatelessWidget {
-  TermsPage({super.key});
+  final bool showAppBar;
+  TermsPage({super.key, this.showAppBar = true});
 
+  final sectionTitleStyle = GoogleFonts.openSans(fontSize: 17.5, color: Colors.grey);
   final bulletPointSubHeadlineStyle = TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: topAppBar(),
+      backgroundColor: AppColors.scaffoldColor,
+      appBar: showAppBar ? WidgetStyling.buildTopAppBar() : null,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -32,25 +36,23 @@ class TermsPage extends StatelessWidget {
             Flexible(
               child: Text.rich(
                 TextSpan(children: [
-                  TextSpan(text: 'Introduction', style: TextStyle(color: Colors.grey, fontSize: 17.5)),
+                  TextSpan(text: 'Introduction', style: sectionTitleStyle),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
-                          """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. ”
+                          """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes.
         
         Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. 
         
         Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes."""),
                   TextSpan(text: '\n\n\n'),
-                  TextSpan(text: 'Overview', style: TextStyle(color: Colors.grey, fontSize: 17.5)),
+                  TextSpan(text: 'Overview', style: sectionTitleStyle),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
                           """• Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes."""),
                   TextSpan(text: "\n\n\n"),
-                  TextSpan(
-                      text: "Information we collect directly from you",
-                      style: TextStyle(color: Colors.grey, fontSize: 17.5)),
+                  TextSpan(text: "Information we collect directly from you", style: sectionTitleStyle),
                   TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
                   TextSpan(
                       text:
@@ -174,12 +176,7 @@ Email: efeig15@gmail.com"""),
   }
 
   TextSpan buildTermsHeadline(String text) {
-    return TextSpan(
-        text: text,
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 17.5,
-        ));
+    return TextSpan(text: text, style: sectionTitleStyle);
   }
 
   Row buildBulletPointRow(String text) {

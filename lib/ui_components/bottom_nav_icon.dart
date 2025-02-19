@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BottomNavIcon extends StatelessWidget {
   final IconData iconData;
@@ -34,11 +35,8 @@ class BottomNavIcon extends StatelessWidget {
           ),
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? Colors.grey : Colors.white,
-              fontWeight: FontWeight.w400,
-            ),
+            style: GoogleFonts.openSans(
+                color: isSelected ? Colors.grey : Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
           )
         ],
       ),

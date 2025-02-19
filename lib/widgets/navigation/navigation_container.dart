@@ -39,7 +39,9 @@ class _NavigationContainerContent extends StatelessWidget {
   Widget build(BuildContext context) {
     pages = [
       Home(),
-      AboutMe(),
+      AboutMe(
+        showAppBar: true,
+      ),
       TermsPage(),
       ContactMe(),
     ];

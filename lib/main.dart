@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/helpers/router_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eliachar_feig/constants/app_colors.dart';
@@ -24,6 +25,15 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light); // Change status bar icons color to white.
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: RouterManager.generateRoute,
+      initialRoute: '/',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white), // Back button color
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
       home: Scaffold(
         backgroundColor: AppColors.hmDarkBlue,
         resizeToAvoidBottomInset: false,
