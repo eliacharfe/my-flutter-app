@@ -10,7 +10,30 @@ const appVersion = '1.0.0+1';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // firebaseSetup();
 
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light); // Change status bar icons color to white.
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: AppColors.hmDarkBlue,
+        resizeToAvoidBottomInset: false,
+        body: NavigationContainer(),
+      ),
+    );
+  }
+}
+
+void firebaseSetup() async {
   await initializeFirebase();
   await setDetailsForCrashlytics();
 
@@ -35,15 +58,12 @@ void main() async {
   } else {
     Logger.log('User declined or has not accepted permission');
   }
-  // On Apple based platforms, once a permission request has been handled by the user (authorized or denied), it is not possible to re-request permission. The user must instead update permission via the device Settings UI:
 
-  // Generate token:
   FirebaseMessaging.instance.getToken().then((value) {
     String? token = value;
     Logger.log("Got FCM deviceToken: $token");
   });
 
-  // Listen to notifications while app is in foreground.
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     Logger.log('Got a message whilst in the foreground!');
     Logger.log('Message data: ${message.data}');
@@ -52,24 +72,4 @@ void main() async {
       Logger.log('Message also contained a notification: ${message.notification}');
     }
   });
-
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light); // Change status bar icons color to white.
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: AppColors.hmDarkBlue,
-        resizeToAvoidBottomInset: false,
-        body: NavigationContainer(),
-      ),
-    );
-  }
 }
