@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eliachar.feig">
     <uses-permission android:name="android.permission.INTERNET"/>
-   <application
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <application
         android:label="Eliachar App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

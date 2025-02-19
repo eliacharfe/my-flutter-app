@@ -1,5 +1,5 @@
+import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/ui_components/top_app_bar.dart';
 
 class TermsPage extends StatelessWidget {
@@ -15,7 +15,7 @@ class TermsPage extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
-            buildTitle("Privacy Policy & Terms of Service"),
+            WidgetStyling.buildPageTitle('Privacy Policy & Terms of Service'),
             buildTerms(),
           ],
         ),
@@ -196,24 +196,6 @@ Email: efeig15@gmail.com"""),
               )),
         ),
       ],
-    );
-  }
-
-  Widget buildTitle(String title) {
-    return Container(
-      alignment: Alignment.topLeft,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 27.5, color: AppColors.hmDarkBlue),
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

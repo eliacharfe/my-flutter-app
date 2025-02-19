@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/model/project.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_details_screen.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_card.dart';
@@ -103,7 +104,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 248, 248, 1.0),
+      backgroundColor: AppColors.scaffoldColor,
       appBar: topAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),

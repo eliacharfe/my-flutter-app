@@ -1,9 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:eliachar_feig/constants/app_colors.dart';
-import 'package:eliachar_feig/helpers/logger.dart';
 import 'package:eliachar_feig/ui_components/top_app_bar.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class AboutMe extends StatefulWidget {
@@ -26,9 +23,9 @@ class AboutMeState extends State<AboutMe> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getVersion(),
-      builder: (BuildContext context, AsyncSnapshot<String> appVesion) {
+      builder: (BuildContext context, AsyncSnapshot<String> appVersion) {
         Widget widget;
-        if (appVesion.hasData) {
+        if (appVersion.hasData) {
           widget = Material(
             child: Scaffold(
               appBar: topAppBar(),
@@ -40,101 +37,47 @@ class AboutMeState extends State<AboutMe> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         buildTitle("About Me"),
-                        buildTextSection(
-                          "My Work",
-                          """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet.""",
+                        Text(
+                            """I’m a passionate software developer dedicated to building high-quality apps, web apps, and websites for iOS, Android, and the Web. I specialize in crafting modern, scalable, and user-friendly solutions using the latest technologies and frameworks. Whether it's a sleek mobile app, a dynamic web platform, or a full-stack system, I thrive on turning ideas into reality with clean code and intuitive designs. Always eager to stay ahead of industry trends, I ensure that every project I work on is optimized for performance, security, and user experience.\nLet’s build something amazing together!"""),
+                        SizedBox(height: 16),
+                        buildCard(
+                          title: "Technical Skills",
+                          sections: {
+                            "Software": [
+                              "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js",
+                              "Object-Oriented Programming & Design",
+                              "Design Patterns and SOLID Principles",
+                              "Databases & Data Structures",
+                              "Parallel Programming (C/C++)",
+                              "Linux OS Environment",
+                            ],
+                            "Web": [
+                              "JavaScript, Java, SQL",
+                              "HTML, CSS, Bootstrap",
+                              "Node.js, Express, React JS, Spring Boot",
+                              "Backend + Frontend Web Development",
+                              "UX/UI design sense",
+                            ],
+                          },
                         ),
-                        buildTextSection("My Status",
-                            """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet."""),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(top: 20),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "My work focuses on",
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 17.5,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("• "),
-                                      Expanded(
-                                        child: Text(
-                                            "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet.",
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w300,
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("• "),
-                                      Expanded(
-                                        child: Text(
-                                            "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet.",
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w300,
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("• "),
-                                      Expanded(
-                                        child: Text(
-                                            "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet.",
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w300,
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("• "),
-                                      Expanded(
-                                        child: Text(
-                                            "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. Leviter flos lavandulae odor aerem implebat, cum risu puerorum prope fontem resonante. Vita hic tardius fluebat, inter consuetudinem et fortuitam laetitiam balanciam inveniens. Stellae paulatim in nocte fulgere coeperunt, et Emilia tranquillitatem sensit—memento quod saepe in simplicissimis momentis maxima pulchritudo latet.",
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w300,
-                                            )),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                        SizedBox(height: 16),
+                        buildCard(
+                          title: "Soft Skills",
+                          sections: {
+                            "Characteristic": [
+                              "Autodidact",
+                              "Hard Working",
+                              "Creative",
+                              "Cooperative",
+                              "Problem Solver",
+                              "Stress Management",
+                            ],
+                            "Languages": [
+                              "Hebrew - Native",
+                              "French - Native",
+                              "English - Fluent",
+                            ],
+                          },
                         ),
                       ],
                     ),
@@ -154,88 +97,6 @@ class AboutMeState extends State<AboutMe> {
         }
         return widget;
       },
-    );
-  }
-
-  Column buildTextSection(
-    String title,
-    String text, {
-    String? link,
-    String? linkTitle,
-    double fontSize = 15,
-  }) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 20),
-          child: Row(
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 17.5,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              Spacer(),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10, bottom: 10),
-          child: Row(
-            children: [
-              Flexible(
-                child: Text.rich(
-                  TextSpan(
-                      style: TextStyle(
-                        fontSize: fontSize,
-                      ),
-                      children: [
-                        TextSpan(
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: fontSize,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            text: text + (link == null ? "" : " ")),
-                        TextSpan(
-                            style: TextStyle(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                              fontSize: fontSize,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            //make link blue and underline
-                            text: linkTitle,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
-                                //on tap code here, you can navigate to other page or URL
-                                String urlString = link ?? "https://www.google.com";
-                                Uri url = Uri.parse(urlString);
-                                var urllaunchable = await canLaunchUrl(url); //canLaunchUrl is from url_launcher package
-                                if (urllaunchable) {
-                                  await launchUrl(url); //launchUrl is from url_launcher package to launch URL
-                                } else {
-                                  Logger.log("URL can't be launched: $url");
-                                }
-                              }),
-                        TextSpan(
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          text: "",
-                        ),
-                      ]),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 
@@ -266,6 +127,73 @@ class AboutMeState extends State<AboutMe> {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildCard({
+    required String title,
+    required Map<String, List<String>> sections,
+  }) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 4,
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildSectionTitle(title),
+            SizedBox(height: 8),
+            ...sections.entries.map(
+              (entry) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildCategory(entry.key),
+                    ...entry.value.map((item) => buildBulletPoint(item)),
+                    SizedBox(height: 8),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget buildCategory(String category) {
+    return Padding(
+      padding: EdgeInsets.only(top: 8, bottom: 4),
+      child: Text(
+        category,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
+      ),
+    );
+  }
+
+  Widget buildBulletPoint(String text) {
+    return Padding(
+      padding: EdgeInsets.only(left: 12, bottom: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("• ", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 14),
+            ),
           ),
         ],
       ),
