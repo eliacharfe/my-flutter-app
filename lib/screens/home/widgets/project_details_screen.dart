@@ -1,9 +1,6 @@
 import 'package:eliachar_feig/model/project.dart';
-import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
-import 'package:eliachar_feig/ui_components/round_text_display.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../packages/default_packages.dart';
+import '../../../packages/ui_components_packages.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
   final Project project;

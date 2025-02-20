@@ -1,9 +1,6 @@
-import 'package:eliachar_feig/ui_components/animated_bullet_points_card.dart';
-import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:eliachar_feig/utils/components.dart';
-import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import '../packages/default_packages.dart';
+import '../packages/ui_components_packages.dart';
+import '../packages/utlis_packages.dart';
 
 class AboutMe extends StatefulWidget {
   final bool showAppBar;

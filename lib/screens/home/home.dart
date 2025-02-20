@@ -1,18 +1,8 @@
+import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
 import 'package:eliachar_feig/model/project.dart';
-import 'package:eliachar_feig/screens/home/helpers/home_helper.dart';
-import 'package:eliachar_feig/screens/home/widgets/project_details_screen.dart';
-import 'package:eliachar_feig/screens/home/widgets/project_card.dart';
-import 'package:eliachar_feig/screens/home/widgets/projects_screen.dart';
-import 'package:eliachar_feig/ui_components/extensions/build_context_extensions.dart';
-import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
-import 'package:eliachar_feig/ui_components/round_text_display.dart';
-import 'package:eliachar_feig/ui_components/route_wrapper.dart';
-import 'package:eliachar_feig/ui_components/section_title.dart';
-import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:eliachar_feig/utils/components.dart';
-import 'package:eliachar_feig/utils/popup_presenter.dart';
-import 'package:flutter/material.dart';
+import '../../packages/default_packages.dart';
+import '../../packages/ui_components_packages.dart';
+import '../../packages/utlis_packages.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

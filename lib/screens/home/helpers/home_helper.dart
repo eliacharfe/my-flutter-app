@@ -1,8 +1,6 @@
 import 'package:eliachar_feig/model/project.dart';
-import 'package:eliachar_feig/utils/components.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../packages/default_packages.dart';
+import '../../../packages/utlis_packages.dart';
 
 class HomeHelper {
   static Future<void> launchURL(String url) async {

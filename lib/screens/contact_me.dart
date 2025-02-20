@@ -1,10 +1,6 @@
-import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
-import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:eliachar_feig/utils/components.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../packages/default_packages.dart';
+import '../packages/ui_components_packages.dart';
+import '../packages/utlis_packages.dart';
 
 class ContactMe extends StatelessWidget {
   final bool showAppBar;

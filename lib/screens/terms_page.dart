@@ -1,8 +1,6 @@
-import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:eliachar_feig/utils/components.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:eliachar_feig/packages/default_packages.dart';
+import '../packages/ui_components_packages.dart';
+import '../packages/utlis_packages.dart';
 
 class TermsPage extends StatelessWidget {
   final bool showAppBar;
