@@ -35,8 +35,6 @@ Future<void> initializeFirebase() async {
 }
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -50,7 +48,7 @@ Future<void> setDetailsForCrashlytics({String? userId, String? userEmail, String
   final deviceInfo = DeviceInfoPlugin();
 
   FirebaseCrashlytics.instance.setUserIdentifier(userId ?? "");
-  FirebaseCrashlytics.instance.setCustomKey('appVersion', appVersion);
+  FirebaseCrashlytics.instance.setCustomKey('appVersion', getAppVersion());
   FirebaseCrashlytics.instance.setCustomKey('userId', userId ?? "");
   FirebaseCrashlytics.instance.setCustomKey('userEmail', userEmail ?? "");
   FirebaseCrashlytics.instance.setCustomKey('deviceId', deviceId ?? "");

@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eliachar_feig/helpers/logger.dart';
 import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'firebase_setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-const appVersion = '1.0.0+1';
+Future<String> getAppVersion() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return "${packageInfo.version}+${packageInfo.buildNumber}";
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
