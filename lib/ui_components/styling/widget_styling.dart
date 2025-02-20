@@ -1,4 +1,4 @@
-import 'package:eliachar_feig/constants/components.dart';
+import 'package:eliachar_feig/utils/components.dart';
 import 'package:flutter/material.dart';
 
 class WidgetStyling {
@@ -14,18 +14,21 @@ class WidgetStyling {
     );
   }
 
-  static AppBar buildTopAppBar() {
+  static AppBar buildTopAppBar({required String title, bool showLogoIcon = true}) {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.black,
       toolbarHeight: 50,
       title: Row(
         children: [
-          SizedBox(
-            height: 40,
-            width: 40,
-            child: ClipRRect(child: Image.asset('assets/images/icon.png')),
-          ),
+          if (showLogoIcon)
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: ClipRRect(child: Image.asset('assets/images/icon.png')),
+            ),
+          Spacer(),
+          SansBold(title, 20),
           Spacer(),
         ],
       ),

@@ -1,9 +1,9 @@
-import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/screens/about_me.dart';
 import 'package:eliachar_feig/screens/contact_me.dart';
 import 'package:eliachar_feig/screens/home/home.dart';
 import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:eliachar_feig/screens/terms_page.dart';
+import 'package:eliachar_feig/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class RouterManager {

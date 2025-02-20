@@ -1,7 +1,7 @@
 import 'package:eliachar_feig/helpers/router_manager.dart';
+import 'package:eliachar_feig/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/helpers/logger.dart';
 import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
 import 'firebase_setup.dart';

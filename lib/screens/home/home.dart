@@ -1,16 +1,18 @@
-import 'package:eliachar_feig/constants/app_colors.dart';
-import 'package:eliachar_feig/constants/components.dart';
 import 'package:eliachar_feig/model/project.dart';
+import 'package:eliachar_feig/screens/home/helpers/home_helper.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_details_screen.dart';
 import 'package:eliachar_feig/screens/home/widgets/project_card.dart';
+import 'package:eliachar_feig/screens/home/widgets/projects_screen.dart';
 import 'package:eliachar_feig/ui_components/extensions/build_context_extensions.dart';
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:eliachar_feig/ui_components/round_text_display.dart';
 import 'package:eliachar_feig/ui_components/route_wrapper.dart';
+import 'package:eliachar_feig/ui_components/section_title.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
+import 'package:eliachar_feig/utils/app_colors.dart';
+import 'package:eliachar_feig/utils/components.dart';
+import 'package:eliachar_feig/utils/popup_presenter.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,6 +22,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -92,116 +96,334 @@ class _HomeState extends State<Home> {
     ),
   ];
 
-  Future<void> launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      debugPrint("launch: $url");
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
+  final List<String> notes = ['Note 1', 'Note 2'];
+
+  void showDialogModal() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.lightTeal,
+        titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+        ),
+        contentTextStyle: TextStyle(
+          color: Colors.black87,
+          fontSize: 16,
+        ),
+        title: const Text('Dialog Modal'),
+        content: const Text('This is a dialog modal in the center.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.teal,
+            ),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showBottomSheetModal() {
+    PopupPresenter.showPopup(
+      context: context,
+      title: "Delete Item",
+      message: "Are you sure do you want to delete this item?",
+      primaryButtonTitle: "Cancel",
+      secondaryButtonTitle: "Yes, Delete",
+      onPrimaryAction: () {
+        Navigator.of(context).pop();
+      },
+      onSecondaryAction: () async {
+        setState(() {
+          isLoading = true;
+        });
+        await Future.delayed(const Duration(seconds: 2));
+        setState(() {
+          isLoading = false;
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Item deleted Successfully')),
+          );
+        });
+      },
+      secondaryButtonColor: Colors.red.shade800,
+    );
+  }
+
+  void editNote(int index) {
+    final controller = TextEditingController(text: notes[index]);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text('Edit Note'),
+        content: TextField(controller: controller),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red.shade800,
+            ),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() => notes[index] = controller.text);
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.teal,
+            ),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void addNote() {
+    final controller = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text('Add Note'),
+        content: TextField(controller: controller),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red.shade800,
+            ),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() => notes.add(controller.text));
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.teal,
+            ),
+            child: const Text('Add'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: WidgetStyling.buildTopAppBar(),
+      appBar: WidgetStyling.buildTopAppBar(title: "Home"),
       endDrawer: DrawersMobile(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SansBold('Projects', 24).withPadding(EdgeInsets.symmetric(horizontal: 15)),
-              SizedBox(height: 16),
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: projects.map((project) {
-                  return ProjectCard(
-                    width: (context.screenWidth - 30) / 2,
-                    height: 280,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              buildSection(
+                title: 'Projects (${projects.length})',
+                child: buildProjectsContent(),
+                onTap: () {
+                  Navigator.of(context).push(
+                    RouteWrapper(
+                      page: ProjectsScreen(projects: projects),
+                    ),
+                  );
+                },
+              ),
+              buildSection(
+                title: 'Modal Buttons',
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        if (project.type == ProjectType.video)
-                          buildVideoPlayer(project)
-                        else if (project.type == ProjectType.image)
-                          buildImageDisplay(project),
-                        buildITextSection(project),
-                        Spacer(),
-                        if (project.githubLink != null)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: RoundTextDisplay(
-                              text: "GitHub",
-                              bgColor: Colors.black,
-                              textColor: Colors.white,
-                              isBold: false,
-                              icon: Icons.link,
-                              iconSize: 15,
-                              padding: EdgeInsets.all(2),
-                            ).onTapWithCursor(
-                              () {
-                                if (project.githubLink != null && project.githubLink!.isNotEmpty) {
-                                  launchURL(project.githubLink!);
-                                }
-                              },
-                            ),
+                        ElevatedButton(
+                          onPressed: showDialogModal,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightTeal,
+                            foregroundColor: Colors.black,
                           ),
+                          child: const Text('Dialog Modal'),
+                        ),
+                        const SizedBox(width: 10),
+                        ElevatedButton(
+                          onPressed: showBottomSheetModal,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightTeal,
+                            foregroundColor: Colors.black,
+                          ),
+                          child: const Text('Bottom Sheet'),
+                        ),
                       ],
                     ),
-                  ).onTapWithCursor(() {
-                    Navigator.of(context).push(
-                      RouteWrapper(
-                        page: ProjectDetailsScreen(project: project),
-                      ),
+                  ),
+                ),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Notes Section',
+                rightIcon: Icons.add,
+                child: Column(
+                  children: [
+                    ...notes.asMap().entries.map(
+                          (entry) => ListTile(
+                            title: Text(entry.value),
+                            trailing: const Icon(Icons.edit),
+                            onTap: () => editNote(entry.key),
+                          ),
+                        ),
+                    const SizedBox(height: 8),
+                    // ElevatedButton(
+                    //   onPressed: _addNote,
+                    //   child: const Text('Add Note'),
+                    // ),
+                  ],
+                ),
+                onTap: addNote,
+              ),
+              buildSection(
+                title: 'Achievements',
+                child: Wrap(
+                  spacing: 10,
+                  children: List.generate(4, (index) {
+                    return Chip(
+                      label: Text('Achievement ${index + 1}'),
+                      backgroundColor: AppColors.lightTeal,
                     );
-                  });
-                }).toList(),
+                  }),
+                ),
+                onTap: () {},
+              ),
+              buildSection(
+                title: 'Learning Progress',
+                rightIcon: null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Flutter Mastery"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.8,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                  ],
+                ).withPadding(EdgeInsets.symmetric(horizontal: 16)),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Empty Section',
+                rightIcon: null,
+                child: const Center(
+                  child: Text(
+                    'There is no data to display.',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Upcoming Events',
+                child: Column(
+                  children: List.generate(3, (index) {
+                    return ListTile(
+                      leading: const Icon(Icons.event),
+                      title: Text('Event ${index + 1}'),
+                      subtitle: const Text('Event description...'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {},
+                    );
+                  }),
+                ),
+                onTap: () {},
               ),
             ],
           ),
+        ).isLoading(isLoading: isLoading),
+      ),
+    );
+  }
+
+  Widget buildProjectsContent() {
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: projects.take(2).map(
+        (project) {
+          return ProjectCard(
+            width: (context.screenWidth - 30) / 2,
+            height: 280,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (project.type == ProjectType.video)
+                  HomeHelper.buildVideoPlayer(project)
+                else if (project.type == ProjectType.image)
+                  HomeHelper.buildImageDisplay(project),
+                HomeHelper.buildITextSection(project),
+                Spacer(),
+                if (project.githubLink != null)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RoundTextDisplay(
+                      text: "GitHub",
+                      bgColor: Colors.black,
+                      textColor: Colors.white,
+                      isBold: false,
+                      icon: Icons.link,
+                      iconSize: 15,
+                      padding: EdgeInsets.all(2),
+                    ).onTapWithCursor(
+                      () {
+                        if (project.githubLink != null && project.githubLink!.isNotEmpty) {
+                          HomeHelper.launchURL(project.githubLink!);
+                        }
+                      },
+                    ),
+                  ),
+              ],
+            ),
+          ).onTapWithCursor(
+            () {
+              Navigator.of(context).push(
+                RouteWrapper(
+                  page: ProjectDetailsScreen(project: project),
+                ),
+              );
+            },
+          );
+        },
+      ).toList(),
+    );
+  }
+
+  Widget buildSection({
+    required String title,
+    required Widget child,
+    IconData? rightIcon,
+    required VoidCallback? onTap,
+  }) {
+    return Column(
+      children: [
+        SectionTitle(
+          title: title,
+          rightIcon: (onTap != null) ? (rightIcon ?? Icons.chevron_right) : null,
+          onPressedRightIcon: onTap,
         ),
-      ),
-    );
-  }
-
-  Widget buildVideoPlayer(Project project) {
-    final videoId = YoutubePlayer.convertUrlToId(project.videoUrl!);
-    if (videoId == null) {
-      return const Text('Invalid Video URL');
-    }
-    return YoutubePlayer(
-      controller: YoutubePlayerController(
-        initialVideoId: videoId,
-        flags: const YoutubePlayerFlags(autoPlay: false, mute: false),
-      ),
-    );
-  }
-
-  Widget buildImageDisplay(Project project) {
-    return Image.asset(project.imageAsset!, fit: BoxFit.cover);
-  }
-
-  Widget buildITextSection(Project project) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SansBold(project.title, 14),
-          const SizedBox(height: 4),
-          Text(
-            project.description,
-            style: const TextStyle(fontSize: 12),
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
+        SizedBox(height: 16),
+        child,
+        SizedBox(height: 20),
+        Divider(),
+      ],
     );
   }
 }

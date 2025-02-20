@@ -1,7 +1,7 @@
-import 'package:eliachar_feig/constants/app_colors.dart';
-import 'package:eliachar_feig/constants/components.dart';
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
+import 'package:eliachar_feig/utils/app_colors.dart';
+import 'package:eliachar_feig/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -33,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar() : null,
+      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'Settings') : null,
       endDrawer: DrawersMobile(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),

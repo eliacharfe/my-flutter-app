@@ -1,5 +1,5 @@
+import 'package:eliachar_feig/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/constants/app_colors.dart';
 
 class NoConnection extends StatelessWidget {
   const NoConnection({super.key});

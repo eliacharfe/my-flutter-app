@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -13,7 +14,7 @@ class ProjectCard extends StatelessWidget {
       width: width,
       height: height,
       child: Card(
-        color: Color(0xFFE0F2F1),
+        color: AppColors.lightTeal,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

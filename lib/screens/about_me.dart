@@ -1,8 +1,8 @@
-import 'package:eliachar_feig/constants/components.dart';
 import 'package:eliachar_feig/ui_components/animated_bullet_points_card.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
+import 'package:eliachar_feig/utils/app_colors.dart';
+import 'package:eliachar_feig/utils/components.dart';
 import 'package:flutter/material.dart';
-import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class AboutMe extends StatefulWidget {
@@ -32,7 +32,7 @@ class AboutMeState extends State<AboutMe> {
           childWidget = Material(
             child: Scaffold(
               backgroundColor: AppColors.scaffoldColor,
-              appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar() : null,
+              appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'About Me') : null,
               endDrawer: DrawersMobile(),
               body: Stack(
                 children: [
