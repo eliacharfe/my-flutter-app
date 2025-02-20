@@ -282,10 +282,6 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                     const SizedBox(height: 8),
-                    // ElevatedButton(
-                    //   onPressed: _addNote,
-                    //   child: const Text('Add Note'),
-                    // ),
                   ],
                 ),
                 onTap: addNote,
