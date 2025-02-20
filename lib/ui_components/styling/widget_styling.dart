@@ -21,7 +21,6 @@ class WidgetStyling {
       toolbarHeight: 50,
       title: Row(
         children: [
-          Spacer(),
           SizedBox(
             height: 40,
             width: 40,

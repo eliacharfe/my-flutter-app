@@ -110,7 +110,11 @@ class TabsMobile extends StatelessWidget {
         style: GoogleFonts.openSans(fontSize: 20.0, color: Colors.white),
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed(route);
+        if (route == '/') {
+          Navigator.of(context).pushReplacementNamed('/');
+        } else {
+          Navigator.of(context).pushNamed(route);
+        }
       },
     );
   }
