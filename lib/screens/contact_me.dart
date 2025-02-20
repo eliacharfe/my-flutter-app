@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/constants/app_colors.dart';
 import 'package:eliachar_feig/constants/components.dart';
+import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,11 +17,11 @@ class ContactMe extends StatelessWidget {
       appBar: showAppBar ? WidgetStyling.buildTopAppBar() : null,
       endDrawer: DrawersMobile(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WidgetStyling.buildPageTitle('Contact Me'),
+            WidgetStyling.buildPageTitle('Contact Me').withPadding(EdgeInsets.symmetric(horizontal: 20)),
             buildContactItem(
               icon: Icons.phone,
               label: 'Phone',
@@ -67,6 +68,7 @@ class ContactMe extends StatelessWidget {
               icon: Icons.location_on,
               label: 'Address',
               value: '128 Willowbrook Lane, Fairview, CA 90210, United States',
+              tappable: false,
               onTap: null,
             ),
           ],
@@ -79,40 +81,15 @@ class ContactMe extends StatelessWidget {
     required IconData icon,
     required String label,
     required String value,
+    bool tappable = true,
     VoidCallback? onTap,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: InkWell(
-        onTap: onTap,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: Colors.blueGrey),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    label,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    value,
-                    style: const TextStyle(fontSize: 15, color: Colors.black87),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    return ListTile(
+      leading: Icon(icon, color: Colors.teal),
+      title: Sans(label, 16, color: Colors.grey, fontWeight: FontWeight.w500),
+      subtitle: Sans(value, 15, color: Colors.black87),
+      trailing: tappable ? const Icon(Icons.chevron_right) : null,
+      onTap: tappable ? onTap : null,
     );
   }
 }

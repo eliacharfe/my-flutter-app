@@ -22,23 +22,23 @@ class Sans extends StatelessWidget {
   final String text;
   final double size;
   final Color? color;
+  final FontWeight? fontWeight;
 
-  const Sans(this.text, this.size, {super.key, this.color});
+  const Sans(this.text, this.size, {super.key, this.color, this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.openSans(fontSize: size, color: color ?? Colors.black),
+      style: GoogleFonts.openSans(fontSize: size, color: color ?? Colors.black, fontWeight: fontWeight),
     );
   }
 }
 
 Widget urlLauncher(String imgPath, String url) {
   return IconButton(
-    icon: SvgPicture.asset(imgPath, color: Colors.black, width: 35),
+    icon: SvgPicture.asset(imgPath, width: 35),
     onPressed: () async {
-      // Launch the specified URL
       await launchUrl(Uri.parse(url));
     },
   );

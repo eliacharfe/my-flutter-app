@@ -108,8 +108,8 @@ class SettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon, color: Colors.teal),
-      title: SansBold(title, 15),
-      subtitle: Sans(subtitle, 14),
+      title: Sans(title, 16, color: Colors.grey, fontWeight: FontWeight.w500),
+      subtitle: Sans(subtitle, 15, color: Colors.black87),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {
         ScaffoldMessenger.of(context).showSnackBar(
