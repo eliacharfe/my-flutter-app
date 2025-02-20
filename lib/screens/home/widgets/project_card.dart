@@ -13,7 +13,7 @@ class ProjectCard extends StatelessWidget {
       width: width,
       height: height,
       child: Card(
-        color: Colors.white,
+        color: Color(0xFFE0F2F1),
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

@@ -36,7 +36,7 @@ class Sans extends StatelessWidget {
 
 Widget urlLauncher(String imgPath, String url) {
   return IconButton(
-    icon: SvgPicture.asset(imgPath, width: 35),
+    icon: SvgPicture.asset(imgPath, color: Colors.black, width: 35),
     onPressed: () async {
       // Launch the specified URL
       await launchUrl(Uri.parse(url));
@@ -74,6 +74,8 @@ class DrawersMobile extends StatelessWidget {
           const TabsMobile(text: "Terms", route: '/terms'),
           const SizedBox(height: 20.0),
           const TabsMobile(text: "Contact", route: '/contact'),
+          const SizedBox(height: 20.0),
+          const TabsMobile(text: "Settings", route: '/settings'),
           const SizedBox(height: 40.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

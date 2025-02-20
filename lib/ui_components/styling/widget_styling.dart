@@ -37,6 +37,7 @@ class WidgetStyling {
     required Map<String, List<String>> sections,
   }) {
     return Card(
+      color: Color(0xFFE0F2F1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
       child: Padding(

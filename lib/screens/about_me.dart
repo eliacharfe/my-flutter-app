@@ -108,25 +108,38 @@ class AboutMeState extends State<AboutMe> {
 
   Widget buildTitle(String title) {
     return Container(
-      alignment: Alignment.topLeft,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Column(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: SansBold(title, 27.5),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SansBold(title, 27.5),
+                Sans('App version: $appVersion ($appBuildNumber)', 12.5),
+              ],
+            ),
           ),
-          Row(
+          const SizedBox(width: 12),
+          Column(
             children: [
-              Expanded(
-                child: Text(
-                  'App version: $appVersion ($appBuildNumber)',
-                  style: TextStyle(fontSize: 12.5, color: AppColors.hmDarkBlue),
-                  textAlign: TextAlign.left,
+              CircleAvatar(
+                radius: 37,
+                backgroundColor: Colors.tealAccent,
+                child: const CircleAvatar(
+                  radius: 35,
+                  backgroundImage: AssetImage('assets/images/profile.jpeg'),
                 ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Software Developer',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                'B.Sc Computer Science',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ],
           ),

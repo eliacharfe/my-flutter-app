@@ -52,12 +52,12 @@ class ProjectDetailsScreen extends StatelessWidget {
             if (project.githubLink != null)
               RoundTextDisplay(
                 text: "View on GitHub",
-                bgColor: Colors.white,
+                bgColor: Color(0xFFE0F2F1),
                 textColor: Colors.black,
                 borderColor: Colors.black,
                 isBold: true,
                 icon: Icons.link,
-                padding: EdgeInsets.all(7),
+                padding: EdgeInsets.all(5),
               ).onTapWithCursor(
                 () async {
                   final Uri uri = Uri.parse(project.githubLink!);

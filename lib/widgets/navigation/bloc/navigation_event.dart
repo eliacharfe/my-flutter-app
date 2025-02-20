@@ -10,6 +10,8 @@ class TermsButtonPressedEvent extends NavigationEvent {}
 
 class ContactButtonPressedEvent extends NavigationEvent {}
 
+class SettingsButtonPressedEvent extends NavigationEvent {}
+
 class ConnectivityChangedEvent extends NavigationEvent {
   final ConnectivityResult connectivityResult;
   ConnectivityChangedEvent(this.connectivityResult);

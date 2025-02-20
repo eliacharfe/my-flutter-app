@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eliachar_feig/screens/about_me.dart';
@@ -39,11 +40,10 @@ class _NavigationContainerContent extends StatelessWidget {
   Widget build(BuildContext context) {
     pages = [
       Home(),
-      AboutMe(
-        showAppBar: true,
-      ),
+      AboutMe(),
       TermsPage(),
       ContactMe(),
+      SettingsPage(),
     ];
 
     return BlocBuilder<NavigationBloc, NavigationState>(
@@ -73,6 +73,7 @@ class _NavigationContainerContent extends StatelessWidget {
     if (state is AboutState) return 1;
     if (state is TermsState) return 2;
     if (state is ContactState) return 3;
+    if (state is SettingsState) return 4;
     return 0;
   }
 
@@ -82,6 +83,7 @@ class _NavigationContainerContent extends StatelessWidget {
       NavItem(icon: Icons.info_outlined, label: "About", index: 1, event: AboutButtonPressedEvent()),
       NavItem(icon: Icons.verified_user_outlined, label: "Terms", index: 2, event: TermsButtonPressedEvent()),
       NavItem(icon: Icons.phone_outlined, label: "Contact", index: 3, event: ContactButtonPressedEvent()),
+      NavItem(icon: Icons.settings, label: "Settings", index: 4, event: SettingsButtonPressedEvent()),
     ];
 
     return Container(

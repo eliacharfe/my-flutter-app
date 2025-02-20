@@ -25,6 +25,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       emit(ContactState());
     });
 
+    on<SettingsButtonPressedEvent>((event, emit) {
+      emit(SettingsState());
+    });
+
     on<ConnectivityChangedEvent>((event, emit) {
       if (event.connectivityResult == ConnectivityResult.none) {
         emit(NoConnectionState());

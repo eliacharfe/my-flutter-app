@@ -8,6 +8,8 @@ class TermsState extends NavigationState {}
 
 class ContactState extends NavigationState {}
 
+class SettingsState extends NavigationState {}
+
 class NoConnectionState extends NavigationState {}
 
 class NavigationInitial extends NavigationState {}
