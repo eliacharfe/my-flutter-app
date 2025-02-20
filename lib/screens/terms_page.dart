@@ -1,4 +1,5 @@
 import 'package:eliachar_feig/constants/app_colors.dart';
+import 'package:eliachar_feig/constants/components.dart';
 import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,7 @@ class TermsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: showAppBar ? WidgetStyling.buildTopAppBar() : null,
+      endDrawer: DrawersMobile(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(

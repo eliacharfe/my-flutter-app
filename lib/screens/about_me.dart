@@ -33,6 +33,7 @@ class AboutMeState extends State<AboutMe> {
             child: Scaffold(
               backgroundColor: AppColors.scaffoldColor,
               appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar() : null,
+              endDrawer: DrawersMobile(),
               body: Stack(
                 children: [
                   SingleChildScrollView(

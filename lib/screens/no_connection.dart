@@ -14,7 +14,7 @@ class NoConnection extends StatelessWidget {
             children: [
               Spacer(),
               Image.asset(
-                'assets/images/cloud_no_network.png',
+                'assets/images/icon.png',
                 width: 75,
                 height: 75,
               ),

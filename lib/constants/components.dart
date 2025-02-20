@@ -58,11 +58,11 @@ class DrawersMobile extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Container(
               decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
+                shape: BoxShape.circle,
                 border: Border.all(width: 2.0, color: Colors.tealAccent),
               ),
               child: Image.asset(
-                'assets/images/icon.png',
+                'assets/images/icon2.png',
                 filterQuality: FilterQuality.high,
               ),
             ),
