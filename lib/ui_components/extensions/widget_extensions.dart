@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:flutter/material.dart';
 
 extension GestureMouseRegionExtension on Widget {
@@ -31,17 +32,6 @@ extension WidgetPadding on Widget {
 
 extension WidgetLoading on Widget {
   Widget isLoading({required bool isLoading, double? height}) {
-    return isLoading ? getLoader(height: height) : this;
+    return isLoading ? WidgetStyling.getLoader(height: height) : this;
   }
-}
-
-Widget getLoader({double? height}) {
-  return SizedBox(
-    height: height,
-    child: const Center(
-      child: CircularProgressIndicator(
-        color: Colors.black,
-      ),
-    ),
-  );
 }

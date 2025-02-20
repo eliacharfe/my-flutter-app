@@ -11,7 +11,7 @@ const appVersion = '1.0.0+1';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // firebaseSetup();
+  firebaseSetup();
 
   runApp(MyApp());
 }
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light); // Change status bar icons color to white.
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouterManager.generateRoute,
@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white), // Back button color
+          iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
       home: Scaffold(
-        backgroundColor: AppColors.hmDarkBlue,
+        backgroundColor: AppColors.darkGray,
         resizeToAvoidBottomInset: false,
         body: NavigationContainer(),
       ),

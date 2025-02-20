@@ -23,7 +23,7 @@ class NoConnection extends StatelessWidget {
                 child: Text(
                   "No network connection",
                   style: TextStyle(
-                    color: AppColors.hmDarkBlue,
+                    color: AppColors.darkGray,
                     fontSize: 27.5,
                     fontWeight: FontWeight.w500,
                   ),
@@ -34,7 +34,7 @@ class NoConnection extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.hmDarkBlue,
+                    backgroundColor: AppColors.darkGray,
                     fixedSize: Size(200, 50),
                   ),
                   child: Text("Reload"),

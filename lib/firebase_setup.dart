@@ -104,22 +104,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD7di_kEFfnAFaSKFxPOd0U6uzguOzRX3s',
-    appId: '1:503171612283:android:585d2f5af6929ad035ecde',
-    messagingSenderId: '503171612283',
-    projectId: 'hartman-connect',
-    storageBucket: 'hartman-connect.appspot.com',
+    apiKey: 'AIzaSyAiKCt4eamTIcHjE3YGJs5iwBAwfJWK-PQ',
+    appId: '1:604084209728:android:cceb204d4f5bd2c39677a5',
+    messagingSenderId: '604084209728',
+    projectId: 'flutter-app-5ff59',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCSf7M-t7lRpaGkxUdXwyVSHoTf6H65GGc',
-    appId: '1:503171612283:ios:556bed5ca20d66e035ecde',
-    messagingSenderId: '503171612283',
-    projectId: 'hartman-connect',
-    storageBucket: 'hartman-connect.appspot.com',
-    iosClientId: '503171612283-kfejgumale891jkahnjq2l91ell1luap.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAiKCt4eamTIcHjE3YGJs5iwBAwfJWK-PQ',
+    appId: '1:604084209728:ios:4aefd89561d6efe69677a5',
+    messagingSenderId: '604084209728',
+    projectId: 'flutter-app-5ff59',
+    storageBucket: 'flutter-app-5ff59.firebasestorage.app',
+    iosClientId: 'com.googleusercontent.apps.503171612283-4covlhjgaqe7pb335dtfie7lstiop67c',
     iosBundleId: 'com.eliachar.feig',
   );
 }
-
-// Listen to notifications while app is in background.

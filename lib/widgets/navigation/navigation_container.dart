@@ -57,11 +57,14 @@ class _NavigationContainerContent extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.black,
           body: SafeArea(
-            child: Center(
-              child: Stack(
-                children: [Home(), if (selectedIndex != 0) pages.elementAt(selectedIndex)],
-              ),
-            ),
+            child: Center(child: pages.elementAt(selectedIndex)
+                // Stack(
+                //   children: [
+                //     Home(),
+                //     if (selectedIndex != 0) pages.elementAt(selectedIndex),
+                //   ],
+                // ),
+                ),
           ),
           bottomNavigationBar: buildNavBar(context, selectedIndex),
         );

@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
 import 'package:eliachar_feig/model/project.dart';
+import 'package:eliachar_feig/ui_components/extensions/text_extensions.dart';
 import '../../packages/default_packages.dart';
 import '../../packages/ui_components_packages.dart';
 import '../../packages/utlis_packages.dart';
@@ -149,25 +150,19 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
-        title: const Text('Edit Note'),
+        title: const Text('Edit Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red.shade800,
-            ),
-            child: const Text('Cancel'),
+            child: const Text('Cancel').applySansStyle(color: Colors.red.shade800, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               setState(() => notes[index] = controller.text);
               Navigator.pop(context);
             },
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.teal,
-            ),
-            child: const Text('Save'),
+            child: const Text('Save').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
           ),
         ],
       ),
@@ -180,25 +175,19 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
-        title: const Text('Add Note'),
+        title: const Text('Add Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red.shade800,
-            ),
-            child: const Text('Cancel'),
+            child: const Text('Cancel').applySansStyle(color: Colors.red.shade800, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               setState(() => notes.add(controller.text));
               Navigator.pop(context);
             },
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.teal,
-            ),
-            child: const Text('Add'),
+            child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
           ),
         ],
       ),
@@ -230,33 +219,27 @@ class _HomeState extends State<Home> {
               ),
               buildSection(
                 title: 'Modal Buttons',
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: showDialogModal,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.lightTeal,
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('Dialog Modal'),
-                        ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: showBottomSheetModal,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.lightTeal,
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('Bottom Sheet'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: showDialogModal,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.lightTeal,
+                        foregroundColor: Colors.black,
+                      ),
+                      child: const Text('Dialog Modal'),
+                    ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
+                    ElevatedButton(
+                      onPressed: showBottomSheetModal,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.lightTeal,
+                        foregroundColor: Colors.black,
+                      ),
+                      child: const Text('Bottom Sheet'),
+                    ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
+                  ],
+                ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
                 onTap: null,
               ),
               buildSection(
@@ -315,6 +298,18 @@ class _HomeState extends State<Home> {
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Unable To Load',
+                rightIcon: null,
+                child: WidgetStyling.getUnableToLoadContainer(),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Custom Unable To Load',
+                rightIcon: null,
+                child: WidgetStyling.getNoDataContainerWith("No data available right now"),
                 onTap: null,
               ),
               buildSection(

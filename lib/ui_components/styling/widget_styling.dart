@@ -1,5 +1,5 @@
-import 'package:eliachar_feig/utils/components.dart';
 import 'package:flutter/material.dart';
+import '../../packages/utlis_packages.dart';
 
 class WidgetStyling {
   static Widget buildPageTitle(String title) {
@@ -91,6 +91,89 @@ class WidgetStyling {
           ),
         ],
       ),
+    );
+  }
+
+  static Widget getLoader({double? height}) {
+    return SizedBox(
+      height: height,
+      child: const Center(
+        child: CircularProgressIndicator(
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+
+  static Container getUnableToLoadContainer(
+      {bool withLightBackground = true, String text = "Unable to load data, please try again"}) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(15),
+      color: withLightBackground ? Colors.white : Colors.black,
+      child: Container(
+          padding: const EdgeInsets.fromLTRB(0, 35, 0, 35),
+          height: 130,
+          child: Column(
+            children: [
+              Icon(Icons.refresh, size: 24, color: withLightBackground ? AppColors.lightGrey : Colors.white),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                text,
+                style: TextStyle(color: withLightBackground ? AppColors.lightGrey : Colors.white, fontSize: 12),
+              ),
+            ],
+          )),
+    );
+  }
+
+  static Container getUnableToLoadContainerForScreen() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(15),
+      child: Container(
+          padding: const EdgeInsets.fromLTRB(0, 100, 0, 35),
+          child: const Column(
+            children: [
+              Icon(Icons.refresh, size: 40, color: AppColors.lightGrey),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Unable to load data, please try again",
+                style: TextStyle(color: AppColors.lightGrey, fontSize: 16, fontWeight: FontWeight.w800),
+              ),
+            ],
+          )),
+    );
+  }
+
+  static Container getNoDataContainerWith(String text, {bool showEmptyContainerIcon = true}) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(15),
+      color: Colors.white,
+      child: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.all(35),
+          child: Column(
+            children: [
+              Visibility(
+                visible: showEmptyContainerIcon,
+                child: SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: Image.asset('assets/material_symbols/scan_delete.png', color: AppColors.lightGrey),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(text, style: const TextStyle(color: AppColors.lightGrey, fontSize: 12), textAlign: TextAlign.center),
+            ],
+          )),
     );
   }
 }
