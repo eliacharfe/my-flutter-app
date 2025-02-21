@@ -310,6 +310,7 @@ class _HomeState extends State<Home> {
                               title: Text(title),
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
+                                spacing: 0,
                                 children: [
                                   IconButton(
                                     icon: Icon(

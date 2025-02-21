@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:eliachar_feig/screens/activities/activities.dart';
 import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +7,6 @@ import 'package:eliachar_feig/screens/about_me.dart';
 import 'package:eliachar_feig/screens/contact_me.dart';
 import 'package:eliachar_feig/screens/home/home.dart';
 import 'package:eliachar_feig/screens/no_connection.dart';
-import 'package:eliachar_feig/screens/terms_page.dart';
 import 'package:eliachar_feig/ui_components/bottom_nav_icon.dart';
 import 'package:eliachar_feig/widgets/navigation/bloc/navigation_bloc.dart';
 import 'package:eliachar_feig/widgets/navigation/bloc/navigation_event.dart';
@@ -41,7 +41,7 @@ class _NavigationContainerContent extends StatelessWidget {
     pages = [
       Home(),
       AboutMe(),
-      TermsPage(),
+      Activities(),
       ContactMe(),
       SettingsPage(),
     ];
@@ -69,7 +69,7 @@ class _NavigationContainerContent extends StatelessWidget {
 
   int getSelectedIndex(NavigationState state) {
     if (state is AboutState) return 1;
-    if (state is TermsState) return 2;
+    if (state is ActivityState) return 2;
     if (state is ContactState) return 3;
     if (state is SettingsState) return 4;
     return 0;
@@ -79,7 +79,7 @@ class _NavigationContainerContent extends StatelessWidget {
     final items = [
       NavItem(icon: Icons.home_filled, label: "Home", index: 0, event: HomeButtonPressedEvent()),
       NavItem(icon: Icons.info_outlined, label: "About", index: 1, event: AboutButtonPressedEvent()),
-      NavItem(icon: Icons.verified_user_outlined, label: "Terms", index: 2, event: TermsButtonPressedEvent()),
+      NavItem(icon: Icons.event, label: "Activities", index: 2, event: ActivitiesButtonPressedEvent()),
       NavItem(icon: Icons.phone_outlined, label: "Contact", index: 3, event: ContactButtonPressedEvent()),
       NavItem(icon: Icons.settings, label: "Settings", index: 4, event: SettingsButtonPressedEvent()),
     ];

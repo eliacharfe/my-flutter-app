@@ -8,6 +8,8 @@ class AboutButtonPressedEvent extends NavigationEvent {}
 
 class TermsButtonPressedEvent extends NavigationEvent {}
 
+class ActivitiesButtonPressedEvent extends NavigationEvent {}
+
 class ContactButtonPressedEvent extends NavigationEvent {}
 
 class SettingsButtonPressedEvent extends NavigationEvent {}

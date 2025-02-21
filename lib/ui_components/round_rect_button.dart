@@ -44,7 +44,7 @@ class SelectableRectButton extends StatelessWidget {
         backgroundColor: WidgetStateProperty.all<Color>(
           isSelected ? selectedColorBG : unSelectedColorBG,
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(6)),
         minimumSize: WidgetStateProperty.all<Size>(const Size(67, 30)),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(

@@ -21,6 +21,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       emit(TermsState());
     });
 
+    on<ActivitiesButtonPressedEvent>((event, emit) {
+      emit(ActivityState());
+    });
+
     on<ContactButtonPressedEvent>((event, emit) {
       emit(ContactState());
     });
@@ -33,15 +37,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       if (event.connectivityResult == ConnectivityResult.none) {
         emit(NoConnectionState());
       } else {
-        // Depending on the last emitted navigation state, you might want to
-        // return to that state after connection is restored.  For simplicity,
-        // I'm going to HomeState.  You could store the last valid navigation
-        // state in the bloc and retrieve it here.
-        emit(HomeState()); // Or emit the last valid navigation state
+        emit(HomeState());
       }
     });
 
-    // Initialize connectivity subscription
     _connectivitySubscription = connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       add(ConnectivityChangedEvent(result));
     });

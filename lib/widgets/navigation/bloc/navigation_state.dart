@@ -6,6 +6,8 @@ class AboutState extends NavigationState {}
 
 class TermsState extends NavigationState {}
 
+class ActivityState extends NavigationState {}
+
 class ContactState extends NavigationState {}
 
 class SettingsState extends NavigationState {}
