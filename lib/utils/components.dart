@@ -73,6 +73,8 @@ class DrawersMobile extends StatelessWidget {
           const SizedBox(height: 20.0),
           const TabsMobile(text: "Terms", route: '/terms'),
           const SizedBox(height: 20.0),
+          const TabsMobile(text: "Manual", route: '/manual'),
+          const SizedBox(height: 20.0),
           const TabsMobile(text: "Contact", route: '/contact'),
           const SizedBox(height: 20.0),
           const TabsMobile(text: "Settings", route: '/settings'),
