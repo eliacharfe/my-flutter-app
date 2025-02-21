@@ -10,13 +10,30 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderStateMixin {
   String appVersion = "Unknown";
+  late AnimationController animationController;
+  late Animation<double> fadeAnimation;
+  late Animation<Offset> slideAnimation;
 
   @override
   void initState() {
     super.initState();
     getVersion();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+    slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+    );
+    animationController.forward();
   }
 
   Future<void> getVersion() async {
@@ -24,6 +41,12 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       appVersion = 'Version ${packageInfo.version} (${packageInfo.buildNumber})';
     });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -41,78 +64,46 @@ class _SettingsPageState extends State<SettingsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 WidgetStyling.buildPageTitle('Settings').withPadding(EdgeInsets.symmetric(horizontal: 20)),
-                const SettingsTile(
-                  icon: Icons.account_circle,
-                  title: 'Account',
-                  subtitle: 'Manage your account settings',
-                ),
-                const SettingsTile(
-                  icon: Icons.notifications,
-                  title: 'Notifications',
-                  subtitle: 'Set your notification preferences',
-                ),
-                const SettingsTile(
-                  icon: Icons.lock,
-                  title: 'Privacy',
-                  subtitle: 'Adjust your privacy settings',
-                ),
-                const SettingsTile(
-                  icon: Icons.language,
-                  title: 'Language',
-                  subtitle: 'Change your app language',
-                ),
-                const SettingsTile(
-                  icon: Icons.help,
-                  title: 'Help & Support',
-                  subtitle: 'Get help and support',
-                ),
-                const SettingsTile(
-                  icon: Icons.info,
-                  title: 'About',
-                  subtitle: 'App version and information',
-                ),
+                const SizedBox(height: 10),
+                animatedSettingsTile(0, Icons.account_circle, 'Account', 'Manage your account settings'),
+                animatedSettingsTile(1, Icons.notifications, 'Notifications', 'Set your notification preferences'),
+                animatedSettingsTile(2, Icons.lock, 'Privacy', 'Adjust your privacy settings'),
+                animatedSettingsTile(3, Icons.language, 'Language', 'Change your app language'),
+                animatedSettingsTile(4, Icons.help, 'Help & Support', 'Get help and support'),
+                animatedSettingsTile(5, Icons.info, 'About', 'App version and information'),
               ],
             ),
-            // Version at the bottom
-            Text(
-              appVersion,
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+            FadeTransition(
+              opacity: fadeAnimation,
+              child: Text(
+                appVersion,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
       ),
     );
   }
-}
 
-class SettingsTile extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  const SettingsTile({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.teal),
-      title: Sans(title, 16, color: Colors.grey, fontWeight: FontWeight.w500),
-      subtitle: Sans(subtitle, 15, color: Colors.black87),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Tapped on $title')),
-        );
-      },
+  Widget animatedSettingsTile(int index, IconData icon, String title, String subtitle) {
+    return SlideTransition(
+      position: slideAnimation,
+      child: FadeTransition(
+        opacity: fadeAnimation,
+        child: ListTile(
+          leading: Icon(icon, color: Colors.teal),
+          title: Sans(title, 16, color: Colors.grey, fontWeight: FontWeight.w500),
+          subtitle: Sans(subtitle, 15, color: Colors.black87),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Tapped on $title')),
+            );
+          },
+        ),
+      ),
     );
   }
 }
