@@ -46,12 +46,13 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
     );
   }
 
-  void markToDoAsComplete(int index) {
+  void toggleMarkToDoAsComplete(int index) {
     final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final todo = toDoNotifier.todos[index];
     setState(() {
-      toDoNotifier.todos[index].isCompleted = true;
+      todo.isCompleted = !todo.isCompleted;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${toDoNotifier.todos[index].title} marked as completed')),
+        SnackBar(content: Text('${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed')),
       );
     });
   }
@@ -106,8 +107,11 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.check, color: todo.isCompleted ? Colors.green : null),
-                          onPressed: todo.isCompleted ? null : () => markToDoAsComplete(index),
+                          icon: Icon(
+                            todo.isCompleted ? Icons.check_circle : Icons.check_circle_outline,
+                            color: todo.isCompleted ? Colors.green.shade700 : Colors.grey,
+                          ),
+                          onPressed: () => toggleMarkToDoAsComplete(index),
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete, color: AppColors.red),
@@ -115,7 +119,6 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
                         ),
                       ],
                     ),
-                    tileColor: todo.isCompleted ? Colors.green.shade100 : null,
                   );
                 },
               ),

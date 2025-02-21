@@ -110,12 +110,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void markToDoAsComplete(int index) {
+  void toggleMarkToDoAsComplete(int index) {
     final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final todo = toDoNotifier.todos[index];
     setState(() {
-      toDoNotifier.todos[index].isCompleted = true;
+      todo.isCompleted = !todo.isCompleted;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${toDoNotifier.todos[index].title} marked as completed}')),
+        SnackBar(content: Text('${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed')),
       );
     });
   }
@@ -174,7 +175,6 @@ class _HomeState extends State<Home> {
 
   void addToDo() {
     final controller = TextEditingController();
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
 
     showDialog(
       context: context,
@@ -189,7 +189,7 @@ class _HomeState extends State<Home> {
           ),
           TextButton(
             onPressed: () {
-              toDoNotifier.addToDo('New To-Do Item');
+              context.read<ToDoNotifier>().addToDo(controller.text);
               Navigator.pop(context);
             },
             child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
@@ -235,7 +235,6 @@ class _HomeState extends State<Home> {
                           ...noteNotifier.notes.map(
                             (note) {
                               return Dismissible(
-                                // key: ValueKey(entry.value),
                                 key: ValueKey(note.id),
                                 direction: DismissDirection.endToStart,
                                 onDismissed: (direction) {
@@ -292,7 +291,7 @@ class _HomeState extends State<Home> {
                                       isCompleted ? Icons.check_circle : Icons.check_circle_outline,
                                       color: isCompleted ? Colors.green.shade700 : Colors.grey,
                                     ),
-                                    onPressed: isCompleted ? null : () => markToDoAsComplete(index),
+                                    onPressed: () => toggleMarkToDoAsComplete(index),
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.delete, color: AppColors.red),
