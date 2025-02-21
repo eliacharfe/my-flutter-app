@@ -1,6 +1,7 @@
+import 'package:eliachar_feig/models/to_do.dart';
 import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
-import 'package:eliachar_feig/model/project.dart';
-import 'package:eliachar_feig/ui_components/extensions/text_extensions.dart';
+import 'package:eliachar_feig/models/project.dart';
+import 'package:eliachar_feig/screens/home/widgets/all_to_dos_screen.dart';
 import '../../packages/default_packages.dart';
 import '../../packages/ui_components_packages.dart';
 import '../../packages/utlis_packages.dart';
@@ -144,6 +145,44 @@ class _HomeState extends State<Home> {
     );
   }
 
+  void showBottomSheetModalTodo(int index) {
+    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+
+    PopupPresenter.showPopup(
+      context: context,
+      title: "Delete Item",
+      message: "Are you sure you want to delete this item?",
+      primaryButtonTitle: "Cancel",
+      secondaryButtonTitle: "Yes, Delete",
+      onPrimaryAction: () {
+        Navigator.of(context).pop();
+      },
+      onSecondaryAction: () async {
+        setState(() => isLoading = true);
+        await Future.delayed(const Duration(seconds: 2));
+        setState(() {
+          isLoading = false;
+          toDoNotifier.removeToDo(index);
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Item deleted successfully')),
+          );
+        });
+      },
+      secondaryButtonColor: AppColors.red,
+    );
+  }
+
+  void markToDoAsComplete(int index) {
+    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    setState(() {
+      toDoNotifier.todos[index].isCompleted = true;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${toDoNotifier.todos[index].title} marked as completed}')),
+      );
+    });
+  }
+
   void editNote(int index) {
     final controller = TextEditingController(text: notes[index]);
     showDialog(
@@ -155,7 +194,7 @@ class _HomeState extends State<Home> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: Colors.red.shade800, fontWeight: FontWeight.w600),
+            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
@@ -180,7 +219,7 @@ class _HomeState extends State<Home> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: Colors.red.shade800, fontWeight: FontWeight.w600),
+            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
@@ -194,8 +233,37 @@ class _HomeState extends State<Home> {
     );
   }
 
+  void addToDo() {
+    final controller = TextEditingController();
+    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text('Add To-Do').applySansStyle(size: 24, fontWeight: FontWeight.w500),
+        content: TextField(controller: controller),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
+          ),
+          TextButton(
+            onPressed: () {
+              toDoNotifier.addToDo('New To-Do Item');
+              Navigator.pop(context);
+            },
+            child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final toDoNotifier = Provider.of<ToDoNotifier>(context);
+
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "Home"),
@@ -258,6 +326,55 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 onTap: addNote,
+              ),
+              buildSection(
+                title: 'To-Do List',
+                rightIcon: Icons.add,
+                child: toDoNotifier.todos.isEmpty
+                    ? WidgetStyling.getNoDataContainerWith("There is no to dos to display")
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          ...toDoNotifier.todos.take(2).map((todo) {
+                            int index = toDoNotifier.todos.indexOf(todo);
+                            String title = todo.title;
+                            bool isCompleted = todo.isCompleted;
+
+                            return ListTile(
+                              title: Text(title),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      isCompleted ? Icons.check_circle : Icons.check_circle_outline,
+                                      color: isCompleted ? Colors.green.shade700 : Colors.grey,
+                                    ),
+                                    onPressed: isCompleted ? null : () => markToDoAsComplete(index),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete, color: AppColors.red),
+                                    onPressed: () => showBottomSheetModalTodo(index),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                          if (toDoNotifier.todos.length > 2)
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AllToDosScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text('Show All Todos').applySansStyle(color: Colors.teal),
+                            ).withPadding(EdgeInsets.only(right: 20)),
+                        ],
+                      ),
+                onTap: addToDo,
               ),
               buildSection(
                 title: 'Achievements',

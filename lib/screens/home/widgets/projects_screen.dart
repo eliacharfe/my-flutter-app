@@ -1,4 +1,4 @@
-import 'package:eliachar_feig/model/project.dart';
+import 'package:eliachar_feig/models/project.dart';
 import '../../../packages/default_packages.dart';
 import '../../../packages/ui_components_packages.dart';
 import '../../../packages/utlis_packages.dart';

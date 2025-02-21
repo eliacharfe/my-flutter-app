@@ -1,10 +1,10 @@
 import 'package:eliachar_feig/helpers/router_manager.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:flutter/material.dart';
+import 'package:eliachar_feig/models/to_do.dart';
+import 'package:eliachar_feig/packages/default_packages.dart';
+import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:flutter/services.dart';
 import 'package:eliachar_feig/helpers/logger.dart';
 import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'firebase_setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -17,7 +17,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   firebaseSetup();
 
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ToDoNotifier(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

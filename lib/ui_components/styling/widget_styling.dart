@@ -18,20 +18,16 @@ class WidgetStyling {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.black,
+      centerTitle: true,
       toolbarHeight: 50,
-      title: Row(
-        children: [
-          if (showLogoIcon)
-            SizedBox(
-              height: 40,
-              width: 40,
+      title: SansBold(title, 20),
+      leading: (showLogoIcon)
+          ? SizedBox(
+              height: 24,
+              width: 24,
               child: ClipRRect(child: Image.asset('assets/images/icon.png')),
-            ),
-          Spacer(),
-          SansBold(title, 20),
-          Spacer(),
-        ],
-      ),
+            )
+          : null,
     );
   }
 

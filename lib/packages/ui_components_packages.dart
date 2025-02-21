@@ -5,3 +5,4 @@ export 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 export 'package:eliachar_feig/ui_components/round_text_display.dart';
 export 'package:eliachar_feig/ui_components/route_wrapper.dart';
 export 'package:eliachar_feig/ui_components/section_title.dart';
+export 'package:eliachar_feig/ui_components/extensions/text_extensions.dart';

@@ -52,7 +52,7 @@ class AboutMeState extends State<AboutMe> {
                               "Design Patterns and SOLID Principles",
                               "Databases & Data Structures",
                               "Parallel Programming (C/C++)",
-                              "Mac, Windows, Linux Environments",
+                              "macOS, Windows, Linux Environments",
                             ],
                             "Web": [
                               "Flutter, JavaScript, Java, SQL",

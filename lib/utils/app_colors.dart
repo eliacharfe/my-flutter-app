@@ -15,6 +15,7 @@ class AppColors {
   static const Color mutedGrayishPurple = Color.fromRGBO(121, 116, 126, 1);
   static const Color extremeLightGrey = Color.fromRGBO(0, 0, 0, 0.06);
   static const Color lightGrey = Color.fromRGBO(0, 0, 0, 0.38);
+  static const Color red = Color.fromRGBO(198, 40, 40, 1);
 }
 
 Color applyOpacity(Color color, double opacity) {
