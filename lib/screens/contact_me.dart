@@ -20,7 +20,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
+      duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500),
     );
 
     fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
@@ -56,7 +56,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
           children: [
             WidgetStyling.buildPageTitle('Contact Me').withPadding(const EdgeInsets.symmetric(horizontal: 20)),
             const SizedBox(height: 10),
-            _animatedContactItem(
+            animatedContactItem(
               index: 0,
               icon: Icons.phone,
               label: 'Phone',
@@ -66,7 +66,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
                 if (await launchUrl(phone)) {}
               },
             ),
-            _animatedContactItem(
+            animatedContactItem(
               index: 1,
               icon: Icons.email,
               label: 'Email',
@@ -78,7 +78,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
                 }
               },
             ),
-            _animatedContactItem(
+            animatedContactItem(
               index: 2,
               icon: FontAwesomeIcons.whatsapp,
               label: 'WhatsApp',
@@ -90,7 +90,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
                 }
               },
             ),
-            _animatedContactItem(
+            animatedContactItem(
               index: 3,
               icon: Icons.language,
               label: 'Website',
@@ -102,7 +102,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
                 }
               },
             ),
-            _animatedContactItem(
+            animatedContactItem(
               index: 4,
               icon: Icons.location_on,
               label: 'Address',
@@ -116,7 +116,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
     );
   }
 
-  Widget _animatedContactItem({
+  Widget animatedContactItem({
     required int index,
     required IconData icon,
     required String label,

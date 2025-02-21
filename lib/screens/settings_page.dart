@@ -22,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     getVersion();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
+      duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500),
     );
     fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: animationController, curve: Curves.easeIn),

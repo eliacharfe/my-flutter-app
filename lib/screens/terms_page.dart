@@ -2,26 +2,69 @@ import 'package:eliachar_feig/packages/default_packages.dart';
 import '../packages/ui_components_packages.dart';
 import '../packages/utlis_packages.dart';
 
-class TermsPage extends StatelessWidget {
+class TermsPage extends StatefulWidget {
   final bool showAppBar;
-  TermsPage({super.key, this.showAppBar = true});
+  const TermsPage({super.key, this.showAppBar = true});
+
+  @override
+  State<TermsPage> createState() => _TermsPageState();
+}
+
+class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<double> fadeAnimation;
+  late Animation<Offset> slideAnimation;
 
   final sectionTitleStyle = GoogleFonts.openSans(fontSize: 17.5, color: Colors.grey);
   final bulletPointSubHeadlineStyle = TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500);
 
   @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+
+    slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+    );
+
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: showAppBar ? WidgetStyling.buildTopAppBar(title: 'Terms') : null,
+      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'Terms') : null,
       endDrawer: DrawersMobile(),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            WidgetStyling.buildPageTitle('Privacy Policy & Terms of Service'),
-            buildTerms(),
-          ],
+        padding: const EdgeInsets.all(20),
+        child: FadeTransition(
+          opacity: fadeAnimation,
+          child: SlideTransition(
+            position: slideAnimation,
+            child: Column(
+              children: [
+                WidgetStyling.buildPageTitle('Privacy Policy & Terms of Service'),
+                buildTerms(),
+              ],
+            ),
+          ),
         ),
       ),
     );
