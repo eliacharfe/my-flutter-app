@@ -79,7 +79,7 @@ class _NavigationContainerContent extends StatelessWidget {
     final items = [
       NavItem(icon: Icons.home_filled, label: "Home", index: 0, event: HomeButtonPressedEvent()),
       NavItem(icon: Icons.info_outlined, label: "About", index: 1, event: AboutButtonPressedEvent()),
-      NavItem(icon: Icons.event, label: "Activities", index: 2, event: ActivitiesButtonPressedEvent()),
+      NavItem(icon: Icons.event, label: "Tasks", index: 2, event: ActivitiesButtonPressedEvent()),
       NavItem(icon: Icons.phone_outlined, label: "Contact", index: 3, event: ContactButtonPressedEvent()),
       NavItem(icon: Icons.settings, label: "Settings", index: 4, event: SettingsButtonPressedEvent()),
     ];

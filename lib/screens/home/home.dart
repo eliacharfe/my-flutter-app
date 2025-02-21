@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  void showDialogModal() {
+  void showDialogModal({String? title, String? text}) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -40,8 +40,8 @@ class _HomeState extends State<Home> {
           color: Colors.black87,
           fontSize: 16,
         ),
-        title: const Text('Dialog Modal'),
-        content: const Text('This is a dialog modal in the center.'),
+        title: Text(title ?? 'Dialog Modal'),
+        content: Text(text ?? 'This is a dialog modal in the center.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -226,31 +226,6 @@ class _HomeState extends State<Home> {
                 },
               ),
               buildSection(
-                title: 'Modal Buttons',
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: showDialogModal,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.lightTeal,
-                        foregroundColor: Colors.black,
-                      ),
-                      child: const Text('Dialog Modal'),
-                    ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
-                    ElevatedButton(
-                      onPressed: showBottomSheetModal,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.lightTeal,
-                        foregroundColor: Colors.black,
-                      ),
-                      child: const Text('Bottom Sheet'),
-                    ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
-                  ],
-                ).withPadding(EdgeInsets.symmetric(horizontal: 8)),
-                onTap: null,
-              ),
-              buildSection(
                 title: 'Notes Section',
                 rightIcon: Icons.add,
                 child: noteNotifier.notes.isEmpty
@@ -353,11 +328,14 @@ class _HomeState extends State<Home> {
                       backgroundColor: AppColors.lightTeal,
                     );
                   }),
-                ),
+                ).onTapWithCursor(() {
+                  showDialogModal(
+                      title: 'Achievement', text: 'This is a dialog modal in the center for Achievement 🚀.');
+                }),
                 onTap: () {},
               ),
               buildSection(
-                title: 'Learning Progress',
+                title: 'Progress',
                 rightIcon: null,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -365,7 +343,31 @@ class _HomeState extends State<Home> {
                     const Text("Flutter Mastery"),
                     const SizedBox(height: 8),
                     LinearProgressIndicator(
-                      value: 0.8,
+                      value: 0.82,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("iOS Development"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.93,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("Android Development"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.71,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("Firebase App Integration"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.75,
                       backgroundColor: Colors.grey,
                       color: Colors.tealAccent,
                     ),

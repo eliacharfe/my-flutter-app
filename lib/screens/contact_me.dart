@@ -21,9 +21,9 @@ class ContactMe extends StatelessWidget {
             buildContactItem(
               icon: Icons.phone,
               label: 'Phone',
-              value: '+972 587272372',
+              value: '+972 581234567',
               onTap: () async {
-                Uri phone = Uri.parse('tel: 0587272372');
+                Uri phone = Uri.parse('tel: 0581234567');
                 if (await launchUrl(phone)) {}
               },
             ),
@@ -41,9 +41,9 @@ class ContactMe extends StatelessWidget {
             buildContactItem(
               icon: FontAwesomeIcons.whatsapp,
               label: 'WhatsApp',
-              value: '+972 587272372',
+              value: '+972 581234567',
               onTap: () async {
-                final Uri whatsapp = Uri.parse('https://api.whatsapp.com/send?phone=972587272372');
+                final Uri whatsapp = Uri.parse('https://api.whatsapp.com/send?phone=972581234567');
                 if (await canLaunchUrl(whatsapp)) {
                   await launchUrl(whatsapp);
                 }
