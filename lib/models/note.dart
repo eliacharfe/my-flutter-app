@@ -1,4 +1,5 @@
 import '../packages/default_packages.dart';
+import 'package:uuid/uuid.dart';
 
 class Note {
   final String id;
@@ -11,18 +12,19 @@ class Note {
 }
 
 class NoteNotifier extends ChangeNotifier {
+  final uuid = Uuid();
   List<Note> notes = [
     Note(id: "1", text: 'Note 1'),
     Note(id: "2", text: 'Note 2'),
   ];
 
-  void removeNoteById(String id) {
-    notes.removeWhere((note) => note.id == id);
+  void addNote(String note) {
+    notes.add(Note(id: uuid.v4(), text: note));
     notifyListeners();
   }
 
-  void addNote(String note) {
-    notes.add(Note(id: "${notes.length + 1}", text: note));
+  void removeNoteById(String id) {
+    notes.removeWhere((note) => note.id == id);
     notifyListeners();
   }
 
