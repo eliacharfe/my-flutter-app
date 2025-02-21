@@ -7,6 +7,7 @@ import 'package:eliachar_feig/helpers/logger.dart';
 import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
 import 'firebase_setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'models/note.dart';
 
 Future<String> getAppVersion() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -18,8 +19,11 @@ void main() async {
   firebaseSetup();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ToDoNotifier(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ToDoNotifier()),
+        ChangeNotifierProvider(create: (_) => NoteNotifier()),
+      ],
       child: MyApp(),
     ),
   );

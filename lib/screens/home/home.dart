@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/models/note.dart';
 import 'package:eliachar_feig/models/to_do.dart';
 import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
 import 'package:eliachar_feig/models/project.dart';
@@ -21,74 +22,10 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  final List<Project> projects = [
-    Project(
-      type: ProjectType.video,
-      videoUrl: 'https://youtu.be/kyKP4AfDlYs',
-      title: "Assemble Z' Army",
-      description:
-          'Real-Time Strategy multiplayer game online made in Unity engine. Coding with C#, using Mirror library',
-      githubLink: 'https://github.com/eliacharfe/Assemble-Z-Army',
-    ),
-    Project(
-      type: ProjectType.video,
-      videoUrl: 'https://youtu.be/mfwwdH-bD9k',
-      title: "Sonic",
-      description:
-          'Sonic Game coded with C++ at VS. The project was Object-Oriented Programming (OOP) and included the SFML library.',
-      githubLink: 'https://github.com/eliacharfe/Sonic_GAME_OOP2_Project',
-    ),
-    Project(
-      type: ProjectType.video,
-      videoUrl: 'https://youtu.be/QmwvMqvJRSU',
-      title: "Book Store Website",
-      description:
-          'A Book Store complete implementation responsive website using Spring Boot with Java at the Backend and JavaScript at the Frontend. The code uses Spring security, dealing with transactions, and the database is MySQL with APACHE Tomcat server via XAMPP',
-      githubLink: 'https://github.com/Solange-s-Courses/ex4-spring-neviim-eliachar-feig-1.git',
-    ),
-    Project(
-      type: ProjectType.image,
-      imageAsset: "assets/images/structure.png",
-      title: "HouseEye",
-      description:
-          'Know your home at real-time with HouseEye, secure your home, and direct chat between family members Backend: Firebase Cloud Database, Python, Flask, OpenCV, PIL, Twilio Frontend: JavaScript, HTML, CSS (Windows) Raspberry-Pi, Python, OpenCV, Raspberry-Pi camera (Linux)',
-      githubLink: 'https://github.com/ExcellentTeam22/raspberry-pi-houseye-eliachar-yaniv-orel-or.git',
-    ),
-    Project(
-      type: ProjectType.image,
-      imageAsset: "assets/images/google.png",
-      title: "Autocomplete",
-      description:
-          'Google Autocomplete Search Providing an autocomplete search for the user by developing an algorithm that takes into account possible spelling errors of the user. In addition, the algorithm takes into consideration memory and run-time limitations. Coded in Python.',
-      githubLink: 'https://github.com/ExcellentTeam22/google-project-group-8',
-    ),
-    Project(
-      type: ProjectType.image,
-      imageAsset: "assets/images/mobileye.jpg",
-      title: "Mobileye Project",
-      description:
-          'TFL Detection and Distance Estimation Detecting traffic lights within a given clip, estimating their distance from the vehicle using image processing technologies, Neural networks and SFM (Structure From Motion) for the distance estimation. Coded in Python.',
-      githubLink: 'https://github.com/eliacharfe/Mobileye-Traffic-Lights-Project.git',
-    ),
-    Project(
-      type: ProjectType.image,
-      imageAsset: "assets/images/nasa.jpg",
-      title: "NASA's Mars Photos Website ",
-      description:
-          "Manipulations on Mars photos using NASA API made with Node-js at the Backend and JavaScript at the Frontend. Uses sessions and user's Authentication. Database: Sqlite3.",
-      githubLink: 'https://github.com/eliacharfe/nasa-api',
-    ),
-    Project(
-      type: ProjectType.image,
-      imageAsset: "assets/images/react.png",
-      title: "Weather - React",
-      description:
-          "Showing weather for 7 next days by input location and show a forecast image of the next days - using the 7timer! API. Coded with React.js.",
-      githubLink: 'https://github.com/eliacharfe/React---weather-website.git',
-    ),
-  ];
-
-  final List<String> notes = ['Note 1', 'Note 2'];
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   void showDialogModal() {
     showDialog(
@@ -183,8 +120,10 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void editNote(int index) {
-    final controller = TextEditingController(text: notes[index]);
+  void editNote(String id) {
+    final note = context.read<NoteNotifier>().notes.firstWhere((note) => note.id == id);
+    final controller = TextEditingController(text: note.text);
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -198,7 +137,7 @@ class _HomeState extends State<Home> {
           ),
           TextButton(
             onPressed: () {
-              setState(() => notes[index] = controller.text);
+              context.read<NoteNotifier>().editNoteById(id, controller.text);
               Navigator.pop(context);
             },
             child: const Text('Save').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
@@ -223,7 +162,7 @@ class _HomeState extends State<Home> {
           ),
           TextButton(
             onPressed: () {
-              setState(() => notes.add(controller.text));
+              context.read<NoteNotifier>().addNote(controller.text);
               Navigator.pop(context);
             },
             child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
@@ -262,6 +201,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final noteNotifier = Provider.of<NoteNotifier>(context);
     final toDoNotifier = Provider.of<ToDoNotifier>(context);
 
     return Scaffold(
@@ -275,12 +215,12 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildSection(
-                title: 'Projects (${projects.length})',
+                title: 'Projects (${Project.projectsMockData.length})',
                 child: buildProjectsContent(),
                 onTap: () {
                   Navigator.of(context).push(
                     RouteWrapper(
-                      page: ProjectsScreen(projects: projects),
+                      page: ProjectsScreen(projects: Project.projectsMockData),
                     ),
                   );
                 },
@@ -313,18 +253,44 @@ class _HomeState extends State<Home> {
               buildSection(
                 title: 'Notes Section',
                 rightIcon: Icons.add,
-                child: Column(
-                  children: [
-                    ...notes.asMap().entries.map(
-                          (entry) => ListTile(
-                            title: Text(entry.value),
-                            trailing: const Icon(Icons.edit),
-                            onTap: () => editNote(entry.key),
+                child: noteNotifier.notes.isEmpty
+                    ? WidgetStyling.getNoDataContainerWith("There is no Notes to display")
+                    : Column(
+                        children: [
+                          ...noteNotifier.notes.map(
+                            (note) {
+                              return Dismissible(
+                                // key: ValueKey(entry.value),
+                                key: ValueKey(note.id),
+                                direction: DismissDirection.endToStart,
+                                onDismissed: (direction) {
+                                  setState(() {
+                                    context.read<NoteNotifier>().removeNoteById(note.id);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Note deleted successfully')),
+                                    );
+                                  });
+                                },
+                                background: Container(
+                                  color: AppColors.red,
+                                  alignment: Alignment.centerRight,
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                ),
+                                child: ListTile(
+                                  title: Text(note.text),
+                                  trailing: const Icon(Icons.edit),
+                                  onTap: () => editNote(note.id),
+                                ),
+                              );
+                            },
                           ),
-                        ),
-                    const SizedBox(height: 8),
-                  ],
-                ),
+                          const SizedBox(height: 8),
+                        ],
+                      ),
                 onTap: addNote,
               ),
               buildSection(
@@ -455,7 +421,7 @@ class _HomeState extends State<Home> {
     return Wrap(
       spacing: 10,
       runSpacing: 10,
-      children: projects.take(2).map(
+      children: Project.projectsMockData.take(2).map(
         (project) {
           return ProjectCard(
             width: (context.screenWidth - 30) / 2,
