@@ -10,12 +10,38 @@ class AllToDosScreen extends StatefulWidget {
   State<AllToDosScreen> createState() => _AllToDosScreenState();
 }
 
-class _AllToDosScreenState extends State<AllToDosScreen> {
+class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProviderStateMixin {
   bool isLoading = false;
+  late AnimationController animationController;
+  late Animation<double> fadeAnimation;
+  late Animation<Offset> slideAnimation;
 
   @override
   void initState() {
     super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+
+    slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+    );
+
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   void showBottomSheetModalTodo(int index) {
@@ -90,46 +116,52 @@ class _AllToDosScreenState extends State<AllToDosScreen> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "All To-Dos", showLogoIcon: false),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: toDoNotifier.todos.length,
-                itemBuilder: (context, index) {
-                  final todo = toDoNotifier.todos[index];
-                  return ListTile(
-                    title: Text(todo.title),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.check, color: todo.isCompleted ? Colors.green : null),
-                          onPressed: todo.isCompleted ? null : () => markToDoAsComplete(index),
+      body: FadeTransition(
+        opacity: fadeAnimation,
+        child: SlideTransition(
+          position: slideAnimation,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: toDoNotifier.todos.length,
+                    itemBuilder: (context, index) {
+                      final todo = toDoNotifier.todos[index];
+                      return ListTile(
+                        title: Text(todo.title),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.check, color: todo.isCompleted ? Colors.green : null),
+                              onPressed: todo.isCompleted ? null : () => markToDoAsComplete(index),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: AppColors.red),
+                              onPressed: () => showBottomSheetModalTodo(index),
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.delete, color: AppColors.red),
-                          onPressed: () => showBottomSheetModalTodo(index),
-                        ),
-                      ],
-                    ),
-                    tileColor: todo.isCompleted ? Colors.green.shade100 : null,
-                  );
-                },
-              ),
-            ),
-            ElevatedButton(
-              onPressed: addToDo,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightTeal,
-                foregroundColor: Colors.black,
-              ),
-              child: const Text('Add New To-Do'),
-            ).withPadding(EdgeInsets.symmetric(vertical: 8)),
-          ],
-        ).withPadding(EdgeInsets.symmetric(horizontal: 20, vertical: 30)),
+                        tileColor: todo.isCompleted ? Colors.green.shade100 : null,
+                      );
+                    },
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: addToDo,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.lightTeal,
+                    foregroundColor: Colors.black,
+                  ),
+                  child: const Text('Add New To-Do'),
+                ).withPadding(const EdgeInsets.symmetric(vertical: 8)),
+              ],
+            ).withPadding(const EdgeInsets.symmetric(horizontal: 20, vertical: 30)),
+          ),
+        ),
       ),
     );
   }
