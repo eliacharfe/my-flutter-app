@@ -85,6 +85,6 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 For any queries, reach out to efeig15@gmail.com.
 
-Video Link: https://youtube.com/shorts/It5g6t36Ccw?feature=share
+Video Link: https://www.youtube.com/shorts/SBDakv4lWpU
 
 
