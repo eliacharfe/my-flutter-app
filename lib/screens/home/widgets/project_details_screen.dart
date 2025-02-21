@@ -67,7 +67,7 @@ class ProjectDetailsScreen extends StatelessWidget {
               ),
           ],
         ),
-      ),
+      ).withAnimation(),
     );
   }
 }

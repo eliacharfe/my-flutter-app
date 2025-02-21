@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -120,6 +121,6 @@ class TabsMobile extends StatelessWidget {
           Navigator.of(context).pushNamed(route);
         }
       },
-    );
+    ).withAnimation(duration: Duration(milliseconds: 2000));
   }
 }

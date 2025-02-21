@@ -207,7 +207,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "Home"),
-      endDrawer: DrawersMobile(),
+      endDrawer: DrawersMobile().withAnimation(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: SingleChildScrollView(
@@ -267,7 +267,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                 onTap: addNote,
-              ),
+              ).withAnimation(),
               buildSection(
                 title: 'To-Do List',
                 rightIcon: Icons.add,
@@ -317,7 +317,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                 onTap: addToDo,
-              ),
+              ).withAnimation(),
               buildSection(
                 title: 'Achievements',
                 child: Wrap(
@@ -333,7 +333,7 @@ class _HomeState extends State<Home> {
                       title: 'Achievement', text: 'This is a dialog modal in the center for Achievement 🚀.');
                 }),
                 onTap: () {},
-              ),
+              ).withAnimation(),
               buildSection(
                 title: 'Progress',
                 rightIcon: null,
@@ -374,7 +374,7 @@ class _HomeState extends State<Home> {
                   ],
                 ).withPadding(EdgeInsets.symmetric(horizontal: 16)),
                 onTap: null,
-              ),
+              ).withAnimation(),
               buildSection(
                 title: 'Empty Section',
                 rightIcon: null,
@@ -385,7 +385,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 onTap: null,
-              ),
+              ).withAnimation(),
               buildSection(
                 title: 'Unable To Load',
                 rightIcon: null,

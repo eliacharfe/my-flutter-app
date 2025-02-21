@@ -18,7 +18,7 @@ class ActivityCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.transparent)),
       padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
-      child: prepareActivityWidget(),
+      child: prepareActivityWidget().withAnimation(),
     ).onTapWithCursor(
       () async {},
       key: activity.id,

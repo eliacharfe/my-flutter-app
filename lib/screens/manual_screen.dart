@@ -20,7 +20,7 @@ class ManualScreenState extends State<ManualScreen> with SingleTickerProviderSta
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600),
+      duration: Duration(milliseconds: 1500),
     );
 
     opacityAnimation = Tween<double>(begin: 0, end: 1).animate(

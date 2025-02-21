@@ -77,7 +77,7 @@ class ActivitiesState extends State<Activities> {
               formatButtonVisible: false,
               titleCentered: true,
             ),
-          ),
+          ).withAnimation(),
           HorizontalFilterList(
             filters: filters,
             selectedIndex: filters.indexWhere((f) => f.label == selectedFilter.label),

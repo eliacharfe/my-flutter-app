@@ -35,3 +35,64 @@ extension WidgetLoading on Widget {
     return isLoading ? WidgetStyling.getLoader(height: height) : this;
   }
 }
+
+extension AnimationExtension on Widget {
+  Widget withAnimation({Duration duration = const Duration(seconds: 1)}) {
+    return _AnimatedWidgetWrapper(
+      duration: duration,
+      child: this,
+    );
+  }
+}
+
+class _AnimatedWidgetWrapper extends StatefulWidget {
+  final Widget child;
+  final Duration duration;
+
+  const _AnimatedWidgetWrapper({required this.child, required this.duration});
+
+  @override
+  State<_AnimatedWidgetWrapper> createState() => _AnimatedWidgetWrapperState();
+}
+
+class _AnimatedWidgetWrapperState extends State<_AnimatedWidgetWrapper> with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<double> fadeAnimation;
+  late Animation<Offset> slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(vsync: this, duration: widget.duration);
+
+    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
+    );
+
+    slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+    );
+
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: fadeAnimation,
+      child: SlideTransition(
+        position: slideAnimation,
+        child: widget.child,
+      ),
+    );
+  }
+}

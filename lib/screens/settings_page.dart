@@ -12,28 +12,11 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderStateMixin {
   String appVersion = "Unknown";
-  late AnimationController animationController;
-  late Animation<double> fadeAnimation;
-  late Animation<Offset> slideAnimation;
 
   @override
   void initState() {
     super.initState();
     getVersion();
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500),
-    );
-    fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
-    );
-    slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.2),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
-    );
-    animationController.forward();
   }
 
   Future<void> getVersion() async {
@@ -45,7 +28,6 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
   @override
   void dispose() {
-    animationController.dispose();
     super.dispose();
   }
 
@@ -73,37 +55,28 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                 animatedSettingsTile(5, Icons.info, 'About', 'App version and information'),
               ],
             ),
-            FadeTransition(
-              opacity: fadeAnimation,
-              child: Text(
-                appVersion,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
+            Text(
+              appVersion,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
-      ),
+      ).withAnimation(duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500)),
     );
   }
 
   Widget animatedSettingsTile(int index, IconData icon, String title, String subtitle) {
-    return SlideTransition(
-      position: slideAnimation,
-      child: FadeTransition(
-        opacity: fadeAnimation,
-        child: ListTile(
-          leading: Icon(icon, color: Colors.teal),
-          title: Sans(title, 16, color: Colors.grey, fontWeight: FontWeight.w500),
-          subtitle: Sans(subtitle, 15, color: Colors.black87),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Tapped on $title')),
-            );
-          },
-        ),
-      ),
+    return ListTile(
+      leading: Icon(icon, color: Colors.teal),
+      title: Sans(title, 16, color: Colors.grey, fontWeight: FontWeight.w500),
+      subtitle: Sans(subtitle, 15, color: Colors.black87),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Tapped on $title')),
+        );
+      },
     );
   }
 }

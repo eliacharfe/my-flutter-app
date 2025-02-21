@@ -38,10 +38,10 @@ class AboutMeState extends State<AboutMe> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        buildTitle("About Me"),
-                        Sans(
-                            """I’m a passionate software developer dedicated to building high-quality apps, web apps, and websites for iOS, Android, and the Web. I specialize in crafting modern, scalable, and user-friendly solutions using the latest technologies and frameworks. Whether it's a sleek mobile app, a dynamic web platform, or a full-stack system, I thrive on turning ideas into reality with clean code and intuitive designs. Always eager to stay ahead of industry trends, I ensure that every project I work on is optimized for performance, security, and user experience.\nLet’s build something amazing together! 🔥""",
-                            14),
+                        buildTitle("About Me").withAnimation(),
+                        Sans("""I’m a passionate software developer dedicated to building high-quality apps, web apps, and websites for iOS, Android, and the Web. I specialize in crafting modern, scalable, and user-friendly solutions using the latest technologies and frameworks. Whether it's a sleek mobile app, a dynamic web platform, or a full-stack system, I thrive on turning ideas into reality with clean code and intuitive designs. Always eager to stay ahead of industry trends, I ensure that every project I work on is optimized for performance, security, and user experience.\nLet’s build something amazing together! 🔥""",
+                                14)
+                            .withAnimation(),
                         SizedBox(height: 16),
                         AnimatedBulletPointsCard(
                           title: "Technical Skills",
