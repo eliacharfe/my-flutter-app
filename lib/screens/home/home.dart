@@ -15,8 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool isLoading = false;
-
   @override
   void initState() {
     super.initState();
@@ -25,6 +23,248 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: GlobalKey<NavigatorState>(),
+      onGenerateRoute: (settings) {
+        Widget homeScreen = HomeWidget();
+
+        return RouteWrapper(page: homeScreen);
+      },
+    );
+  }
+}
+
+class HomeWidget extends StatefulWidget {
+  const HomeWidget({super.key});
+
+  @override
+  State<HomeWidget> createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeWidget> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final noteNotifier = Provider.of<NoteNotifier>(context);
+    final toDoNotifier = Provider.of<ToDoNotifier>(context);
+    return Scaffold(
+      backgroundColor: AppColors.scaffoldColor,
+      appBar: WidgetStyling.buildTopAppBar(title: "Home"),
+      endDrawer: DrawersMobile().withAnimation(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildSection(
+                title: 'Projects (${Project.projectsMockData.length})',
+                child: buildProjectsContent(),
+                onTap: () {
+                  Navigator.of(context).push(
+                    RouteWrapper(
+                      page: ProjectsScreen(projects: Project.projectsMockData),
+                    ),
+                  );
+                },
+              ),
+              buildSection(
+                title: 'Notes Section',
+                rightIcon: Icons.add,
+                child: noteNotifier.notes.isEmpty
+                    ? WidgetStyling.getNoDataContainerWith("There is no Notes to display")
+                    : Column(
+                        children: [
+                          ...noteNotifier.notes.map(
+                            (note) {
+                              return Dismissible(
+                                key: ValueKey(note.id),
+                                direction: DismissDirection.endToStart,
+                                onDismissed: (direction) {
+                                  setState(() {
+                                    context.read<NoteNotifier>().removeNoteById(note.id);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Note deleted successfully')),
+                                    );
+                                  });
+                                },
+                                background: Container(
+                                  color: AppColors.red,
+                                  alignment: Alignment.centerRight,
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                ),
+                                child: ListTile(
+                                  title: Text(note.text),
+                                  trailing: const Icon(Icons.edit),
+                                  onTap: () => editNote(note.id),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                      ),
+                onTap: addNote,
+              ).withAnimation(),
+              buildSection(
+                title: 'To-Do List',
+                rightIcon: Icons.add,
+                child: toDoNotifier.todos.isEmpty
+                    ? WidgetStyling.getNoDataContainerWith("There is no to dos to display")
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          ...toDoNotifier.todos.take(2).map((todo) {
+                            int index = toDoNotifier.todos.indexOf(todo);
+                            String title = todo.title;
+                            bool isCompleted = todo.isCompleted;
+
+                            return ListTile(
+                              title: Text(title),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                spacing: 0,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      isCompleted ? Icons.check_circle : Icons.check_circle_outline,
+                                      color: isCompleted ? Colors.green.shade700 : Colors.grey,
+                                    ),
+                                    onPressed: () => toggleMarkToDoAsComplete(index),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete, color: AppColors.red),
+                                    onPressed: () => showBottomSheetModalTodo(index),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                          if (toDoNotifier.todos.length > 2)
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  RouteWrapper(
+                                    page: AllToDosScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text('Show All Todos').applySansStyle(color: Colors.teal),
+                            ).withPadding(EdgeInsets.only(right: 20)),
+                        ],
+                      ),
+                onTap: addToDo,
+              ).withAnimation(),
+              buildSection(
+                title: 'Achievements',
+                child: Wrap(
+                  spacing: 10,
+                  children: List.generate(4, (index) {
+                    return Chip(
+                      label: Text('Achievement ${index + 1}'),
+                      backgroundColor: AppColors.lightTeal,
+                    );
+                  }),
+                ).onTapWithCursor(() {
+                  showDialogModal(
+                      title: 'Achievement', text: 'This is a dialog modal in the center for Achievement 🚀.');
+                }),
+                onTap: () {},
+              ).withAnimation(),
+              buildSection(
+                title: 'Progress',
+                rightIcon: null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Flutter Mastery"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.82,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("iOS Development"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.93,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("Android Development"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.71,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(height: 12),
+                    const Text("Firebase App Integration"),
+                    const SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: 0.75,
+                      backgroundColor: Colors.grey,
+                      color: Colors.tealAccent,
+                    ),
+                  ],
+                ).withPadding(EdgeInsets.symmetric(horizontal: 16)),
+                onTap: null,
+              ).withAnimation(),
+              buildSection(
+                title: 'Empty Section',
+                rightIcon: null,
+                child: const Center(
+                  child: Text(
+                    'There is no data to display.',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                onTap: null,
+              ).withAnimation(),
+              buildSection(
+                title: 'Unable To Load',
+                rightIcon: null,
+                child: WidgetStyling.getUnableToLoadContainer(),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Custom Unable To Load',
+                rightIcon: null,
+                child: WidgetStyling.getNoDataContainerWith("No data available right now"),
+                onTap: null,
+              ),
+              buildSection(
+                title: 'Upcoming Events',
+                child: Column(
+                  children: List.generate(3, (index) {
+                    return ListTile(
+                      leading: const Icon(Icons.event),
+                      title: Text('Event ${index + 1}'),
+                      subtitle: const Text('Event description...'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {},
+                    );
+                  }),
+                ),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ).isLoading(isLoading: isLoading),
+      ),
+    );
   }
 
   void showDialogModal({String? title, String? text}) {
@@ -195,226 +435,6 @@ class _HomeState extends State<Home> {
             child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
           ),
         ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final noteNotifier = Provider.of<NoteNotifier>(context);
-    final toDoNotifier = Provider.of<ToDoNotifier>(context);
-
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      appBar: WidgetStyling.buildTopAppBar(title: "Home"),
-      endDrawer: DrawersMobile().withAnimation(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildSection(
-                title: 'Projects (${Project.projectsMockData.length})',
-                child: buildProjectsContent(),
-                onTap: () {
-                  Navigator.of(context).push(
-                    RouteWrapper(
-                      page: ProjectsScreen(projects: Project.projectsMockData),
-                    ),
-                  );
-                },
-              ),
-              buildSection(
-                title: 'Notes Section',
-                rightIcon: Icons.add,
-                child: noteNotifier.notes.isEmpty
-                    ? WidgetStyling.getNoDataContainerWith("There is no Notes to display")
-                    : Column(
-                        children: [
-                          ...noteNotifier.notes.map(
-                            (note) {
-                              return Dismissible(
-                                key: ValueKey(note.id),
-                                direction: DismissDirection.endToStart,
-                                onDismissed: (direction) {
-                                  setState(() {
-                                    context.read<NoteNotifier>().removeNoteById(note.id);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Note deleted successfully')),
-                                    );
-                                  });
-                                },
-                                background: Container(
-                                  color: AppColors.red,
-                                  alignment: Alignment.centerRight,
-                                  child: const Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                    size: 24,
-                                  ),
-                                ),
-                                child: ListTile(
-                                  title: Text(note.text),
-                                  trailing: const Icon(Icons.edit),
-                                  onTap: () => editNote(note.id),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 8),
-                        ],
-                      ),
-                onTap: addNote,
-              ).withAnimation(),
-              buildSection(
-                title: 'To-Do List',
-                rightIcon: Icons.add,
-                child: toDoNotifier.todos.isEmpty
-                    ? WidgetStyling.getNoDataContainerWith("There is no to dos to display")
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          ...toDoNotifier.todos.take(2).map((todo) {
-                            int index = toDoNotifier.todos.indexOf(todo);
-                            String title = todo.title;
-                            bool isCompleted = todo.isCompleted;
-
-                            return ListTile(
-                              title: Text(title),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: 0,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      isCompleted ? Icons.check_circle : Icons.check_circle_outline,
-                                      color: isCompleted ? Colors.green.shade700 : Colors.grey,
-                                    ),
-                                    onPressed: () => toggleMarkToDoAsComplete(index),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(Icons.delete, color: AppColors.red),
-                                    onPressed: () => showBottomSheetModalTodo(index),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                          if (toDoNotifier.todos.length > 2)
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AllToDosScreen(),
-                                  ),
-                                );
-                              },
-                              child: Text('Show All Todos').applySansStyle(color: Colors.teal),
-                            ).withPadding(EdgeInsets.only(right: 20)),
-                        ],
-                      ),
-                onTap: addToDo,
-              ).withAnimation(),
-              buildSection(
-                title: 'Achievements',
-                child: Wrap(
-                  spacing: 10,
-                  children: List.generate(4, (index) {
-                    return Chip(
-                      label: Text('Achievement ${index + 1}'),
-                      backgroundColor: AppColors.lightTeal,
-                    );
-                  }),
-                ).onTapWithCursor(() {
-                  showDialogModal(
-                      title: 'Achievement', text: 'This is a dialog modal in the center for Achievement 🚀.');
-                }),
-                onTap: () {},
-              ).withAnimation(),
-              buildSection(
-                title: 'Progress',
-                rightIcon: null,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Flutter Mastery"),
-                    const SizedBox(height: 8),
-                    LinearProgressIndicator(
-                      value: 0.82,
-                      backgroundColor: Colors.grey,
-                      color: Colors.tealAccent,
-                    ),
-                    SizedBox(height: 12),
-                    const Text("iOS Development"),
-                    const SizedBox(height: 8),
-                    LinearProgressIndicator(
-                      value: 0.93,
-                      backgroundColor: Colors.grey,
-                      color: Colors.tealAccent,
-                    ),
-                    SizedBox(height: 12),
-                    const Text("Android Development"),
-                    const SizedBox(height: 8),
-                    LinearProgressIndicator(
-                      value: 0.71,
-                      backgroundColor: Colors.grey,
-                      color: Colors.tealAccent,
-                    ),
-                    SizedBox(height: 12),
-                    const Text("Firebase App Integration"),
-                    const SizedBox(height: 8),
-                    LinearProgressIndicator(
-                      value: 0.75,
-                      backgroundColor: Colors.grey,
-                      color: Colors.tealAccent,
-                    ),
-                  ],
-                ).withPadding(EdgeInsets.symmetric(horizontal: 16)),
-                onTap: null,
-              ).withAnimation(),
-              buildSection(
-                title: 'Empty Section',
-                rightIcon: null,
-                child: const Center(
-                  child: Text(
-                    'There is no data to display.',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-                onTap: null,
-              ).withAnimation(),
-              buildSection(
-                title: 'Unable To Load',
-                rightIcon: null,
-                child: WidgetStyling.getUnableToLoadContainer(),
-                onTap: null,
-              ),
-              buildSection(
-                title: 'Custom Unable To Load',
-                rightIcon: null,
-                child: WidgetStyling.getNoDataContainerWith("No data available right now"),
-                onTap: null,
-              ),
-              buildSection(
-                title: 'Upcoming Events',
-                child: Column(
-                  children: List.generate(3, (index) {
-                    return ListTile(
-                      leading: const Icon(Icons.event),
-                      title: Text('Event ${index + 1}'),
-                      subtitle: const Text('Event description...'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
-                    );
-                  }),
-                ),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ).isLoading(isLoading: isLoading),
       ),
     );
   }
