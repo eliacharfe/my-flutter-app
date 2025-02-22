@@ -1,3 +1,5 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
+import 'package:eliachar_feig/ui_components/icon_with_text.dart';
 import 'package:flutter/material.dart';
 import '../../packages/utlis_packages.dart';
 
@@ -14,20 +16,41 @@ class WidgetStyling {
     );
   }
 
-  static AppBar buildTopAppBar({required String title, bool showLogoIcon = true}) {
+  static AppBar buildTopAppBar({
+    required String title,
+    BuildContext? context,
+    bool showLogoIcon = true,
+    bool isNavigationStyle = false,
+    String? leftButtonText,
+    VoidCallback? onBackPressed,
+  }) {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.black,
       centerTitle: true,
       toolbarHeight: 50,
       title: SansBold(title, 20),
-      leading: (showLogoIcon)
-          ? SizedBox(
-              height: 24,
-              width: 24,
-              child: ClipRRect(child: Image.asset('assets/images/icon.png')),
-            )
-          : null,
+      leading: isNavigationStyle
+          ? IconWithText(
+              iconData: Icons.arrow_back_ios,
+              iconSize: 16,
+              color: Colors.white,
+              text: leftButtonText ?? "",
+            ).onTapWithCursor(() {
+              if (context != null) {
+                Navigator.of(context).maybePop();
+              }
+              if (onBackPressed != null) {
+                onBackPressed();
+              }
+            })
+          : (showLogoIcon)
+              ? SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: ClipRRect(child: Image.asset('assets/images/icon.png')),
+                )
+              : null,
     );
   }
 
