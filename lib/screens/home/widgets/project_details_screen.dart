@@ -1,4 +1,5 @@
 import 'package:eliachar_feig/models/project.dart';
+import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../../packages/default_packages.dart';
 import '../../../packages/ui_components_packages.dart';
 
@@ -47,16 +48,9 @@ class ProjectDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             if (project.githubLink != null)
-              RoundTextDisplay(
+              WideRectButton(
                 text: "View on GitHub",
-                bgColor: Color(0xFFE0F2F1),
-                textColor: Colors.black,
-                borderColor: Colors.black,
-                isBold: true,
-                icon: Icons.link,
-                padding: EdgeInsets.all(5),
-              ).onTapWithCursor(
-                () async {
+                onPressed: () async {
                   final Uri uri = Uri.parse(project.githubLink!);
                   if (await canLaunchUrl(uri)) {
                     await launchUrl(uri);
@@ -64,7 +58,7 @@ class ProjectDetailsScreen extends StatelessWidget {
                     throw 'Could not launch ${project.githubLink}';
                   }
                 },
-              ),
+              )
           ],
         ),
       ).withAnimation(),
