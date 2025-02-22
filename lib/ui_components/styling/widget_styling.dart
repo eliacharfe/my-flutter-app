@@ -1,5 +1,4 @@
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
-import 'package:eliachar_feig/ui_components/icon_with_text.dart';
 import 'package:flutter/material.dart';
 import '../../packages/utlis_packages.dart';
 
@@ -20,7 +19,6 @@ class WidgetStyling {
     required String title,
     BuildContext? context,
     bool showLogoIcon = true,
-    bool isNavigationStyle = false,
     String? leftButtonText,
     VoidCallback? onBackPressed,
   }) {
@@ -30,27 +28,13 @@ class WidgetStyling {
       centerTitle: true,
       toolbarHeight: 50,
       title: SansBold(title, 20),
-      leading: isNavigationStyle
-          ? IconWithText(
-              iconData: Icons.arrow_back_ios,
-              iconSize: 16,
-              color: Colors.white,
-              text: leftButtonText ?? "",
-            ).onTapWithCursor(() {
-              if (context != null) {
-                Navigator.of(context).maybePop();
-              }
-              if (onBackPressed != null) {
-                onBackPressed();
-              }
-            })
-          : (showLogoIcon)
-              ? SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: ClipRRect(child: Image.asset('assets/images/icon.png')),
-                )
-              : null,
+      leading: (showLogoIcon)
+          ? SizedBox(
+              height: 24,
+              width: 24,
+              child: ClipRRect(child: Image.asset('assets/images/icon.png')),
+            )
+          : null,
     );
   }
 
@@ -121,6 +105,33 @@ class WidgetStyling {
           color: Colors.black,
         ),
       ),
+    );
+  }
+
+  static Container getContainerFor({
+    required List<Widget>? widgetList,
+    required String emptyContainerText,
+    bool showEmptyContainerIcon = true,
+  }) {
+    if (widgetList == null) {
+      return getUnableToLoadContainer();
+    } else if (widgetList.isEmpty) {
+      return getNoDataContainerWith(emptyContainerText, showEmptyContainerIcon: showEmptyContainerIcon);
+    }
+
+    Widget child;
+    child = Wrap(
+      runSpacing: 10,
+      spacing: 10,
+      children: widgetList.map((widget) {
+        return widget.withPadding(EdgeInsets.symmetric(horizontal: 15));
+      }).toList(),
+    );
+
+    return Container(
+      width: double.infinity,
+      color: Colors.white,
+      child: child,
     );
   }
 
