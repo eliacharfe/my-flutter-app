@@ -6,4 +6,6 @@ extension DeviceInfoExtension on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
 
   bool get isSmallHeightDevice => screenHeight <= 700;
+
+  bool get isLargeDevice => screenWidth <= 800;
 }

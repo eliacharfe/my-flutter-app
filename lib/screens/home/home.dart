@@ -11,10 +11,12 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HomeContentState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeContentState extends State<Home> {
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -24,29 +26,6 @@ class _HomeState extends State<Home> {
   void dispose() {
     super.dispose();
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Navigator(
-      key: GlobalKey<NavigatorState>(),
-      onGenerateRoute: (settings) {
-        Widget homeScreen = HomeWidget();
-
-        return RouteWrapper(page: homeScreen);
-      },
-    );
-  }
-}
-
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
-
-  @override
-  State<HomeWidget> createState() => _HomeContentState();
-}
-
-class _HomeContentState extends State<HomeWidget> {
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {

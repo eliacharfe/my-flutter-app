@@ -63,7 +63,7 @@ class ActivityModel {
   static getMockDataEvents({String? date}) => ActivityModel(
       id: '932923',
       title: 'Gala Event',
-      description: 'need to setup a meeting',
+      description: 'need to invite all relevant partners',
       authorName: 'Eliachar Feig',
       date: date ?? '2025-03-13',
       startTime: '',

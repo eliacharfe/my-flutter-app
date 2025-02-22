@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../packages/utlis_packages.dart';
 
 class IconWithText extends StatelessWidget {
   final dynamic iconData;
@@ -34,17 +35,13 @@ class IconWithText extends StatelessWidget {
           iconData,
         const SizedBox(width: 5),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: textWidth!),
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: fontSize ?? 12,
+            constraints: BoxConstraints(maxWidth: textWidth!),
+            child: Sans(
+              text,
+              fontSize ?? 14,
               color: color,
               fontWeight: fontWeight ?? FontWeight.w500,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
+            )),
       ],
     );
   }

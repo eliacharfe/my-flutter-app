@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/models/activity_model.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
+import 'package:eliachar_feig/screens/activities/widgets/activity_details.dart';
 
 import '../../../packages/default_packages.dart';
 
@@ -20,7 +21,17 @@ class ActivityCard extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
       child: prepareActivityWidget().withAnimation(),
     ).onTapWithCursor(
-      () async {},
+      () {
+        Navigator.of(context).push(
+          RouteWrapper(
+            page: ActivityDetails(
+              activity: activity,
+              editAction: (_) {},
+              deleteAction: () {},
+            ),
+          ),
+        );
+      },
       key: activity.id,
     );
   }

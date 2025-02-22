@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/screens/activities/activities.dart';
 import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -39,11 +40,11 @@ class _NavigationContainerContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     pages = [
-      Home(),
-      AboutMe(),
-      Activities(),
-      ContactMe(),
-      SettingsPage(),
+      Home().withNavigator(),
+      AboutMe().withNavigator(),
+      Activities().withNavigator(),
+      ContactMe().withNavigator(),
+      SettingsPage().withNavigator(),
     ];
 
     return BlocBuilder<NavigationBloc, NavigationState>(
