@@ -27,11 +27,6 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,

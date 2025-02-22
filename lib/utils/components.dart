@@ -115,10 +115,11 @@ class TabsMobile extends StatelessWidget {
         style: GoogleFonts.openSans(fontSize: 20.0, color: Colors.white),
       ),
       onPressed: () {
+        debugPrint("*******------------ Push Route: $route -----------*******");
         if (route == '/') {
-          Navigator.of(context).pushReplacementNamed('/');
+          Navigator.of(context, rootNavigator: true).pushReplacementNamed('/');
         } else {
-          Navigator.of(context).pushNamed(route);
+          Navigator.of(context, rootNavigator: true).pushNamed(route);
         }
       },
     ).withAnimation(duration: Duration(milliseconds: 2000));
