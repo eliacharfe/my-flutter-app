@@ -36,6 +36,19 @@ extension WidgetLoading on Widget {
   }
 }
 
+extension WidgetNavigator on Widget {
+  Widget withNavigator() {
+    return Navigator(
+      key: GlobalKey<NavigatorState>(),
+      onGenerateRoute: (settings) {
+        Widget page = this;
+
+        return RouteWrapper(page: page);
+      },
+    );
+  }
+}
+
 extension AnimationExtension on Widget {
   Widget withAnimation({Duration duration = const Duration(seconds: 1)}) {
     return _AnimatedWidgetWrapper(
