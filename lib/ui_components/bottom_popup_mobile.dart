@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:flutter/material.dart';
 
 //ignore: must_be_immutable
@@ -11,6 +12,7 @@ class BottomPopupMobile extends StatefulWidget {
   final Color secondaryButtonColor;
   final Color primaryButtonColor;
   final double mobilePopupHeight;
+  final bool isDarkMode;
 
   const BottomPopupMobile({
     super.key,
@@ -23,6 +25,7 @@ class BottomPopupMobile extends StatefulWidget {
     this.secondaryButtonColor = const Color.fromRGBO(211, 21, 37, 1),
     this.primaryButtonColor = Colors.black,
     this.mobilePopupHeight = 220,
+    required this.isDarkMode,
   });
 
   @override
@@ -38,7 +41,7 @@ class _BottomPopupMobileState extends State<BottomPopupMobile> {
     return Container(
       height: widget.mobilePopupHeight,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: widget.isDarkMode ? AppColors.darkGray : Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(22),

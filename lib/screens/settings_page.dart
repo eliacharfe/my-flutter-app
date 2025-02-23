@@ -40,35 +40,37 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            WidgetStyling.buildPageTitle('Settings').withPadding(EdgeInsets.symmetric(horizontal: 20)),
+            const SizedBox(height: 10),
+            Row(
               children: [
-                WidgetStyling.buildPageTitle('Settings').withPadding(EdgeInsets.symmetric(horizontal: 20)),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Switch(
-                      value: isDarkMode,
-                      activeColor: Colors.white,
-                      activeTrackColor: Colors.black,
-                      inactiveThumbColor: Colors.black,
-                      inactiveTrackColor: Colors.white,
-                      onChanged: (value) {
-                        themeProvider.toggleTheme(value);
-                      },
-                    ),
-                    SizedBox(width: 10),
-                    Sans(isDarkMode ? "Dark Mode 🌙" : "Light Mode ☀️", 16),
-                  ],
-                ).withPadding(EdgeInsets.only(left: 13, right: 20)),
-                animatedSettingsTile(0, Icons.account_circle, 'Account', 'Manage your account settings', isDarkMode),
-                animatedSettingsTile(
-                    1, Icons.notifications, 'Notifications', 'Set your notification preferences', isDarkMode),
-                animatedSettingsTile(2, Icons.lock, 'Privacy', 'Adjust your privacy settings', isDarkMode),
-                animatedSettingsTile(3, Icons.language, 'Language', 'Change your app language', isDarkMode),
-                animatedSettingsTile(4, Icons.help, 'Help & Support', 'Get help and support', isDarkMode),
-                animatedSettingsTile(5, Icons.info, 'About', 'App version and information', isDarkMode),
+                Switch(
+                  value: isDarkMode,
+                  activeColor: Colors.white,
+                  activeTrackColor: Colors.black,
+                  inactiveThumbColor: Colors.black,
+                  inactiveTrackColor: Colors.white,
+                  onChanged: (value) {
+                    themeProvider.toggleTheme(value);
+                  },
+                ),
+                SizedBox(width: 10),
+                Sans(isDarkMode ? "Dark Mode 🌙" : "Light Mode ☀️", 16),
               ],
+            ).withPadding(EdgeInsets.only(left: 13, right: 20)),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    buildTile(0, Icons.account_circle, 'Account', 'Manage your account settings', isDarkMode),
+                    buildTile(1, Icons.notifications, 'Notifications', 'Set your notification preferences', isDarkMode),
+                    buildTile(2, Icons.lock, 'Privacy', 'Adjust your privacy settings', isDarkMode),
+                    buildTile(3, Icons.language, 'Language', 'Change your app language', isDarkMode),
+                    buildTile(4, Icons.help, 'Help & Support', 'Get help and support', isDarkMode),
+                    buildTile(5, Icons.info, 'About', 'App version and information', isDarkMode),
+                  ],
+                ),
+              ),
             ),
             Text(
               appVersion,
@@ -81,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     );
   }
 
-  Widget animatedSettingsTile(int index, IconData icon, String title, String subtitle, bool isDarkMode) {
+  Widget buildTile(int index, IconData icon, String title, String subtitle, bool isDarkMode) {
     return ListTile(
       leading: Icon(icon, color: isDarkMode ? Colors.white : Colors.teal),
       title: Sans(title, 16, color: isDarkMode ? Colors.grey.shade400 : Colors.grey, fontWeight: FontWeight.w500),

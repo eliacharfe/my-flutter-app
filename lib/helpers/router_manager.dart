@@ -5,7 +5,6 @@ import 'package:eliachar_feig/screens/home/home.dart';
 import 'package:eliachar_feig/screens/manual_screen.dart';
 import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:eliachar_feig/screens/terms_page.dart';
-import 'package:eliachar_feig/utils/app_colors.dart';
 import '../packages/default_packages.dart';
 
 class RouterManager {
