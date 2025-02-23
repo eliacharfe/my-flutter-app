@@ -25,12 +25,12 @@ Color applyOpacity(Color color, double opacity) {
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: AppColors.scaffoldColor,
+  scaffoldBackgroundColor: AppColors.darkGray,
   textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
 );
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -48,7 +48,10 @@ class ThemeProvider extends ChangeNotifier {
 
   Future<void> loadThemePreference() async {
     final prefs = await SharedPreferences.getInstance();
-    _themeMode = prefs.getBool('isDarkMode') ?? false ? ThemeMode.dark : ThemeMode.light;
+    _themeMode = prefs.getBool('isDarkMode') != null
+        ? (prefs.getBool('isDarkMode')! ? ThemeMode.dark : ThemeMode.light)
+        : ThemeMode.light;
+
     notifyListeners();
   }
 }

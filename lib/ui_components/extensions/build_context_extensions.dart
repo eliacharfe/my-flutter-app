@@ -10,9 +10,7 @@ extension DeviceInfoExtension on BuildContext {
 
   bool get isLargeDevice => screenWidth <= 800;
 
-  bool get isDarkMode {
-    return Provider.of<ThemeProvider>(this, listen: false).themeMode == ThemeMode.dark;
-  }
+  bool get isDarkMode => Provider.of<ThemeProvider>(this, listen: false).themeMode == ThemeMode.dark;
 
   Color get scaffoldColor => Provider.of<ThemeProvider>(this, listen: false).scaffoldColor;
 }
