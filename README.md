@@ -39,7 +39,7 @@ Firebase for push notifications
 
 🔄 Navigation Tabs:
 
-Home Screen 
+Home Screen\n
 About
 Activities
 Contact
