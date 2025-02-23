@@ -459,7 +459,7 @@ class _HomeContentState extends State<Home> {
         (project) {
           return ProjectCard(
             width: (context.screenWidth - 30) / 2,
-            height: 280,
+            height: 290,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

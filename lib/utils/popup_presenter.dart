@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/ui_components/bottom_popup_mobile.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,8 @@ class PopupPresenter {
     required String secondaryButtonTitle,
     required Function onPrimaryAction,
     required Function onSecondaryAction,
-    Color primaryButtonColor = Colors.black,
-    Color secondaryButtonColor = Colors.black,
+    Color? primaryButtonColor,
+    Color? secondaryButtonColor,
     double maxWidth = 586,
     double mobilePopupHeight = 220,
   }) {
@@ -39,9 +40,10 @@ class PopupPresenter {
         onPrimaryAction: onPrimaryAction,
         primaryButtonTitle: primaryButtonTitle,
         secondaryButtonTitle: secondaryButtonTitle,
-        secondaryButtonColor: secondaryButtonColor,
-        primaryButtonColor: primaryButtonColor,
+        secondaryButtonColor: secondaryButtonColor ?? (context.isDarkMode ? Colors.white : Colors.black),
+        primaryButtonColor: primaryButtonColor ?? (context.isDarkMode ? Colors.white : Colors.black),
         mobilePopupHeight: mobilePopupHeight,
+        isDarkMode: context.isDarkMode,
       ),
     );
   }
