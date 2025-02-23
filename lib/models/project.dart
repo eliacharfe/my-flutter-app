@@ -69,7 +69,7 @@ class Project {
     Project(
       type: ProjectType.image,
       imageAsset: "assets/images/nasa.jpg",
-      title: "NASA's Mars Photos Website ",
+      title: "NASA's Mars",
       description:
           "Manipulations on Mars photos using NASA API made with Node-js at the Backend and JavaScript at the Frontend. Uses sessions and user's Authentication. Database: Sqlite3.",
       githubLink: 'https://github.com/eliacharfe/nasa-api',

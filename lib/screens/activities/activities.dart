@@ -3,9 +3,9 @@ import 'package:eliachar_feig/models/filters.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/screens/activities/widgets/activity_card.dart';
 import 'package:eliachar_feig/ui_components/horizontal_filter_list.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:table_calendar/table_calendar.dart';
+import '../../packages/default_packages.dart';
 import '../../packages/utlis_packages.dart';
 
 class Activities extends StatefulWidget {
@@ -72,8 +72,10 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: context.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "Activities"),
       endDrawer: DrawersMobile(),
       body: Column(
@@ -148,13 +150,17 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
                 selectedFilter = filter;
               });
             },
+            isDarkMode: isDarkMode,
           ),
+          SizedBox(height: 8),
           Expanded(
             child: SingleChildScrollView(
               controller: scrollController,
               child: filteredActivities.isEmpty
                   ? WidgetStyling.getNoDataContainerWith(
-                      "There is no ${selectedFilter.label} activities for this filter")
+                      "There is no ${selectedFilter.label} activities for this filter",
+                      isDarkMode: isDarkMode,
+                    )
                   : Wrap(
                       runSpacing: 10,
                       spacing: 10,

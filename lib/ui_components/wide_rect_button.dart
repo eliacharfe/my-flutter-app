@@ -70,10 +70,10 @@ class _WideRectButtonState extends State<WideRectButton> {
             : Text(
                 widget.text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 14,
                     color: widget.isEnabled ? widget.textColor : AppColors.lightGrey,
-                    fontWeight: FontWeight.w800),
+                    fontWeight: FontWeight.w700),
               ),
       ),
     );

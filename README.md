@@ -22,6 +22,8 @@ This is a cross-platform Flutter application designed to work seamlessly on Andr
 
 🧑‍💻 Authentication: Login, registration, and user profile.
 
+🌙 Dark Mode: Light and Dark theme support.
+
 🛠️ Technologies Used
 
 Flutter (Dart)

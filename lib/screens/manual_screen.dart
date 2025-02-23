@@ -1,6 +1,6 @@
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
-import 'package:flutter/material.dart';
+import '../packages/default_packages.dart';
 
 class ManualScreen extends StatefulWidget {
   final bool showAppBar;
@@ -11,33 +11,12 @@ class ManualScreen extends StatefulWidget {
 }
 
 class ManualScreenState extends State<ManualScreen> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> opacityAnimation;
-  late Animation<Offset> slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 1500),
-    );
-
-    opacityAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: controller, curve: Curves.easeIn),
-    );
-
-    slideAnimation = Tween<Offset>(begin: Offset(0, 0.2), end: Offset(0, 0)).animate(
-      CurvedAnimation(parent: controller, curve: Curves.easeOut),
-    );
-
-    controller.forward();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: context.scaffoldColor,
       appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: "Manual") : null,
       endDrawer: DrawersMobile(),
       body: Column(
@@ -49,7 +28,7 @@ class ManualScreenState extends State<ManualScreen> with SingleTickerProviderSta
               itemCount: featureCategories.length,
               itemBuilder: (context, index) {
                 final category = featureCategories[index];
-                return buildFeatureSection(category);
+                return buildFeatureSection(category, isDarkMode);
               },
             ),
           ),
@@ -58,49 +37,29 @@ class ManualScreenState extends State<ManualScreen> with SingleTickerProviderSta
     );
   }
 
-  // Section Widget with Animation
-  Widget buildFeatureSection(FeatureCategory category) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) {
-        return Opacity(
-          opacity: opacityAnimation.value,
-          child: SlideTransition(
-            position: slideAnimation,
-            child: child,
-          ),
-        );
-      },
-      child: Card(
-        color: AppColors.lightTeal,
-        margin: EdgeInsets.only(bottom: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(category.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
-              Column(
-                children: category.features
-                    .asMap()
-                    .entries
-                    .map((entry) =>
-                        FeatureItem(feature: entry.value, delay: entry.key * 300)) // Delay each item by 300ms
-                    .toList(),
-              ),
-            ],
-          ),
+  Widget buildFeatureSection(FeatureCategory category, bool isDarkMode) {
+    return Card(
+      color: isDarkMode ? Colors.grey.shade900 : AppColors.lightTeal,
+      margin: EdgeInsets.only(bottom: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(category.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            Column(
+              children: category.features
+                  .asMap()
+                  .entries
+                  .map((entry) => FeatureItem(feature: entry.value, delay: entry.key * 300)) // Delay each item by 300ms
+                  .toList(),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+    ).withAnimation();
   }
 }
 
@@ -115,60 +74,27 @@ class FeatureItem extends StatefulWidget {
 }
 
 class FeatureItemState extends State<FeatureItem> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _opacityAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500),
-    );
-
-    _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
-
-    Future.delayed(Duration(milliseconds: widget.delay), () {
-      if (mounted) _controller.forward();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Opacity(
-          opacity: _opacityAnimation.value,
-          child: child,
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          children: [
-            Icon(Icons.check_circle, color: Colors.green),
-            SizedBox(width: 8),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.feature.label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                  SizedBox(height: 4),
-                  Text(widget.feature.description, style: TextStyle(fontSize: 14, color: Colors.grey)),
-                ],
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(Icons.check_circle, color: Colors.green),
+          SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.feature.label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                SizedBox(height: 4),
+                Text(widget.feature.description, style: TextStyle(fontSize: 14, color: Colors.grey)),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
 

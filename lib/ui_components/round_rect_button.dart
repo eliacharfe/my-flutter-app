@@ -50,7 +50,7 @@ class SelectableRectButton extends StatelessWidget {
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 5),
-            side: BorderSide(color: isSelected ? Colors.transparent : borderColor, width: isSelected ? 0 : 1),
+            side: BorderSide(color: borderColor, width: isSelected ? 0 : 1),
           ),
         ),
       ),

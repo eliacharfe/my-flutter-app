@@ -28,7 +28,7 @@ class AboutMeState extends State<AboutMe> {
         if (appVersion.hasData) {
           childWidget = Material(
             child: Scaffold(
-              backgroundColor: AppColors.scaffoldColor,
+              backgroundColor: context.scaffoldColor,
               appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'About Me') : null,
               endDrawer: DrawersMobile(),
               body: Stack(

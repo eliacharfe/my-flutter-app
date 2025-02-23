@@ -45,7 +45,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
             title: isLoading ? "" : "${activityModel.type.capitalizeWords()} Details",
             context: context,
             showLogoIcon: false),
-        backgroundColor: Colors.white,
+        backgroundColor: context.scaffoldColor,
         body: isLoading
             ? WidgetStyling.getLoader()
             : Stack(
@@ -59,6 +59,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
                           child: SingleChildScrollView(
                             controller: controller,
                             child: WidgetStyling.getContainerFor(
+                              isDarkMode: context.isDarkMode,
                               widgetList: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,31 +90,36 @@ class _ActivityDetailsState extends State<ActivityDetails> {
                                       iconData: Icons.calendar_today,
                                       text: getDateString() ?? "",
                                       textWidth: 200,
+                                      color: context.isDarkMode ? Colors.white : Colors.black,
                                     ),
                                     const SizedBox(height: 12),
                                     IconWithText(
                                       iconData: Icons.person_outline_rounded,
                                       text: activityModel.authorName.capitalizeWords(),
                                       textWidth: 200,
+                                      color: context.isDarkMode ? Colors.white : Colors.black,
                                     ),
                                     if (activityModel.type.toLowerCase() != ActivityStaticData.outreaches)
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(height: 30),
-                                          Sans(
-                                            "Description",
-                                            14,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey,
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Sans(
-                                            activityModel.description.capitalizeFirstLetter(),
-                                            15,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ],
+                                      Container(
+                                        color: context.isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(height: 30),
+                                            Sans(
+                                              "Description",
+                                              14,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.grey,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Sans(
+                                              activityModel.description.capitalizeFirstLetter(),
+                                              15,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                   ],
                                 ),

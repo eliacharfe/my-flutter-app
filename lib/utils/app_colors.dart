@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppColors {
   static const Color scaffoldColor = Color.fromRGBO(248, 248, 248, 1.0);
@@ -20,4 +21,34 @@ class AppColors {
 
 Color applyOpacity(Color color, double opacity) {
   return color.withValues(alpha: opacity);
+}
+
+final ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: AppColors.scaffoldColor,
+  textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
+);
+
+class ThemeProvider extends ChangeNotifier {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  ThemeMode get themeMode => _themeMode;
+
+  Color get scaffoldColor {
+    return themeMode == ThemeMode.dark ? AppColors.darkGray : AppColors.scaffoldColor;
+  }
+
+  void toggleTheme(bool isDark) async {
+    _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkMode', isDark);
+  }
+
+  Future<void> loadThemePreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    _themeMode = prefs.getBool('isDarkMode') ?? false ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
 }
