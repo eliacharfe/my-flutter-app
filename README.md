@@ -39,10 +39,14 @@ Firebase for push notifications
 
 🔄 Navigation Tabs:
 
-Home Screen\n
+Home Screen
+
 About
+
 Activities
+
 Contact
+
 Settings
 
 🏃‍♂️ Running the App
