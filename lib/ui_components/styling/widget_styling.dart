@@ -29,10 +29,11 @@ class WidgetStyling {
       toolbarHeight: 50,
       title: SansBold(title, 20),
       leading: (showLogoIcon)
-          ? SizedBox(
-              height: 24,
-              width: 24,
-              child: ClipRRect(child: Image.asset('assets/images/icon.png')),
+          ? Transform.scale(
+              scale: 0.6,
+              child: Image.asset(
+                'assets/images/icon3.png',
+              ),
             )
           : null,
     );

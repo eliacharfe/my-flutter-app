@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:flutter_svg/svg.dart';
 import '../packages/default_packages.dart';
@@ -54,8 +55,7 @@ class DrawersMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+    final isDarkMode = context.isDarkMode;
 
     return Drawer(
       backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor,
@@ -70,7 +70,7 @@ class DrawersMobile extends StatelessWidget {
                 border: Border.all(width: 2.0, color: Colors.tealAccent),
               ),
               child: Image.asset(
-                'assets/images/icon2.png',
+                isDarkMode ? 'assets/images/icon3.png' : 'assets/images/icon2.png',
                 filterQuality: FilterQuality.high,
               ),
             ),
@@ -105,6 +105,8 @@ class TabsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return MaterialButton(
       elevation: 20.0,
       shape: RoundedRectangleBorder(
@@ -112,10 +114,14 @@ class TabsMobile extends StatelessWidget {
       ),
       height: 50.0,
       minWidth: 200.0,
-      color: Colors.black,
+      color: isDarkMode ? Colors.white : Colors.black,
       child: Text(
         text,
-        style: GoogleFonts.openSans(fontSize: 20.0, color: Colors.white),
+        style: GoogleFonts.openSans(
+          fontSize: 20.0,
+          color: isDarkMode ? Colors.black : Colors.white,
+          fontWeight: isDarkMode ? FontWeight.w700 : FontWeight.w500,
+        ),
       ),
       onPressed: () {
         debugPrint("*******------------ Push Route: $route -----------*******");
