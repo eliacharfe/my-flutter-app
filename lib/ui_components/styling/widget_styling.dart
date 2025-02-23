@@ -38,12 +38,10 @@ class WidgetStyling {
     );
   }
 
-  static Widget buildBulletPointsCard({
-    required String title,
-    required Map<String, List<String>> sections,
-  }) {
+  static Widget buildBulletPointsCard(
+      {required String title, required Map<String, List<String>> sections, required bool isDarkMode}) {
     return Card(
-      color: Color(0xFFE0F2F1),
+      color: isDarkMode ? Colors.grey.shade900 : Color(0xFFE0F2F1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
       child: Padding(
@@ -112,11 +110,17 @@ class WidgetStyling {
     required List<Widget>? widgetList,
     required String emptyContainerText,
     bool showEmptyContainerIcon = true,
+    required bool isDarkMode,
+    Color? backgroundColor,
   }) {
     if (widgetList == null) {
-      return getUnableToLoadContainer();
+      return getUnableToLoadContainer(isDarkMode: isDarkMode);
     } else if (widgetList.isEmpty) {
-      return getNoDataContainerWith(emptyContainerText, showEmptyContainerIcon: showEmptyContainerIcon);
+      return getNoDataContainerWith(
+        emptyContainerText,
+        showEmptyContainerIcon: showEmptyContainerIcon,
+        isDarkMode: isDarkMode,
+      );
     }
 
     Widget child;
@@ -130,29 +134,31 @@ class WidgetStyling {
 
     return Container(
       width: double.infinity,
-      color: Colors.white,
+      color: backgroundColor ?? (isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor),
       child: child,
     );
   }
 
-  static Container getUnableToLoadContainer(
-      {bool withLightBackground = true, String text = "Unable to load data, please try again"}) {
+  static Container getUnableToLoadContainer({
+    String text = "Unable to load data, please try again",
+    required bool isDarkMode,
+  }) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
-      color: withLightBackground ? Colors.white : Colors.black,
+      color: isDarkMode ? Colors.grey.shade600 : Colors.white,
       child: Container(
           padding: const EdgeInsets.fromLTRB(0, 35, 0, 35),
           height: 130,
           child: Column(
             children: [
-              Icon(Icons.refresh, size: 24, color: withLightBackground ? AppColors.lightGrey : Colors.white),
+              Icon(Icons.refresh, size: 24, color: isDarkMode ? Colors.white : AppColors.lightGrey),
               const SizedBox(
                 height: 10,
               ),
               Text(
                 text,
-                style: TextStyle(color: withLightBackground ? AppColors.lightGrey : Colors.white, fontSize: 12),
+                style: TextStyle(color: isDarkMode ? Colors.white : AppColors.lightGrey, fontSize: 12),
               ),
             ],
           )),
@@ -180,13 +186,17 @@ class WidgetStyling {
     );
   }
 
-  static Container getNoDataContainerWith(String text, {bool showEmptyContainerIcon = true}) {
+  static Container getNoDataContainerWith(
+    String text, {
+    bool showEmptyContainerIcon = true,
+    required bool isDarkMode,
+  }) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
-      color: Colors.white,
+      color: isDarkMode ? Colors.grey.shade600 : Colors.white,
       child: Container(
-          color: Colors.white,
+          color: isDarkMode ? Colors.grey.shade600 : Colors.white,
           padding: const EdgeInsets.all(35),
           child: Column(
             children: [
@@ -195,13 +205,16 @@ class WidgetStyling {
                 child: SizedBox(
                   height: 24,
                   width: 24,
-                  child: Image.asset('assets/material_symbols/scan_delete.png', color: AppColors.lightGrey),
+                  child: Image.asset('assets/material_symbols/scan_delete.png',
+                      color: isDarkMode ? Colors.white : AppColors.lightGrey),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Text(text, style: const TextStyle(color: AppColors.lightGrey, fontSize: 12), textAlign: TextAlign.center),
+              Text(text,
+                  style: TextStyle(color: isDarkMode ? Colors.white : AppColors.lightGrey, fontSize: 12),
+                  textAlign: TextAlign.center),
             ],
           )),
     );

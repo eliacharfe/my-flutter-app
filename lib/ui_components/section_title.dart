@@ -1,6 +1,6 @@
 import 'package:eliachar_feig/utils/app_colors.dart';
 import 'package:eliachar_feig/utils/components.dart';
-import 'package:flutter/material.dart';
+import '../packages/default_packages.dart';
 
 class SectionTitle extends StatelessWidget {
   final Color? bgColor;
@@ -24,10 +24,13 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
     return Container(
       padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
       margin: EdgeInsets.only(top: withTopMargin ? 15 : 0),
-      color: bgColor ?? AppColors.scaffoldColor,
+      color: bgColor ?? (isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor),
       child: Row(
         children: [
           SansBold(title, 24),
@@ -50,7 +53,7 @@ class SectionTitle extends StatelessWidget {
                 icon: Icon(
                   rightIcon,
                   size: 24,
-                  color: Colors.black,
+                  color: isDarkMode ? Colors.white : Colors.black,
                   weight: 400,
                 ),
               )),

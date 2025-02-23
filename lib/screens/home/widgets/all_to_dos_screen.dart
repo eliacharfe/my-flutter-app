@@ -64,7 +64,7 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: context.isDarkMode ? AppColors.darkGray : Colors.white,
         title: const Text('Add To-Do').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
@@ -77,7 +77,10 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
               toDoNotifier.addToDo(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
+            child: const Text('Add').applySansStyle(
+              fontWeight: FontWeight.w600,
+              color: context.isDarkMode ? Colors.white : Colors.teal,
+            ),
           ),
         ],
       ),
@@ -86,10 +89,11 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
     final toDoNotifier = Provider.of<ToDoNotifier>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: context.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "All To-Dos", showLogoIcon: false),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -109,12 +113,12 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
                         IconButton(
                           icon: Icon(
                             todo.isCompleted ? Icons.check_circle : Icons.check_circle_outline,
-                            color: todo.isCompleted ? Colors.green.shade700 : Colors.grey,
+                            color: todo.isCompleted ? (isDarkMode ? Colors.white : Colors.green.shade700) : Colors.grey,
                           ),
                           onPressed: () => toggleMarkToDoAsComplete(index),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.delete, color: AppColors.red),
+                          icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : AppColors.red),
                           onPressed: () => showBottomSheetModalTodo(index),
                         ),
                       ],
@@ -126,11 +130,11 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
             ElevatedButton(
               onPressed: addToDo,
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.lightTeal,
+                backgroundColor: isDarkMode ? Colors.white : AppColors.lightTeal,
                 foregroundColor: Colors.black,
               ),
               child: const Text('Add New To-Do'),
-            ).withPadding(const EdgeInsets.symmetric(vertical: 8)),
+            ).withPadding(const EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
           ],
         ).withPadding(const EdgeInsets.symmetric(horizontal: 20, vertical: 30)),
       ).withAnimation(),

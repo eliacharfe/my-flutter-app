@@ -1,5 +1,5 @@
-import 'package:eliachar_feig/ui_components/styling/widget_styling.dart';
-import 'package:flutter/material.dart';
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
+import '../packages/default_packages.dart';
 
 class AnimatedBulletPointsCard extends StatefulWidget {
   final String title;
@@ -36,9 +36,15 @@ class AnimatedCardState extends State<AnimatedBulletPointsCard> with SingleTicke
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return SlideTransition(
       position: animation,
-      child: WidgetStyling.buildBulletPointsCard(title: widget.title, sections: widget.sections),
+      child: WidgetStyling.buildBulletPointsCard(
+        title: widget.title,
+        sections: widget.sections,
+        isDarkMode: isDarkMode,
+      ),
     );
   }
 }

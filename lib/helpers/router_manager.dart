@@ -1,3 +1,4 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/screens/about_me.dart';
 import 'package:eliachar_feig/screens/contact_me.dart';
 import 'package:eliachar_feig/screens/home/home.dart';
@@ -5,7 +6,7 @@ import 'package:eliachar_feig/screens/manual_screen.dart';
 import 'package:eliachar_feig/screens/settings_page.dart';
 import 'package:eliachar_feig/screens/terms_page.dart';
 import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:flutter/material.dart';
+import '../packages/default_packages.dart';
 
 class RouterManager {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -78,8 +79,8 @@ class ModalSheetRoute extends PageRoute<void> {
       alignment: Alignment.bottomCenter,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.93,
-        decoration: const BoxDecoration(
-          color: AppColors.scaffoldColor,
+        decoration: BoxDecoration(
+          color: context.scaffoldColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         ),
         child: Stack(

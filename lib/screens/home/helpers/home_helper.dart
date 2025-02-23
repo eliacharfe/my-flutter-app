@@ -26,8 +26,18 @@ class HomeHelper {
     );
   }
 
-  static Widget buildImageDisplay(Project project) {
-    return Image.asset(project.imageAsset!, fit: BoxFit.cover);
+  static Widget buildImageDisplay(Project project, {double? maxHeight}) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: maxHeight ?? double.infinity,
+      ),
+      child: Center(
+        child: Image.asset(
+          project.imageAsset!,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
   }
 
   static Widget buildITextSection(Project project) {

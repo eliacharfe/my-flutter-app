@@ -1,6 +1,8 @@
 import 'package:eliachar_feig/models/activity_model.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
+import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:eliachar_feig/screens/activities/widgets/activity_details.dart';
+import 'package:eliachar_feig/ui_components/extensions/string_extensions.dart';
 
 import '../../../packages/default_packages.dart';
 
@@ -15,11 +17,17 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.transparent)),
+          color: isDarkMode ? AppColors.darkGray : Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Colors.transparent,
+          )),
       padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
-      child: prepareActivityWidget().withAnimation(),
+      child: prepareActivityWidget(isDarkMode).withAnimation(),
     ).onTapWithCursor(
       () {
         Navigator.of(context).push(
@@ -36,7 +44,7 @@ class ActivityCard extends StatelessWidget {
     );
   }
 
-  Column prepareActivityWidget() {
+  Column prepareActivityWidget(bool isDarkMode) {
     return Column(
       children: [
         Row(
@@ -57,7 +65,7 @@ class ActivityCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 15),
               child: RoundTextDisplay(
-                text: activity.type,
+                text: activity.type.capitalizeWords(),
                 bgColor: ActivityStaticData.getColorByType(activity.type.toLowerCase()),
                 textColor: Colors.white,
                 borderRadius: 15,
@@ -92,8 +100,8 @@ class ActivityCard extends StatelessWidget {
             const Spacer(),
             if ((activity.badgeStatus ?? "").isNotEmpty)
               RoundTextDisplay(
-                text: activity.badgeStatus ?? "",
-                bgColor: Colors.transparent,
+                text: activity.badgeStatus.capitalizeWords(),
+                bgColor: Colors.white,
                 borderColor: ActivityStaticData.getColorByStatus((activity.badgeStatus ?? "").toLowerCase()),
                 textColor: ActivityStaticData.getColorByStatus((activity.badgeStatus ?? "").toLowerCase()),
                 borderRadius: 15,
@@ -107,13 +115,14 @@ class ActivityCard extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(Icons.person_outline, size: 16, color: Color.fromRGBO(0, 0, 0, 0.59)),
+            Icon(Icons.person_outline, size: 16, color: isDarkMode ? Colors.white : Color.fromRGBO(0, 0, 0, 0.59)),
             const SizedBox(
               width: 5,
             ),
-            Text(
+            Sans(
               activity.authorName,
-              style: const TextStyle(fontSize: 13, color: Color.fromRGBO(0, 0, 0, 0.59), fontWeight: FontWeight.w500),
+              14,
+              color: isDarkMode ? Colors.white : Color.fromRGBO(0, 0, 0, 0.59),
             ),
             Visibility(
                 visible: (activity.location ?? "").isNotEmpty,

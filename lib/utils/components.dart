@@ -1,8 +1,7 @@
 import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../packages/default_packages.dart';
+import '../packages/utlis_packages.dart';
 
 class SansBold extends StatelessWidget {
   final String text;
@@ -29,9 +28,14 @@ class Sans extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Text(
       text,
-      style: GoogleFonts.openSans(fontSize: size, color: color ?? Colors.black, fontWeight: fontWeight),
+      style: GoogleFonts.openSans(
+          fontSize: size,
+          color: color ?? ((themeProvider.themeMode == ThemeMode.dark) ? Colors.white : Colors.black),
+          fontWeight: fontWeight),
     );
   }
 }
@@ -50,8 +54,11 @@ class DrawersMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -82,11 +89,7 @@ class DrawersMobile extends StatelessWidget {
           const SizedBox(height: 40.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              urlLauncher("assets/instagram.svg", "https://www.instagram.com/tomcruise/"),
-              urlLauncher("assets/twitter.svg", "https://www.twitter.com/tomcruise"),
-              urlLauncher("assets/github.svg", "https://github.com/sagnik150699/paulina_knop"),
-            ],
+            children: [],
           ),
         ],
       ),

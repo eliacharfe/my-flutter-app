@@ -23,6 +23,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => ToDoNotifier()),
         ChangeNotifierProvider(create: (_) => NoteNotifier()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()..loadThemePreference()),
       ],
       child: MyApp(),
     ),
@@ -34,10 +35,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      darkTheme: darkTheme,
+      themeMode: themeProvider.themeMode,
       onGenerateRoute: RouterManager.generateRoute,
       initialRoute: '/',
       theme: ThemeData(

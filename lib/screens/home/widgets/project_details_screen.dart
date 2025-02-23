@@ -10,19 +10,11 @@ class ProjectDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 248, 248, 1.0),
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        centerTitle: true,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        title: Text(
-          project.title,
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+      backgroundColor: context.scaffoldColor,
+      appBar: WidgetStyling.buildTopAppBar(title: project.title, showLogoIcon: false),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -50,6 +42,9 @@ class ProjectDetailsScreen extends StatelessWidget {
             if (project.githubLink != null)
               WideRectButton(
                 text: "View on GitHub",
+                textColor: isDarkMode ? Colors.black : Colors.white,
+                borderColor: isDarkMode ? Colors.white : Colors.black,
+                bgColor: isDarkMode ? Colors.white : Colors.black,
                 onPressed: () async {
                   final Uri uri = Uri.parse(project.githubLink!);
                   if (await canLaunchUrl(uri)) {

@@ -1,5 +1,6 @@
+import 'package:eliachar_feig/packages/default_packages.dart';
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:flutter/material.dart';
 
 class ProjectCard extends StatelessWidget {
   final double width;
@@ -10,11 +11,13 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return SizedBox(
       width: width,
       height: height,
       child: Card(
-        color: AppColors.lightTeal,
+        color: isDarkMode ? Colors.grey.shade900 : AppColors.lightTeal,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

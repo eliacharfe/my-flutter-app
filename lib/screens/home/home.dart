@@ -3,6 +3,7 @@ import 'package:eliachar_feig/models/to_do.dart';
 import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
 import 'package:eliachar_feig/models/project.dart';
 import 'package:eliachar_feig/screens/home/widgets/all_to_dos_screen.dart';
+import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../packages/default_packages.dart';
 import '../../packages/ui_components_packages.dart';
 import '../../packages/utlis_packages.dart';
@@ -31,8 +32,10 @@ class _HomeContentState extends State<Home> {
   Widget build(BuildContext context) {
     final noteNotifier = Provider.of<NoteNotifier>(context);
     final toDoNotifier = Provider.of<ToDoNotifier>(context);
+    final isDarkMode = context.isDarkMode;
+
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: context.scaffoldColor,
       appBar: WidgetStyling.buildTopAppBar(title: "Home"),
       endDrawer: DrawersMobile().withAnimation(),
       body: Padding(
@@ -43,7 +46,8 @@ class _HomeContentState extends State<Home> {
             children: [
               buildSection(
                 title: 'Projects (${Project.projectsMockData.length})',
-                child: buildProjectsContent(),
+                child: buildProjectsContent(isDarkMode),
+                isDarkMode: isDarkMode,
                 onTap: () {
                   Navigator.of(context).push(
                     RouteWrapper(
@@ -55,8 +59,12 @@ class _HomeContentState extends State<Home> {
               buildSection(
                 title: 'Notes Section',
                 rightIcon: Icons.add,
+                isDarkMode: isDarkMode,
                 child: noteNotifier.notes.isEmpty
-                    ? WidgetStyling.getNoDataContainerWith("There is no Notes to display")
+                    ? WidgetStyling.getNoDataContainerWith(
+                        "There is no Notes to display",
+                        isDarkMode: isDarkMode,
+                      )
                     : Column(
                         children: [
                           ...noteNotifier.notes.map(
@@ -84,7 +92,7 @@ class _HomeContentState extends State<Home> {
                                 child: ListTile(
                                   title: Text(note.text),
                                   trailing: const Icon(Icons.edit),
-                                  onTap: () => editNote(note.id),
+                                  onTap: () => editNote(note.id, isDarkMode),
                                 ),
                               );
                             },
@@ -92,13 +100,19 @@ class _HomeContentState extends State<Home> {
                           const SizedBox(height: 8),
                         ],
                       ),
-                onTap: addNote,
+                onTap: () {
+                  addNote(isDarkMode);
+                },
               ).withAnimation(),
               buildSection(
                 title: 'To-Do List',
                 rightIcon: Icons.add,
+                isDarkMode: isDarkMode,
                 child: toDoNotifier.todos.isEmpty
-                    ? WidgetStyling.getNoDataContainerWith("There is no to dos to display")
+                    ? WidgetStyling.getNoDataContainerWith(
+                        "There is no to dos to display",
+                        isDarkMode: isDarkMode,
+                      )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -116,12 +130,14 @@ class _HomeContentState extends State<Home> {
                                   IconButton(
                                     icon: Icon(
                                       isCompleted ? Icons.check_circle : Icons.check_circle_outline,
-                                      color: isCompleted ? Colors.green.shade700 : Colors.grey,
+                                      color: isCompleted
+                                          ? (isDarkMode ? Colors.white : Colors.green.shade700)
+                                          : Colors.grey,
                                     ),
                                     onPressed: () => toggleMarkToDoAsComplete(index),
                                   ),
                                   IconButton(
-                                    icon: Icon(Icons.delete, color: AppColors.red),
+                                    icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : AppColors.red),
                                     onPressed: () => showBottomSheetModalTodo(index),
                                   ),
                                 ],
@@ -138,7 +154,8 @@ class _HomeContentState extends State<Home> {
                                   ),
                                 );
                               },
-                              child: Text('Show All Todos').applySansStyle(color: Colors.teal),
+                              child:
+                                  Text('Show All Todos').applySansStyle(color: isDarkMode ? Colors.white : Colors.teal),
                             ).withPadding(EdgeInsets.only(right: 20)),
                         ],
                       ),
@@ -146,23 +163,28 @@ class _HomeContentState extends State<Home> {
               ).withAnimation(),
               buildSection(
                 title: 'Achievements',
+                isDarkMode: isDarkMode,
                 child: Wrap(
                   spacing: 10,
                   children: List.generate(4, (index) {
                     return Chip(
                       label: Text('Achievement ${index + 1}'),
-                      backgroundColor: AppColors.lightTeal,
+                      backgroundColor: isDarkMode ? Colors.grey.shade700 : AppColors.lightTeal,
                     );
                   }),
                 ).onTapWithCursor(() {
                   showDialogModal(
-                      title: 'Achievement', text: 'This is a dialog modal in the center for Achievement 🚀.');
+                    title: 'Achievement',
+                    text: 'This is a dialog modal in the center for Achievement 🚀.',
+                    isDarkMode: isDarkMode,
+                  );
                 }),
                 onTap: () {},
               ).withAnimation(),
               buildSection(
                 title: 'Progress',
                 rightIcon: null,
+                isDarkMode: isDarkMode,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -204,6 +226,7 @@ class _HomeContentState extends State<Home> {
               buildSection(
                 title: 'Empty Section',
                 rightIcon: null,
+                isDarkMode: isDarkMode,
                 child: const Center(
                   child: Text(
                     'There is no data to display.',
@@ -215,17 +238,20 @@ class _HomeContentState extends State<Home> {
               buildSection(
                 title: 'Unable To Load',
                 rightIcon: null,
-                child: WidgetStyling.getUnableToLoadContainer(),
+                isDarkMode: isDarkMode,
+                child: WidgetStyling.getUnableToLoadContainer(isDarkMode: isDarkMode),
                 onTap: null,
               ),
               buildSection(
                 title: 'Custom Unable To Load',
                 rightIcon: null,
-                child: WidgetStyling.getNoDataContainerWith("No data available right now"),
+                isDarkMode: isDarkMode,
+                child: WidgetStyling.getNoDataContainerWith("No data available right now", isDarkMode: isDarkMode),
                 onTap: null,
               ),
               buildSection(
                 title: 'Upcoming Events',
+                isDarkMode: isDarkMode,
                 child: Column(
                   children: List.generate(3, (index) {
                     return ListTile(
@@ -246,17 +272,17 @@ class _HomeContentState extends State<Home> {
     );
   }
 
-  void showDialogModal({String? title, String? text}) {
+  void showDialogModal({String? title, String? text, required bool isDarkMode}) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: AppColors.lightTeal,
+        backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.lightTeal,
         titleTextStyle: TextStyle(
-          color: Colors.black,
+          color: isDarkMode ? Colors.white : Colors.black,
           fontSize: 20,
         ),
         contentTextStyle: TextStyle(
-          color: Colors.black87,
+          color: isDarkMode ? Colors.grey.shade200 : Colors.black87,
           fontSize: 16,
         ),
         title: Text(title ?? 'Dialog Modal'),
@@ -265,7 +291,7 @@ class _HomeContentState extends State<Home> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             style: TextButton.styleFrom(
-              foregroundColor: Colors.teal,
+              foregroundColor: isDarkMode ? Colors.grey.shade50 : Colors.teal,
             ),
             child: const Text('Close'),
           ),
@@ -340,52 +366,56 @@ class _HomeContentState extends State<Home> {
     });
   }
 
-  void editNote(String id) {
+  void editNote(String id, bool isDarkMode) {
     final note = context.read<NoteNotifier>().notes.firstWhere((note) => note.id == id);
     final controller = TextEditingController(text: note.text);
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
         title: const Text('Edit Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
+            child: const Text('Cancel')
+                .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               context.read<NoteNotifier>().editNoteById(id, controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Save').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
+            child: const Text('Save')
+                .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
           ),
         ],
       ),
     );
   }
 
-  void addNote() {
+  void addNote(bool isDarkMode) {
     final controller = TextEditingController();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
         title: const Text('Add Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
+            child: const Text('Cancel')
+                .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               context.read<NoteNotifier>().addNote(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
+            child: const Text('Add')
+                .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
           ),
         ],
       ),
@@ -398,7 +428,7 @@ class _HomeContentState extends State<Home> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: context.isDarkMode ? AppColors.darkGray : Colors.white,
         title: const Text('Add To-Do').applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
@@ -411,14 +441,17 @@ class _HomeContentState extends State<Home> {
               context.read<ToDoNotifier>().addToDo(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add').applySansStyle(fontWeight: FontWeight.w600, color: Colors.teal),
+            child: const Text('Add').applySansStyle(
+              fontWeight: FontWeight.w600,
+              color: context.isDarkMode ? Colors.white : Colors.teal,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget buildProjectsContent() {
+  Widget buildProjectsContent(bool isDarkMode) {
     return Wrap(
       spacing: 10,
       runSpacing: 10,
@@ -439,16 +472,12 @@ class _HomeContentState extends State<Home> {
                 if (project.githubLink != null)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RoundTextDisplay(
+                    child: WideRectButton(
                       text: "GitHub",
-                      bgColor: Colors.black,
-                      textColor: Colors.white,
-                      isBold: false,
-                      icon: Icons.link,
-                      iconSize: 15,
-                      padding: EdgeInsets.all(2),
-                    ).onTapWithCursor(
-                      () {
+                      bgColor: isDarkMode ? Colors.white : Colors.teal.shade200,
+                      textColor: isDarkMode ? Colors.black : Colors.black,
+                      borderColor: isDarkMode ? Colors.black : Colors.black,
+                      onPressed: () async {
                         if (project.githubLink != null && project.githubLink!.isNotEmpty) {
                           HomeHelper.launchURL(project.githubLink!);
                         }
@@ -476,6 +505,7 @@ class _HomeContentState extends State<Home> {
     required Widget child,
     IconData? rightIcon,
     required VoidCallback? onTap,
+    required bool isDarkMode,
   }) {
     return Column(
       children: [
@@ -487,7 +517,9 @@ class _HomeContentState extends State<Home> {
         SizedBox(height: 16),
         child,
         SizedBox(height: 20),
-        Divider(),
+        Divider(
+          color: isDarkMode ? Colors.white : AppColors.dividerColor,
+        ),
       ],
     );
   }

@@ -18,8 +18,10 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: context.scaffoldColor,
       appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'Contact Me') : null,
       endDrawer: DrawersMobile(),
       body: SingleChildScrollView(
@@ -34,6 +36,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
               icon: Icons.phone,
               label: 'Phone',
               value: '+972 581234567',
+              isDarkMode: isDarkMode,
               onTap: () async {
                 Uri phone = Uri.parse('tel:0581234567');
                 if (await launchUrl(phone)) {}
@@ -44,6 +47,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
               icon: Icons.email,
               label: 'Email',
               value: 'efeig15@gmail.com',
+              isDarkMode: isDarkMode,
               onTap: () async {
                 final Uri email = Uri.parse('mailto:efeig15@gmail.com');
                 if (await canLaunchUrl(email)) {
@@ -56,6 +60,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
               icon: FontAwesomeIcons.whatsapp,
               label: 'WhatsApp',
               value: '+972 581234567',
+              isDarkMode: isDarkMode,
               onTap: () async {
                 final Uri whatsapp = Uri.parse('https://api.whatsapp.com/send?phone=972581234567');
                 if (await canLaunchUrl(whatsapp)) {
@@ -68,6 +73,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
               icon: Icons.language,
               label: 'Website',
               value: 'www.eliacharfeig.com',
+              isDarkMode: isDarkMode,
               onTap: () async {
                 final Uri url = Uri.parse('https://www.eliacharfeig.com/');
                 if (await canLaunchUrl(url)) {
@@ -80,6 +86,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
               icon: Icons.location_on,
               label: 'Address',
               value: '128 Willowbrook Lane, Fairview, CA 90210, United States',
+              isDarkMode: isDarkMode,
               tappable: false,
               onTap: null,
             ),
@@ -94,13 +101,14 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
     required IconData icon,
     required String label,
     required String value,
+    required bool isDarkMode,
     bool tappable = true,
     VoidCallback? onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Colors.teal),
-      title: Text(label, style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w500)),
-      subtitle: Text(value, style: TextStyle(fontSize: 15, color: Colors.black87)),
+      leading: Icon(icon, color: isDarkMode ? Colors.white : Colors.teal),
+      title: Sans(label, 16, color: isDarkMode ? Colors.grey.shade400 : Colors.grey, fontWeight: FontWeight.w500),
+      subtitle: Sans(value, 15, color: isDarkMode ? Colors.white : Colors.black87),
       trailing: tappable ? const Icon(Icons.chevron_right) : null,
       onTap: onTap,
     );
