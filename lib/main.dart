@@ -16,7 +16,7 @@ Future<String> getAppVersion() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  firebaseSetup();
+  // firebaseSetup();
 
   runApp(
     MultiProvider(

@@ -1,5 +1,4 @@
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
-import 'package:eliachar_feig/ui_components/extensions/widget_extensions.dart';
 import 'package:flutter_svg/svg.dart';
 import '../packages/default_packages.dart';
 import '../packages/utlis_packages.dart';
