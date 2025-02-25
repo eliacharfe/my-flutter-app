@@ -12,7 +12,6 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderStateMixin {
   String appVersion = "Unknown";
-  String selectedLanguage = "English";
 
   @override
   void initState() {
@@ -155,6 +154,16 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
   void showLanguagePickerMenu(BuildContext context, TapDownDetails details) {
     final screenSize = MediaQuery.of(context).size;
+
+    List<String> languages = [
+      'English'.translate(context),
+      'French'.translate(context),
+      'Hebrew'.translate(context),
+      'Spanish'.translate(context),
+    ];
+
+    String currentLanguage = "selectedLanguage".translate(context, isCaseInsensitive: false);
+
     showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
@@ -163,34 +172,35 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
         screenSize.width - details.globalPosition.dx,
         screenSize.height - details.globalPosition.dy,
       ),
-      items: [
-        'English',
-        'French',
-        'Hebrew',
-        'Spanish',
-      ]
-          .map((language) => PopupMenuItem(
-                value: language,
-                child: Text(language),
-              ))
-          .toList(),
+      color: context.isDarkMode ? Colors.black87 : AppColors.lightTeal,
+      items: languages.map((language) {
+        return PopupMenuItem(
+          value: language,
+          child: Row(
+            children: [
+              Text(language),
+              if (language == currentLanguage) ...[
+                SizedBox(width: 10),
+                Icon(Icons.check, color: context.isDarkMode ? Colors.white : Colors.black),
+              ],
+            ],
+          ),
+        );
+      }).toList(),
     ).then((selected) {
       if (selected != null) {
         Locale selectedLocale;
 
-        switch (selected) {
-          case 'French':
-            selectedLocale = Locale('fr');
-            break;
-          case 'Spanish':
-            selectedLocale = Locale('es');
-            break;
-          case 'Hebrew':
-            selectedLocale = Locale('he');
-            break;
-          default:
-            selectedLocale = Locale('en');
-            break;
+        if (selected == languages[0]) {
+          selectedLocale = Locale('en');
+        } else if (selected == languages[1]) {
+          selectedLocale = Locale('fr');
+        } else if (selected == languages[2]) {
+          selectedLocale = Locale('he');
+        } else if (selected == languages[3]) {
+          selectedLocale = Locale('es');
+        } else {
+          selectedLocale = Locale('en');
         }
 
         // if (mounted) {

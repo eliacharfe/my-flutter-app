@@ -158,6 +158,14 @@ extension StringTranslation on String {
       normalizedKey = normalizedKey.toLowerCase();
     }
     switch (normalizedKey) {
+      case 'english':
+        return S.of(context).english;
+      case 'french':
+        return S.of(context).french;
+      case 'hebrew':
+        return S.of(context).hebrew;
+      case 'spanish':
+        return S.of(context).spanish;
       case 'settings':
         return S.of(context).settings;
       case 'dark_mode':

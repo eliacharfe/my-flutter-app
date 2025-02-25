@@ -1,13 +1,19 @@
 import '../packages/default_packages.dart';
 
 class LocaleProvider extends ChangeNotifier {
-  Locale _locale = Locale('en'); // Default language
+  Locale _locale = Locale('en');
 
   Locale get locale => _locale;
 
-  void setLocale(Locale locale) {
+  LocaleProvider() {
+    loadLocale();
+  }
+
+  Future<void> setLocale(Locale locale) async {
+    if (_locale == locale) return;
     _locale = locale;
     notifyListeners();
+    await saveLocale();
   }
 
   Future<void> loadLocale() async {
@@ -19,6 +25,6 @@ class LocaleProvider extends ChangeNotifier {
 
   Future<void> saveLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('language_code', _locale.languageCode);
+    await prefs.setString('language_code', _locale.languageCode);
   }
 }

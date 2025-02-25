@@ -73,7 +73,7 @@
   "home_tab": "בית",
   "about_tab": "אודות",
   "tasks_tab": "משימות",
-  "contact_tab": "יצירת קשר",
+  "contact_tab": "קשר",
   "settings_tab": "הגדרות",
   "terms": "תנאים",
   "manual": "מדריך",
@@ -128,6 +128,13 @@
   "transactions": "עסקאות",
   "events": "אירועים",
   "outreaches": "הפניות",
+
+  "@@locale": "he",
+  "english": "אנגלית",
+  "french": "צרפתית",
+  "hebrew": "עברית",
+  "spanish": "ספרדית",
+
 
   "event_description": "תיאור האירוע",
   "delete_item_success": "הפריט נמחק בהצלחה",

@@ -103,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Il n\'y a pas de données à afficher."),
         "empty_section_title":
             MessageLookupByLibrary.simpleMessage("Section Vide"),
+        "english": MessageLookupByLibrary.simpleMessage("Anglais"),
         "english_fluent":
             MessageLookupByLibrary.simpleMessage("Anglais - Courant"),
         "event_description":
@@ -112,9 +113,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
             "Flutter, JavaScript, Java, SQL"),
+        "french": MessageLookupByLibrary.simpleMessage("Français"),
         "french_native": MessageLookupByLibrary.simpleMessage(
             "Français - Langue maternelle"),
         "hard_working": MessageLookupByLibrary.simpleMessage("Travailleur"),
+        "hebrew": MessageLookupByLibrary.simpleMessage("Hébreu"),
         "hebrew_native":
             MessageLookupByLibrary.simpleMessage("Hébreu - Langue maternelle"),
         "help_support": MessageLookupByLibrary.simpleMessage("Aide & Support"),
@@ -181,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "software_developer":
             MessageLookupByLibrary.simpleMessage("Développeur logiciel"),
         "software_skills": MessageLookupByLibrary.simpleMessage("Logiciels"),
+        "spanish": MessageLookupByLibrary.simpleMessage("Espagnol"),
         "stress_management":
             MessageLookupByLibrary.simpleMessage("Gestion du stress"),
         "tapped_on":
