@@ -41,7 +41,7 @@ class ProjectDetailsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             if (project.githubLink != null)
               WideRectButton(
-                text: "View on GitHub",
+                text: "view_on_github".translate(context),
                 textColor: isDarkMode ? Colors.black : Colors.white,
                 borderColor: isDarkMode ? Colors.white : Colors.black,
                 bgColor: isDarkMode ? Colors.white : Colors.black,

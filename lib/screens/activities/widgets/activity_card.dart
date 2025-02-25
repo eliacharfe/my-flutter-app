@@ -2,8 +2,6 @@ import 'package:eliachar_feig/models/activity_model.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:eliachar_feig/screens/activities/widgets/activity_details.dart';
-import 'package:eliachar_feig/ui_components/extensions/string_extensions.dart';
-
 import '../../../packages/default_packages.dart';
 
 class ActivityCard extends StatelessWidget {

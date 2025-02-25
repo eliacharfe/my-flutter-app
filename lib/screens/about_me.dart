@@ -29,7 +29,7 @@ class AboutMeState extends State<AboutMe> {
           childWidget = Material(
             child: Scaffold(
               backgroundColor: context.scaffoldColor,
-              appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'About Me') : null,
+              appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'about_me'.translate(context)) : null,
               endDrawer: DrawersMobile(),
               body: Stack(
                 children: [
@@ -38,54 +38,51 @@ class AboutMeState extends State<AboutMe> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        buildTitle("About Me").withAnimation(),
-                        Sans("""I’m a passionate software developer dedicated to building high-quality apps, web apps, and websites for iOS, Android, and the Web. I specialize in crafting modern, scalable, and user-friendly solutions using the latest technologies and frameworks. Whether it's a sleek mobile app, a dynamic web platform, or a full-stack system, I thrive on turning ideas into reality with clean code and intuitive designs. Always eager to stay ahead of industry trends, I ensure that every project I work on is optimized for performance, security, and user experience.\nLet’s build something amazing together! 🔥""",
-                                14)
-                            .withAnimation(),
+                        buildTitle("about_me".translate(context), context).withAnimation(),
+                        Sans("about_me_description".translate(context), 14).withAnimation(),
                         SizedBox(height: 16),
                         AnimatedBulletPointsCard(
-                          title: "Technical Skills",
+                          title: "technical_skills".translate(context),
                           sections: {
-                            "Software": [
-                              "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js",
-                              "Object-Oriented Programming & Design",
-                              "Design Patterns and SOLID Principles",
-                              "Databases & Data Structures",
-                              "Parallel Programming (C/C++)",
-                              "macOS, Windows, Linux Environments",
+                            "software".translate(context): [
+                              "flutter_and_dart".translate(context),
+                              "object_oriented_programming".translate(context),
+                              "design_patterns_and_solid".translate(context),
+                              "databases_and_data_structures".translate(context),
+                              "parallel_programming".translate(context),
+                              "macos_windows_linux_environments".translate(context),
                             ],
-                            "Web": [
-                              "Flutter, JavaScript, Java, SQL",
-                              "HTML, CSS, Bootstrap",
-                              "Node.js, Express, React JS, Spring Boot",
-                              "Backend + Frontend Web Development",
-                              "UX/UI design sense",
+                            "web".translate(context): [
+                              "flutter_js_java_sql".translate(context),
+                              "html_css_bootstrap".translate(context),
+                              "node_express_react_springboot".translate(context),
+                              "backend_frontend_web_dev".translate(context),
+                              "ux_ui_design_sense".translate(context),
                             ],
                           },
                         ),
                         SizedBox(height: 16),
                         AnimatedBulletPointsCard(
-                          title: "Soft Skills",
+                          title: "soft_skills".translate(context),
                           sections: {
-                            "Characteristic": [
-                              "Autodidact",
-                              "Hard Working",
-                              "Creative",
-                              "Cooperative",
-                              "Problem Solver",
-                              "Stress Management",
+                            "characteristics".translate(context): [
+                              "autodidact".translate(context),
+                              "hard_working".translate(context),
+                              "creative".translate(context),
+                              "cooperative".translate(context),
+                              "problem_solver".translate(context),
+                              "stress_management".translate(context),
                             ],
-                            "Languages": [
-                              "Hebrew - Native",
-                              "French - Native",
-                              "English - Fluent",
+                            "languages".translate(context): [
+                              "hebrew_native".translate(context),
+                              "french_native".translate(context),
+                              "english_fluent".translate(context),
                             ],
                           },
                         ),
                       ],
                     ),
                   ),
-                  // Show environment switching w/ password popup if supposed to...
                 ],
               ),
             ),
@@ -103,7 +100,7 @@ class AboutMeState extends State<AboutMe> {
     );
   }
 
-  Widget buildTitle(String title) {
+  Widget buildTitle(String title, BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -114,7 +111,7 @@ class AboutMeState extends State<AboutMe> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SansBold(title, 27.5),
-                Sans('App version: $appVersion ($appBuildNumber)', 12.5),
+                Sans("${'app_version'.translate(context)}: $appVersion ($appBuildNumber)", 12.5),
               ],
             ),
           ),
@@ -130,12 +127,12 @@ class AboutMeState extends State<AboutMe> {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Software Developer',
+              Text(
+                'software_developer'.translate(context),
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
-              const Text(
-                'B.Sc Computer Science',
+              Text(
+                'bsc_computer_science'.translate(context),
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ],

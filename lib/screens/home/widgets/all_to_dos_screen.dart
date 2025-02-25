@@ -18,15 +18,69 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
     super.initState();
   }
 
-  void showBottomSheetModalTodo(int index) {
+  @override
+  Widget build(BuildContext context) {
+    final isDarkMode = context.isDarkMode;
+    final toDoNotifier = Provider.of<ToDoNotifier>(context);
+
+    return Scaffold(
+      backgroundColor: context.scaffoldColor,
+      appBar: WidgetStyling.buildTopAppBar(title: "all_tasks_title".translate(context), showLogoIcon: false),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: toDoNotifier.todos.length,
+                itemBuilder: (context, index) {
+                  final todo = toDoNotifier.todos[index];
+                  return ListTile(
+                    title: Text(todo.title),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            todo.isCompleted ? Icons.check_circle : Icons.check_circle_outline,
+                            color: todo.isCompleted ? (isDarkMode ? Colors.white : Colors.green.shade700) : Colors.grey,
+                          ),
+                          onPressed: () => toggleMarkToDoAsComplete(index),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : AppColors.red),
+                          onPressed: () => showBottomSheetModalTodo(context, index),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: addToDo,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: isDarkMode ? Colors.white : AppColors.lightTeal,
+                foregroundColor: Colors.black,
+              ),
+              child: Text('add_new_todo'.translate(context)),
+            ).withPadding(const EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
+          ],
+        ).withPadding(const EdgeInsets.symmetric(horizontal: 20, vertical: 30)),
+      ).withAnimation(),
+    );
+  }
+
+  void showBottomSheetModalTodo(BuildContext context, int index) {
     final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
 
     PopupPresenter.showPopup(
       context: context,
-      title: "Delete Item",
-      message: "Are you sure you want to delete this item?",
-      primaryButtonTitle: "Cancel",
-      secondaryButtonTitle: "Yes, Delete",
+      title: "delete_button_title".translate(context),
+      message: "delete_item_confirmation".translate(context),
+      primaryButtonTitle: "Cancel".translate(context),
+      secondaryButtonTitle: "yes_delete".translate(context),
       onPrimaryAction: () {
         Navigator.of(context).pop();
       },
@@ -38,7 +92,7 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
           toDoNotifier.removeToDo(index);
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Item deleted successfully')),
+            SnackBar(content: Text('item_deleted_successfully'.translate(context))),
           );
         });
       },
@@ -65,79 +119,25 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: context.isDarkMode ? AppColors.darkGray : Colors.white,
-        title: const Text('Add To-Do').applySansStyle(size: 24, fontWeight: FontWeight.w500),
+        title: Text('add_todo_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
+            child: Text('Cancel'.translate(context)).applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               toDoNotifier.addToDo(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add').applySansStyle(
+            child: Text('Add'.translate(context)).applySansStyle(
               fontWeight: FontWeight.w600,
               color: context.isDarkMode ? Colors.white : Colors.teal,
             ),
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final isDarkMode = context.isDarkMode;
-    final toDoNotifier = Provider.of<ToDoNotifier>(context);
-
-    return Scaffold(
-      backgroundColor: context.scaffoldColor,
-      appBar: WidgetStyling.buildTopAppBar(title: "All To-Dos", showLogoIcon: false),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: toDoNotifier.todos.length,
-                itemBuilder: (context, index) {
-                  final todo = toDoNotifier.todos[index];
-                  return ListTile(
-                    title: Text(todo.title),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            todo.isCompleted ? Icons.check_circle : Icons.check_circle_outline,
-                            color: todo.isCompleted ? (isDarkMode ? Colors.white : Colors.green.shade700) : Colors.grey,
-                          ),
-                          onPressed: () => toggleMarkToDoAsComplete(index),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : AppColors.red),
-                          onPressed: () => showBottomSheetModalTodo(index),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            ElevatedButton(
-              onPressed: addToDo,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: isDarkMode ? Colors.white : AppColors.lightTeal,
-                foregroundColor: Colors.black,
-              ),
-              child: const Text('Add New To-Do'),
-            ).withPadding(const EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
-          ],
-        ).withPadding(const EdgeInsets.symmetric(horizontal: 20, vertical: 30)),
-      ).withAnimation(),
     );
   }
 }

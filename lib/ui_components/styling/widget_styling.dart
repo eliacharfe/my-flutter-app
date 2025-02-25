@@ -141,7 +141,7 @@ class WidgetStyling {
   }
 
   static Container getUnableToLoadContainer({
-    String text = "Unable to load data, please try again",
+    String text = 'Unable to load data, please try again',
     required bool isDarkMode,
   }) {
     return Container(

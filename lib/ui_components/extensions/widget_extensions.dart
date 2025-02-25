@@ -12,6 +12,13 @@ extension GestureMouseRegionExtension on Widget {
       ),
     );
   }
+
+  Widget onTapDown(void Function(TapDownDetails) onTapDown) {
+    return GestureDetector(
+      onTapDown: onTapDown,
+      child: this,
+    );
+  }
 }
 
 extension WidgetPadding on Widget {

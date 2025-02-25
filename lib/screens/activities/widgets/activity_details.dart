@@ -2,7 +2,6 @@ import 'package:eliachar_feig/models/activity_model.dart';
 import 'package:eliachar_feig/packages/default_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:eliachar_feig/screens/activities/widgets/activity_card.dart';
-import 'package:eliachar_feig/ui_components/extensions/string_extensions.dart';
 import 'package:eliachar_feig/ui_components/icon_with_text.dart';
 import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../../packages/ui_components_packages.dart';

@@ -12,6 +12,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderStateMixin {
   String appVersion = "Unknown";
+  String selectedLanguage = "English";
 
   @override
   void initState() {
@@ -33,14 +34,15 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
     return Scaffold(
       backgroundColor: context.scaffoldColor,
-      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'Settings') : null,
+      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: "settings".translate(context)) : null,
       endDrawer: DrawersMobile().withAnimation(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            WidgetStyling.buildPageTitle('Settings').withPadding(EdgeInsets.symmetric(horizontal: 20)),
+            WidgetStyling.buildPageTitle("settings".translate(context))
+                .withPadding(EdgeInsets.symmetric(horizontal: 20)),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -55,19 +57,30 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                   },
                 ),
                 SizedBox(width: 10),
-                Sans(isDarkMode ? "Dark Mode 🌙" : "Light Mode ☀️", 16),
+                Sans(isDarkMode ? "dark_mode".translate(context) : "light_mode".translate(context), 16),
               ],
             ).withPadding(EdgeInsets.only(left: 13, right: 20)),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    buildTile(0, Icons.account_circle, 'Account', 'Manage your account settings', isDarkMode),
-                    buildTile(1, Icons.notifications, 'Notifications', 'Set your notification preferences', isDarkMode),
-                    buildTile(2, Icons.lock, 'Privacy', 'Adjust your privacy settings', isDarkMode),
-                    buildTile(3, Icons.language, 'Language', 'Change your app language', isDarkMode),
-                    buildTile(4, Icons.help, 'Help & Support', 'Get help and support', isDarkMode),
-                    buildTile(5, Icons.info, 'About', 'App version and information', isDarkMode),
+                    buildTile(0, Icons.account_circle, "account".translate(context),
+                        "manage_account".translate(context), isDarkMode),
+                    buildTile(1, Icons.notifications, "notifications".translate(context),
+                        "notification_preferences".translate(context), isDarkMode),
+                    buildTile(
+                        2, Icons.lock, "privacy".translate(context), "privacy_settings".translate(context), isDarkMode),
+                    buildTile(3, Icons.language, "language".translate(context),
+                            "selectedLanguage".translate(context, isCaseInsensitive: false), isDarkMode)
+                        .onTapDown((details) {
+                      showLanguagePickerMenu(context, details);
+                    }),
+                    buildTile(4, Icons.help, "help_support".translate(context), "help_support_text".translate(context),
+                        isDarkMode, onTap: () {
+                      Navigator.of(context, rootNavigator: true).pushNamed('/manual');
+                    }),
+                    buildTile(5, Icons.info, "about".translate(context), "app_info".translate(context), isDarkMode,
+                        onTap: () => showAppInfoDialog(isDarkMode: isDarkMode)),
                   ],
                 ),
               ),
@@ -83,17 +96,109 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     );
   }
 
-  Widget buildTile(int index, IconData icon, String title, String subtitle, bool isDarkMode) {
+  Widget buildTile(int index, IconData icon, String title, String subtitle, bool isDarkMode, {VoidCallback? onTap}) {
     return ListTile(
       leading: Icon(icon, color: isDarkMode ? Colors.white : Colors.teal),
       title: Sans(title, 16, color: isDarkMode ? Colors.grey.shade400 : Colors.grey, fontWeight: FontWeight.w500),
       subtitle: Sans(subtitle, 15, color: isDarkMode ? Colors.white : Colors.black87),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Tapped on $title')),
-        );
-      },
+      onTap: onTap != null
+          ? () {
+              onTap();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('${"tapped_on".translate(context)} $title')),
+              );
+            }
+          : null,
     );
+  }
+
+  void showAppInfoDialog({required bool isDarkMode}) async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    if (!mounted) return;
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.lightTeal,
+        titleTextStyle: TextStyle(
+          color: isDarkMode ? Colors.white : Colors.black,
+          fontSize: 20,
+        ),
+        contentTextStyle: TextStyle(
+          color: isDarkMode ? Colors.grey.shade200 : Colors.black87,
+          fontSize: 16,
+        ),
+        title: Text("app_info_title".translate(context)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${"version".translate(context)}: ${packageInfo.version}'),
+            Text('${"build_number".translate(context)}: ${packageInfo.buildNumber}'),
+            Text('${"package_name".translate(context)}: ${packageInfo.packageName}'),
+            Text('${"app_name".translate(context)}: ${packageInfo.appName}'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            style: TextButton.styleFrom(
+              foregroundColor: isDarkMode ? Colors.grey.shade50 : Colors.teal,
+            ),
+            child: Text("close".translate(context)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showLanguagePickerMenu(BuildContext context, TapDownDetails details) {
+    final screenSize = MediaQuery.of(context).size;
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        details.globalPosition.dx,
+        details.globalPosition.dy,
+        screenSize.width - details.globalPosition.dx,
+        screenSize.height - details.globalPosition.dy,
+      ),
+      items: [
+        'English',
+        'French',
+        'Hebrew',
+        'Spanish',
+      ]
+          .map((language) => PopupMenuItem(
+                value: language,
+                child: Text(language),
+              ))
+          .toList(),
+    ).then((selected) {
+      if (selected != null) {
+        Locale selectedLocale;
+
+        switch (selected) {
+          case 'French':
+            selectedLocale = Locale('fr');
+            break;
+          case 'Spanish':
+            selectedLocale = Locale('es');
+            break;
+          case 'Hebrew':
+            selectedLocale = Locale('he');
+            break;
+          default:
+            selectedLocale = Locale('en');
+            break;
+        }
+
+        // if (mounted) {
+        final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+        localeProvider.setLocale(selectedLocale);
+        localeProvider.saveLocale();
+        // }
+      }
+    });
   }
 }
