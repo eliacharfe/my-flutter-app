@@ -129,6 +129,12 @@
   "events": "Événements",
   "outreaches": "Approches",
 
+  "@@locale": "fr",
+    "english": "Anglais",
+    "french": "Français",
+    "hebrew": "Hébreu",
+    "spanish": "Espagnol",
+
   "event_description": "Description de l'événement",
   "delete_item_success": "Élément supprimé avec succès",
   "note_added": "Note ajoutée",

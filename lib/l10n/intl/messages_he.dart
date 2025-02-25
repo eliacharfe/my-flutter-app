@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "close": MessageLookupByLibrary.simpleMessage("סגור"),
         "contact_drawer": MessageLookupByLibrary.simpleMessage("צור קשר"),
         "contact_me": MessageLookupByLibrary.simpleMessage("צור קשר"),
-        "contact_tab": MessageLookupByLibrary.simpleMessage("יצירת קשר"),
+        "contact_tab": MessageLookupByLibrary.simpleMessage("קשר"),
         "cooperative": MessageLookupByLibrary.simpleMessage("שיתופי"),
         "creative": MessageLookupByLibrary.simpleMessage("יצירתי"),
         "customized_no_data":
@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "empty_section":
             MessageLookupByLibrary.simpleMessage("אין נתונים להצגה."),
         "empty_section_title": MessageLookupByLibrary.simpleMessage("חלק ריק"),
+        "english": MessageLookupByLibrary.simpleMessage("אנגלית"),
         "english_fluent": MessageLookupByLibrary.simpleMessage("אנגלית - שוטף"),
         "event_description":
             MessageLookupByLibrary.simpleMessage("תיאור האירוע"),
@@ -99,9 +100,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
             "Flutter, JavaScript, Java, SQL"),
+        "french": MessageLookupByLibrary.simpleMessage("צרפתית"),
         "french_native":
             MessageLookupByLibrary.simpleMessage("צרפתית - שפת אם"),
         "hard_working": MessageLookupByLibrary.simpleMessage("עובד קשה"),
+        "hebrew": MessageLookupByLibrary.simpleMessage("עברית"),
         "hebrew_native": MessageLookupByLibrary.simpleMessage("עברית - שפת אם"),
         "help_support": MessageLookupByLibrary.simpleMessage("עזרה ותמיכה"),
         "help_support_text":
@@ -164,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "software_developer":
             MessageLookupByLibrary.simpleMessage("מפתח תוכנה"),
         "software_skills": MessageLookupByLibrary.simpleMessage("תוכנה"),
+        "spanish": MessageLookupByLibrary.simpleMessage("ספרדית"),
         "stress_management": MessageLookupByLibrary.simpleMessage("ניהול מתח"),
         "tapped_on": MessageLookupByLibrary.simpleMessage("לחצת על"),
         "tasks_tab": MessageLookupByLibrary.simpleMessage("משימות"),

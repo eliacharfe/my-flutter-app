@@ -129,6 +129,12 @@
   "events": "Eventos",
   "outreaches": "Alcances",
 
+  "@@locale": "es",
+  "english": "Inglés",
+    "french": "Francés",
+    "hebrew": "Hebreo",
+    "spanish": "Español",
+
   "event_description": "Descripción del evento",
   "delete_item_success": "Elemento eliminado con éxito",
   "note_added": "Nota añadida",

@@ -20,13 +20,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // firebaseSetup();
 
+  final localeProvider = LocaleProvider();
+  await localeProvider.loadLocale();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ToDoNotifier()),
         ChangeNotifierProvider(create: (_) => NoteNotifier()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()..loadThemePreference()),
-        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => localeProvider),
       ],
       child: MyApp(),
     ),

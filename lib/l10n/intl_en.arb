@@ -128,6 +128,12 @@
   "events": "Events",
   "outreaches": "Outreaches",
 
+  "@@locale": "en",
+  "english": "English",
+  "french": "French",
+  "hebrew": "Hebrew",
+  "spanish": "Spanish",
+
 
   "event_description": "Event Description",
   "delete_item_success": "Item deleted successfully",

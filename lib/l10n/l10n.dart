@@ -1230,6 +1230,46 @@ class S {
     );
   }
 
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `French`
+  String get french {
+    return Intl.message(
+      'French',
+      name: 'french',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hebrew`
+  String get hebrew {
+    return Intl.message(
+      'Hebrew',
+      name: 'hebrew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spanish`
+  String get spanish {
+    return Intl.message(
+      'Spanish',
+      name: 'spanish',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Event Description`
   String get event_description {
     return Intl.message(
