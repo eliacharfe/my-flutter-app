@@ -6,6 +6,8 @@ This is a cross-platform Flutter application designed to work seamlessly on Andr
 
 ✨ Features
 
+🌍 Multi-language Support: Supports multiple languages for a global audience.
+
 🔄 Cross-platform: Supports Android, iOS, and Web.
 
 🧭 Navigation: Multi-screen navigation with named routes and bottom navigation bar.
@@ -22,7 +24,7 @@ This is a cross-platform Flutter application designed to work seamlessly on Andr
 
 🧑‍💻 Authentication: Login, registration, and user profile.
 
-🌙 Dark Mode: Light and Dark theme support.
+☀️ Light Mode & 🌙 Dark Mode: Light and Dark theme support.
 
 🛠️ Technologies Used
 
@@ -53,23 +55,25 @@ Settings
 
 Clone the repository:
 
-git clone https://github.com/eliacharfe/my-flutter-app.git
+   git clone https://github.com/yourusername/flutter-app.git
 
 Navigate into the project directory:
 
-cd flutter-app
+   cd flutter-app
 
 Install dependencies:
 
-flutter pub get
+   flutter pub get
 
 Run the app:
 
-flutter run
+   flutter run
+
 
 🧑‍💻 Build for Web
 
-flutter build web
+   flutter build web
+
 
 🔥 Firebase Setup (Optional for Notifications)
 
