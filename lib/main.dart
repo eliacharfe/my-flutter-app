@@ -8,6 +8,8 @@ import 'package:eliachar_feig/widgets/navigation/navigation_container.dart';
 import 'firebase_setup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'models/note.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/l10n.dart';
 
 Future<String> getAppVersion() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -24,6 +26,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ToDoNotifier()),
         ChangeNotifierProvider(create: (_) => NoteNotifier()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()..loadThemePreference()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: MyApp(),
     ),
@@ -39,25 +42,39 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      darkTheme: darkTheme,
-      themeMode: themeProvider.themeMode,
-      onGenerateRoute: RouterManager.generateRoute,
-      initialRoute: '/',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white),
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+    return Consumer<LocaleProvider>(builder: (context, localeProvider, child) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        darkTheme: darkTheme,
+        themeMode: themeProvider.themeMode,
+        onGenerateRoute: RouterManager.generateRoute,
+        initialRoute: '/',
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.black,
+            iconTheme: IconThemeData(color: Colors.white),
+            titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+          ),
         ),
-      ),
-      home: Scaffold(
-        backgroundColor: AppColors.darkGray,
-        resizeToAvoidBottomInset: false,
-        body: NavigationContainer(),
-      ),
-    );
+        locale: localeProvider.locale,
+        supportedLocales: [
+          Locale('en', ''),
+          Locale('fr', ''),
+          Locale('he', ''),
+          Locale('es', ''),
+        ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          S.delegate,
+        ],
+        home: Scaffold(
+          backgroundColor: AppColors.darkGray,
+          resizeToAvoidBottomInset: false,
+          body: NavigationContainer(),
+        ),
+      );
+    });
   }
 }
 

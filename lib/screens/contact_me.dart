@@ -22,19 +22,20 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
 
     return Scaffold(
       backgroundColor: context.scaffoldColor,
-      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'Contact Me') : null,
+      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: 'contact_me'.translate(context)) : null,
       endDrawer: DrawersMobile(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WidgetStyling.buildPageTitle('Contact Me').withPadding(const EdgeInsets.symmetric(horizontal: 20)),
+            WidgetStyling.buildPageTitle('contact_me'.translate(context))
+                .withPadding(const EdgeInsets.symmetric(horizontal: 20)),
             const SizedBox(height: 10),
             buildContactItem(
               index: 0,
               icon: Icons.phone,
-              label: 'Phone',
+              label: 'Phone'.translate(context),
               value: '+972 581234567',
               isDarkMode: isDarkMode,
               onTap: () async {
@@ -45,7 +46,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
             buildContactItem(
               index: 1,
               icon: Icons.email,
-              label: 'Email',
+              label: 'Email'.translate(context),
               value: 'efeig15@gmail.com',
               isDarkMode: isDarkMode,
               onTap: () async {
@@ -58,7 +59,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
             buildContactItem(
               index: 2,
               icon: FontAwesomeIcons.whatsapp,
-              label: 'WhatsApp',
+              label: 'Whatsapp'.translate(context),
               value: '+972 581234567',
               isDarkMode: isDarkMode,
               onTap: () async {
@@ -71,7 +72,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
             buildContactItem(
               index: 3,
               icon: Icons.language,
-              label: 'Website',
+              label: 'Website'.translate(context),
               value: 'www.eliacharfeig.com',
               isDarkMode: isDarkMode,
               onTap: () async {
@@ -84,7 +85,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
             buildContactItem(
               index: 4,
               icon: Icons.location_on,
-              label: 'Address',
+              label: 'Address'.translate(context),
               value: '128 Willowbrook Lane, Fairview, CA 90210, United States',
               isDarkMode: isDarkMode,
               tappable: false,

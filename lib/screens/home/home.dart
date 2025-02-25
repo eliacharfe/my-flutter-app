@@ -36,7 +36,7 @@ class _HomeContentState extends State<Home> {
 
     return Scaffold(
       backgroundColor: context.scaffoldColor,
-      appBar: WidgetStyling.buildTopAppBar(title: "Home"),
+      appBar: WidgetStyling.buildTopAppBar(title: "home_title".translate(context)),
       endDrawer: DrawersMobile().withAnimation(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -45,7 +45,7 @@ class _HomeContentState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildSection(
-                title: 'Projects (${Project.projectsMockData.length})',
+                title: '${'Projects'.translate(context)} (${Project.projectsMockData.length})',
                 child: buildProjectsContent(isDarkMode),
                 isDarkMode: isDarkMode,
                 onTap: () {
@@ -57,12 +57,13 @@ class _HomeContentState extends State<Home> {
                 },
               ),
               buildSection(
-                title: 'Notes Section',
+                title: 'notes_title'.translate(context),
                 rightIcon: Icons.add,
                 isDarkMode: isDarkMode,
                 child: noteNotifier.notes.isEmpty
                     ? WidgetStyling.getNoDataContainerWith(
-                        "There is no Notes to display",
+                        "home_no_notes".translate(context),
+                        // "There is no Notes to display",
                         isDarkMode: isDarkMode,
                       )
                     : Column(
@@ -76,7 +77,7 @@ class _HomeContentState extends State<Home> {
                                   setState(() {
                                     context.read<NoteNotifier>().removeNoteById(note.id);
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Note deleted successfully')),
+                                      SnackBar(content: Text('note_deleted'.translate(context))),
                                     );
                                   });
                                 },
@@ -105,12 +106,13 @@ class _HomeContentState extends State<Home> {
                 },
               ).withAnimation(),
               buildSection(
-                title: 'To-Do List',
+                title: 'todos_title'.translate(context),
                 rightIcon: Icons.add,
                 isDarkMode: isDarkMode,
                 child: toDoNotifier.todos.isEmpty
                     ? WidgetStyling.getNoDataContainerWith(
-                        "There is no to dos to display",
+                        "home_no_todos".translate(context),
+                        // "There is no to dos to display",
                         isDarkMode: isDarkMode,
                       )
                     : Column(
@@ -138,7 +140,7 @@ class _HomeContentState extends State<Home> {
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : AppColors.red),
-                                    onPressed: () => showBottomSheetModalTodo(index),
+                                    onPressed: () => showBottomSheetModalTodo(context, index),
                                   ),
                                 ],
                               ),
@@ -154,35 +156,36 @@ class _HomeContentState extends State<Home> {
                                   ),
                                 );
                               },
-                              child:
-                                  Text('Show All Todos').applySansStyle(color: isDarkMode ? Colors.white : Colors.teal),
+                              child: Text('show_all_todos'.translate(context))
+                                  .applySansStyle(color: isDarkMode ? Colors.white : Colors.teal),
                             ).withPadding(EdgeInsets.only(right: 20)),
                         ],
                       ),
                 onTap: addToDo,
               ).withAnimation(),
               buildSection(
-                title: 'Achievements',
+                title: 'achievement_title'.translate(context),
                 isDarkMode: isDarkMode,
                 child: Wrap(
                   spacing: 10,
                   children: List.generate(4, (index) {
                     return Chip(
-                      label: Text('Achievement ${index + 1}'),
+                      label: Text('${'Achievement'.translate(context)} ${index + 1}'),
                       backgroundColor: isDarkMode ? Colors.grey.shade700 : AppColors.lightTeal,
                     );
                   }),
                 ).onTapWithCursor(() {
                   showDialogModal(
-                    title: 'Achievement',
-                    text: 'This is a dialog modal in the center for Achievement 🚀.',
+                    context,
+                    title: 'Achievement'.translate(context),
+                    text: 'achievement_dialog_description'.translate(context),
                     isDarkMode: isDarkMode,
                   );
                 }),
                 onTap: () {},
               ).withAnimation(),
               buildSection(
-                title: 'Progress',
+                title: 'Progress'.translate(context),
                 rightIcon: null,
                 isDarkMode: isDarkMode,
                 child: Column(
@@ -224,33 +227,34 @@ class _HomeContentState extends State<Home> {
                 onTap: null,
               ).withAnimation(),
               buildSection(
-                title: 'Empty Section',
+                title: 'empty_section_title'.translate(context),
                 rightIcon: null,
                 isDarkMode: isDarkMode,
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'There is no data to display.',
+                    'empty_section'.translate(context),
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
                 onTap: null,
               ).withAnimation(),
               buildSection(
-                title: 'Unable To Load',
+                title: 'unable_to_load_title'.translate(context),
                 rightIcon: null,
                 isDarkMode: isDarkMode,
-                child: WidgetStyling.getUnableToLoadContainer(isDarkMode: isDarkMode),
+                child: WidgetStyling.getUnableToLoadContainer(
+                    text: 'unable_to_load'.translate(context), isDarkMode: isDarkMode),
                 onTap: null,
               ),
               buildSection(
-                title: 'Custom Unable To Load',
+                title: 'customized_no_data'.translate(context),
                 rightIcon: null,
                 isDarkMode: isDarkMode,
                 child: WidgetStyling.getNoDataContainerWith("No data available right now", isDarkMode: isDarkMode),
                 onTap: null,
               ),
               buildSection(
-                title: 'Upcoming Events',
+                title: 'upcoming_events'.translate(context),
                 isDarkMode: isDarkMode,
                 child: Column(
                   children: List.generate(3, (index) {
@@ -272,7 +276,7 @@ class _HomeContentState extends State<Home> {
     );
   }
 
-  void showDialogModal({String? title, String? text, required bool isDarkMode}) {
+  void showDialogModal(BuildContext context, {String? title, String? text, required bool isDarkMode}) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -285,57 +289,30 @@ class _HomeContentState extends State<Home> {
           color: isDarkMode ? Colors.grey.shade200 : Colors.black87,
           fontSize: 16,
         ),
-        title: Text(title ?? 'Dialog Modal'),
-        content: Text(text ?? 'This is a dialog modal in the center.'),
+        title: Text(title ?? 'dialog_modal_title'.translate(context)),
+        content: Text(text ?? 'dialog_modal_content'.translate(context)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             style: TextButton.styleFrom(
               foregroundColor: isDarkMode ? Colors.grey.shade50 : Colors.teal,
             ),
-            child: const Text('Close'),
+            child: Text('Close'.translate(context)),
           ),
         ],
       ),
     );
   }
 
-  void showBottomSheetModal() {
-    PopupPresenter.showPopup(
-      context: context,
-      title: "Delete Item",
-      message: "Are you sure do you want to delete this item?",
-      primaryButtonTitle: "Cancel",
-      secondaryButtonTitle: "Yes, Delete",
-      onPrimaryAction: () {
-        Navigator.of(context).pop();
-      },
-      onSecondaryAction: () async {
-        setState(() {
-          isLoading = true;
-        });
-        await Future.delayed(const Duration(seconds: 2));
-        setState(() {
-          isLoading = false;
-          Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Item deleted Successfully')),
-          );
-        });
-      },
-      secondaryButtonColor: Colors.red.shade800,
-    );
-  }
-
-  void showBottomSheetModalTodo(int index) {
+  void showBottomSheetModalTodo(BuildContext context, int index) {
     final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
 
     PopupPresenter.showPopup(
       context: context,
-      title: "Delete Item",
-      message: "Are you sure you want to delete this item?",
-      primaryButtonTitle: "Cancel",
-      secondaryButtonTitle: "Yes, Delete",
+      title: "delete_button_title".translate(context),
+      message: "delete_item_confirmation".translate(context),
+      primaryButtonTitle: "Cancel".translate(context),
+      secondaryButtonTitle: "yes_delete".translate(context),
       onPrimaryAction: () {
         Navigator.of(context).pop();
       },
@@ -347,7 +324,7 @@ class _HomeContentState extends State<Home> {
           toDoNotifier.removeToDo(index);
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Item deleted successfully')),
+            SnackBar(content: Text('item_deleted_successfully'.translate(context))),
           );
         });
       },
@@ -374,12 +351,12 @@ class _HomeContentState extends State<Home> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
-        title: const Text('Edit Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
+        title: Text('edit_note_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel')
+            child: Text('Cancel'.translate(context))
                 .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
@@ -387,7 +364,7 @@ class _HomeContentState extends State<Home> {
               context.read<NoteNotifier>().editNoteById(id, controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Save')
+            child: Text('Save'.translate(context))
                 .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
           ),
         ],
@@ -401,12 +378,12 @@ class _HomeContentState extends State<Home> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
-        title: const Text('Add Note').applySansStyle(size: 24, fontWeight: FontWeight.w500),
+        title: Text('add_note_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel')
+            child: Text('Cancel'.translate(context))
                 .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
@@ -414,7 +391,7 @@ class _HomeContentState extends State<Home> {
               context.read<NoteNotifier>().addNote(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add')
+            child: Text('Add'.translate(context))
                 .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
           ),
         ],
@@ -429,19 +406,19 @@ class _HomeContentState extends State<Home> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: context.isDarkMode ? AppColors.darkGray : Colors.white,
-        title: const Text('Add To-Do').applySansStyle(size: 24, fontWeight: FontWeight.w500),
+        title: Text('add_todo_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
         content: TextField(controller: controller),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel').applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
+            child: Text('Cancel'.translate(context)).applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
           ),
           TextButton(
             onPressed: () {
               context.read<ToDoNotifier>().addToDo(controller.text);
               Navigator.pop(context);
             },
-            child: const Text('Add').applySansStyle(
+            child: Text('Add'.translate(context)).applySansStyle(
               fontWeight: FontWeight.w600,
               color: context.isDarkMode ? Colors.white : Colors.teal,
             ),
