@@ -25,11 +25,11 @@
   "tapped_on": "לחצת על",
 
   "contact_me": "צור קשר",
-  "Phone": "טלפון",
-  "Email": "אימייל",
-  "Whatsapp": "וואטסאפ",
-  "Website": "אתר אינטרנט",
-  "Address": "כתובת",
+  "phone": "טלפון",
+  "email": "אימייל",
+  "whatsapp": "וואטסאפ",
+  "website": "אתר אינטרנט",
+  "address": "כתובת",
 
   "about_me": "על עצמי",
   "about_me_description": "אני מפתח תוכנה נלהב שמוקדש לבניית אפליקציות איכותיות, אפליקציות ווב ואתרי אינטרנט עבור iOS, אנדרואיד והווב. אני מתמחה ביצירת פתרונות מודרניים, סקלאביליים וידידותיים למשתמש תוך שימוש בטכנולוגיות ובמסגרות העבודה העדכניות ביותר. בין אם זו אפליקציה ניידת אלגנטית, פלטפורמת ווב דינאמית או מערכת מלאה, אני פרחתי בהפיכת רעיונות למציאות עם קוד נקי ועיצובים אינטואיטיביים. תמיד להוט להישאר צעד אחד קדימה עם מגמות בתעשייה, אני דואג שכל פרויקט עליו אני עובד יהיה מותאם לביצועים, אבטחה וחוויית משתמש.\nבואו נבנה משהו מדהים ביחד! 🔥",
@@ -136,7 +136,28 @@
   "spanish": "ספרדית",
 
 
-  "event_description": "תיאור האירוע",
+  "quick_transactions": "עסקאות מהירות",
+  "quick_transactions_desc": "נהל בקלות את העסקאות שלך.",
+  "secure_payments": "תשלומים מאובטחים",
+  "secure_payments_desc": "עסקאות מוצפנות לבטיחותך.",
+  "appointments": "פגישות",
+  "schedule_appointments": "קביעת פגישות",
+  "schedule_appointments_desc": "הזמן ונהל פגישות.",
+  "reminders": "תזכורות",
+  "reminders_desc": "קבל התראות על אירועים קרובים.",
+  "real_time_alerts": "התראות בזמן אמת",
+  "real_time_alerts_desc": "הישאר מעודכן באופן מיידי.",
+  "custom_notifications": "התראות מותאמות אישית",
+  "custom_notifications_desc": "הגדר העדפות להתראות.",
+  "user_guide": "מדריך למשתמש",
+  "step_by_step_tutorials": "מדריכים שלב אחר שלב",
+  "step_by_step_tutorials_desc": "למד כיצד להשתמש בכל התכונות.",
+  "faq": "שאלות נפוצות",
+  "faq_desc": "מצא תשובות לשאלות נפוצות.",
+
+
+
+"event_description": "תיאור האירוע",
   "delete_item_success": "הפריט נמחק בהצלחה",
   "note_added": "הערה נוספה",
   "note_edited": "הערה נערכה",

@@ -291,50 +291,50 @@ class S {
   }
 
   /// `Phone`
-  String get Phone {
+  String get phone {
     return Intl.message(
       'Phone',
-      name: 'Phone',
+      name: 'phone',
       desc: '',
       args: [],
     );
   }
 
   /// `Email`
-  String get Email {
+  String get email {
     return Intl.message(
       'Email',
-      name: 'Email',
+      name: 'email',
       desc: '',
       args: [],
     );
   }
 
   /// `WhatsApp`
-  String get Whatsapp {
+  String get whatsapp {
     return Intl.message(
       'WhatsApp',
-      name: 'Whatsapp',
+      name: 'whatsapp',
       desc: '',
       args: [],
     );
   }
 
   /// `Website`
-  String get Website {
+  String get website {
     return Intl.message(
       'Website',
-      name: 'Website',
+      name: 'website',
       desc: '',
       args: [],
     );
   }
 
   /// `Address`
-  String get Address {
+  String get address {
     return Intl.message(
       'Address',
-      name: 'Address',
+      name: 'address',
       desc: '',
       args: [],
     );
@@ -1265,6 +1265,186 @@ class S {
     return Intl.message(
       'Spanish',
       name: 'spanish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick Transactions`
+  String get quick_transactions {
+    return Intl.message(
+      'Quick Transactions',
+      name: 'quick_transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easily manage your transactions.`
+  String get quick_transactions_desc {
+    return Intl.message(
+      'Easily manage your transactions.',
+      name: 'quick_transactions_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secure Payments`
+  String get secure_payments {
+    return Intl.message(
+      'Secure Payments',
+      name: 'secure_payments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Encrypted transactions for safety.`
+  String get secure_payments_desc {
+    return Intl.message(
+      'Encrypted transactions for safety.',
+      name: 'secure_payments_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointments`
+  String get appointments {
+    return Intl.message(
+      'Appointments',
+      name: 'appointments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Schedule Appointments`
+  String get schedule_appointments {
+    return Intl.message(
+      'Schedule Appointments',
+      name: 'schedule_appointments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book and manage appointments.`
+  String get schedule_appointments_desc {
+    return Intl.message(
+      'Book and manage appointments.',
+      name: 'schedule_appointments_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reminders`
+  String get reminders {
+    return Intl.message(
+      'Reminders',
+      name: 'reminders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get notified about upcoming events.`
+  String get reminders_desc {
+    return Intl.message(
+      'Get notified about upcoming events.',
+      name: 'reminders_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Real-time Alerts`
+  String get real_time_alerts {
+    return Intl.message(
+      'Real-time Alerts',
+      name: 'real_time_alerts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stay updated instantly.`
+  String get real_time_alerts_desc {
+    return Intl.message(
+      'Stay updated instantly.',
+      name: 'real_time_alerts_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Custom Notifications`
+  String get custom_notifications {
+    return Intl.message(
+      'Custom Notifications',
+      name: 'custom_notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set preferences for alerts.`
+  String get custom_notifications_desc {
+    return Intl.message(
+      'Set preferences for alerts.',
+      name: 'custom_notifications_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Guide`
+  String get user_guide {
+    return Intl.message(
+      'User Guide',
+      name: 'user_guide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step-by-Step Tutorials`
+  String get step_by_step_tutorials {
+    return Intl.message(
+      'Step-by-Step Tutorials',
+      name: 'step_by_step_tutorials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn how to use all features.`
+  String get step_by_step_tutorials_desc {
+    return Intl.message(
+      'Learn how to use all features.',
+      name: 'step_by_step_tutorials_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FAQ`
+  String get faq {
+    return Intl.message(
+      'FAQ',
+      name: 'faq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find answers to common questions.`
+  String get faq_desc {
+    return Intl.message(
+      'Find answers to common questions.',
+      name: 'faq_desc',
       desc: '',
       args: [],
     );

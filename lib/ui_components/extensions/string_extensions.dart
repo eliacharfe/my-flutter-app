@@ -168,6 +168,42 @@ extension StringTranslation on String {
         return S.of(context).spanish;
       case 'settings':
         return S.of(context).settings;
+      case 'quick_transactions':
+        return S.of(context).quick_transactions;
+      case 'quick_transactions_desc':
+        return S.of(context).quick_transactions_desc;
+      case 'secure_payments':
+        return S.of(context).secure_payments;
+      case 'secure_payments_desc':
+        return S.of(context).secure_payments_desc;
+      case 'appointments':
+        return S.of(context).appointments;
+      case 'schedule_appointments':
+        return S.of(context).schedule_appointments;
+      case 'schedule_appointments_desc':
+        return S.of(context).schedule_appointments_desc;
+      case 'reminders':
+        return S.of(context).reminders;
+      case 'reminders_desc':
+        return S.of(context).reminders_desc;
+      case 'real_time_alerts':
+        return S.of(context).real_time_alerts;
+      case 'real_time_alerts_desc':
+        return S.of(context).real_time_alerts_desc;
+      case 'custom_notifications':
+        return S.of(context).custom_notifications;
+      case 'custom_notifications_desc':
+        return S.of(context).custom_notifications_desc;
+      case 'user_guide':
+        return S.of(context).user_guide;
+      case 'step_by_step_tutorials':
+        return S.of(context).step_by_step_tutorials;
+      case 'step_by_step_tutorials_desc':
+        return S.of(context).step_by_step_tutorials_desc;
+      case 'faq':
+        return S.of(context).faq;
+      case 'faq_desc':
+        return S.of(context).faq_desc;
       case 'dark_mode':
         return S.of(context).dark_mode;
       case 'light_mode':
@@ -274,16 +310,16 @@ extension StringTranslation on String {
         return S.of(context).english_fluent;
       case "contact_me":
         return S.of(context).contact_me;
-      case "Phone":
-        return S.of(context).Phone;
-      case "Email":
-        return S.of(context).Email;
-      case "Whatsapp":
-        return S.of(context).Whatsapp;
-      case "Website":
-        return S.of(context).Website;
-      case "Address":
-        return S.of(context).Address;
+      case "phone":
+        return S.of(context).phone;
+      case "email":
+        return S.of(context).email;
+      case "whatsapp":
+        return S.of(context).whatsapp;
+      case "website":
+        return S.of(context).website;
+      case "address":
+        return S.of(context).address;
       case "bsc_computer_science":
         return S.of(context).bsc_computer_science;
       case 'app_version':

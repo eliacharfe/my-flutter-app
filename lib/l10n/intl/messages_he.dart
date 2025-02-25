@@ -22,11 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Address": MessageLookupByLibrary.simpleMessage("כתובת"),
-        "Email": MessageLookupByLibrary.simpleMessage("אימייל"),
-        "Phone": MessageLookupByLibrary.simpleMessage("טלפון"),
-        "Website": MessageLookupByLibrary.simpleMessage("אתר אינטרנט"),
-        "Whatsapp": MessageLookupByLibrary.simpleMessage("וואטסאפ"),
         "about": MessageLookupByLibrary.simpleMessage("אודות"),
         "about_me": MessageLookupByLibrary.simpleMessage("על עצמי"),
         "about_me_description": MessageLookupByLibrary.simpleMessage(
@@ -42,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_todo": MessageLookupByLibrary.simpleMessage("הוסף משימה חדשה"),
         "add_note_title": MessageLookupByLibrary.simpleMessage("הוסף הערה"),
         "add_todo_title": MessageLookupByLibrary.simpleMessage("הוסף משימה"),
+        "address": MessageLookupByLibrary.simpleMessage("כתובת"),
         "all": MessageLookupByLibrary.simpleMessage("הכל"),
         "all_tasks_title": MessageLookupByLibrary.simpleMessage("כל המשימות"),
         "app_info": MessageLookupByLibrary.simpleMessage("מידע על האפליקציה"),
@@ -49,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("מידע על היישום"),
         "app_name": MessageLookupByLibrary.simpleMessage("שם האפליקציה"),
         "app_version": MessageLookupByLibrary.simpleMessage("גרסת אפליקציה"),
+        "appointments": MessageLookupByLibrary.simpleMessage("פגישות"),
         "autodidact": MessageLookupByLibrary.simpleMessage("אוטודידקט"),
         "bachelor_computer_science":
             MessageLookupByLibrary.simpleMessage("B.Sc במדעי המחשב"),
@@ -68,6 +65,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact_tab": MessageLookupByLibrary.simpleMessage("קשר"),
         "cooperative": MessageLookupByLibrary.simpleMessage("שיתופי"),
         "creative": MessageLookupByLibrary.simpleMessage("יצירתי"),
+        "custom_notifications":
+            MessageLookupByLibrary.simpleMessage("התראות מותאמות אישית"),
+        "custom_notifications_desc":
+            MessageLookupByLibrary.simpleMessage("הגדר העדפות להתראות."),
         "customized_no_data":
             MessageLookupByLibrary.simpleMessage("נתונים מותאמים אישית"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("מצב כהה 🌙"),
@@ -88,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("מודל דיאלוג"),
         "edit_note_title": MessageLookupByLibrary.simpleMessage("ערוך הערה"),
         "education": MessageLookupByLibrary.simpleMessage("השכלה"),
+        "email": MessageLookupByLibrary.simpleMessage("אימייל"),
         "empty_section":
             MessageLookupByLibrary.simpleMessage("אין נתונים להצגה."),
         "empty_section_title": MessageLookupByLibrary.simpleMessage("חלק ריק"),
@@ -96,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "event_description":
             MessageLookupByLibrary.simpleMessage("תיאור האירוע"),
         "events": MessageLookupByLibrary.simpleMessage("אירועים"),
+        "faq": MessageLookupByLibrary.simpleMessage("שאלות נפוצות"),
+        "faq_desc":
+            MessageLookupByLibrary.simpleMessage("מצא תשובות לשאלות נפוצות."),
         "flutter_and_dart": MessageLookupByLibrary.simpleMessage(
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
@@ -149,13 +154,33 @@ class MessageLookup extends MessageLookupByLibrary {
         "package_name": MessageLookupByLibrary.simpleMessage("שם החבילה"),
         "parallel_programming":
             MessageLookupByLibrary.simpleMessage("תכנות מקבילי (C/C++)"),
+        "phone": MessageLookupByLibrary.simpleMessage("טלפון"),
         "privacy": MessageLookupByLibrary.simpleMessage("פרטיות"),
         "privacy_settings":
             MessageLookupByLibrary.simpleMessage("הגדרות פרטיות"),
         "problem_solver": MessageLookupByLibrary.simpleMessage("פותר בעיות"),
         "progress": MessageLookupByLibrary.simpleMessage("התקדמות"),
         "projects": MessageLookupByLibrary.simpleMessage("פרויקטים"),
+        "quick_transactions":
+            MessageLookupByLibrary.simpleMessage("עסקאות מהירות"),
+        "quick_transactions_desc":
+            MessageLookupByLibrary.simpleMessage("נהל בקלות את העסקאות שלך."),
+        "real_time_alerts":
+            MessageLookupByLibrary.simpleMessage("התראות בזמן אמת"),
+        "real_time_alerts_desc":
+            MessageLookupByLibrary.simpleMessage("הישאר מעודכן באופן מיידי."),
+        "reminders": MessageLookupByLibrary.simpleMessage("תזכורות"),
+        "reminders_desc": MessageLookupByLibrary.simpleMessage(
+            "קבל התראות על אירועים קרובים."),
         "save": MessageLookupByLibrary.simpleMessage("שמור"),
+        "schedule_appointments":
+            MessageLookupByLibrary.simpleMessage("קביעת פגישות"),
+        "schedule_appointments_desc":
+            MessageLookupByLibrary.simpleMessage("הזמן ונהל פגישות."),
+        "secure_payments":
+            MessageLookupByLibrary.simpleMessage("תשלומים מאובטחים"),
+        "secure_payments_desc":
+            MessageLookupByLibrary.simpleMessage("עסקאות מוצפנות לבטיחותך."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("עברית"),
         "settings": MessageLookupByLibrary.simpleMessage("הגדרות"),
         "settings_tab": MessageLookupByLibrary.simpleMessage("הגדרות"),
@@ -168,6 +193,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("מפתח תוכנה"),
         "software_skills": MessageLookupByLibrary.simpleMessage("תוכנה"),
         "spanish": MessageLookupByLibrary.simpleMessage("ספרדית"),
+        "step_by_step_tutorials":
+            MessageLookupByLibrary.simpleMessage("מדריכים שלב אחר שלב"),
+        "step_by_step_tutorials_desc": MessageLookupByLibrary.simpleMessage(
+            "למד כיצד להשתמש בכל התכונות."),
         "stress_management": MessageLookupByLibrary.simpleMessage("ניהול מתח"),
         "tapped_on": MessageLookupByLibrary.simpleMessage("לחצת על"),
         "tasks_tab": MessageLookupByLibrary.simpleMessage("משימות"),
@@ -187,12 +216,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("לא ניתן לטעון"),
         "upcoming_events":
             MessageLookupByLibrary.simpleMessage("אירועים קרובים"),
+        "user_guide": MessageLookupByLibrary.simpleMessage("מדריך למשתמש"),
         "ux_ui_design_sense":
             MessageLookupByLibrary.simpleMessage("תחושת עיצוב UX/UI"),
         "version": MessageLookupByLibrary.simpleMessage("גרסה"),
         "view_on_github": MessageLookupByLibrary.simpleMessage("הצג ב-GitHub"),
         "web": MessageLookupByLibrary.simpleMessage("ווב"),
         "web_skills": MessageLookupByLibrary.simpleMessage("ווב"),
+        "website": MessageLookupByLibrary.simpleMessage("אתר אינטרנט"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("וואטסאפ"),
         "yes_delete": MessageLookupByLibrary.simpleMessage("כן, מחק")
       };
 }

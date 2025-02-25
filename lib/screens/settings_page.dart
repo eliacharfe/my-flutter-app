@@ -91,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
             ),
           ],
         ),
-      ).withAnimation(duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500)),
+      ).withAnimation(duration: Duration(milliseconds: widget.showAppBar ? 500 : 1100)),
     );
   }
 
@@ -203,11 +203,11 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
           selectedLocale = Locale('en');
         }
 
-        // if (mounted) {
-        final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
-        localeProvider.setLocale(selectedLocale);
-        localeProvider.saveLocale();
-        // }
+        if (context.mounted) {
+          final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+          localeProvider.setLocale(selectedLocale);
+          localeProvider.saveLocale();
+        }
       }
     });
   }

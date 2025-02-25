@@ -22,11 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Address": MessageLookupByLibrary.simpleMessage("Address"),
-        "Email": MessageLookupByLibrary.simpleMessage("Email"),
-        "Phone": MessageLookupByLibrary.simpleMessage("Phone"),
-        "Website": MessageLookupByLibrary.simpleMessage("Website"),
-        "Whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "about_me": MessageLookupByLibrary.simpleMessage("About Me"),
         "about_me_description": MessageLookupByLibrary.simpleMessage(
@@ -43,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_todo": MessageLookupByLibrary.simpleMessage("Add New To-Do"),
         "add_note_title": MessageLookupByLibrary.simpleMessage("Add Note"),
         "add_todo_title": MessageLookupByLibrary.simpleMessage("Add To-Do"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_tasks_title": MessageLookupByLibrary.simpleMessage("All To-Dos"),
         "app_info": MessageLookupByLibrary.simpleMessage("App Information"),
@@ -50,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Application Information"),
         "app_name": MessageLookupByLibrary.simpleMessage("App Name"),
         "app_version": MessageLookupByLibrary.simpleMessage("App Version"),
+        "appointments": MessageLookupByLibrary.simpleMessage("Appointments"),
         "autodidact": MessageLookupByLibrary.simpleMessage("Autodidact"),
         "bachelor_computer_science":
             MessageLookupByLibrary.simpleMessage("B.Sc Computer Science"),
@@ -71,6 +68,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact_tab": MessageLookupByLibrary.simpleMessage("Contact"),
         "cooperative": MessageLookupByLibrary.simpleMessage("Cooperative"),
         "creative": MessageLookupByLibrary.simpleMessage("Creative"),
+        "custom_notifications":
+            MessageLookupByLibrary.simpleMessage("Custom Notifications"),
+        "custom_notifications_desc":
+            MessageLookupByLibrary.simpleMessage("Set preferences for alerts."),
         "customized_no_data":
             MessageLookupByLibrary.simpleMessage("Customized No Data"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode 🌙"),
@@ -91,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Dialog Modal"),
         "edit_note_title": MessageLookupByLibrary.simpleMessage("Edit Note"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "empty_section": MessageLookupByLibrary.simpleMessage(
             "There is no data to display."),
         "empty_section_title":
@@ -101,6 +103,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "event_description":
             MessageLookupByLibrary.simpleMessage("Event Description"),
         "events": MessageLookupByLibrary.simpleMessage("Events"),
+        "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
+        "faq_desc": MessageLookupByLibrary.simpleMessage(
+            "Find answers to common questions."),
         "flutter_and_dart": MessageLookupByLibrary.simpleMessage(
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "package_name": MessageLookupByLibrary.simpleMessage("Package Name"),
         "parallel_programming": MessageLookupByLibrary.simpleMessage(
             "Parallel Programming (C/C++)"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy"),
         "privacy_settings":
             MessageLookupByLibrary.simpleMessage("Privacy Settings"),
@@ -162,7 +168,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Problem Solver"),
         "progress": MessageLookupByLibrary.simpleMessage("Progress"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),
+        "quick_transactions":
+            MessageLookupByLibrary.simpleMessage("Quick Transactions"),
+        "quick_transactions_desc": MessageLookupByLibrary.simpleMessage(
+            "Easily manage your transactions."),
+        "real_time_alerts":
+            MessageLookupByLibrary.simpleMessage("Real-time Alerts"),
+        "real_time_alerts_desc":
+            MessageLookupByLibrary.simpleMessage("Stay updated instantly."),
+        "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
+        "reminders_desc": MessageLookupByLibrary.simpleMessage(
+            "Get notified about upcoming events."),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "schedule_appointments":
+            MessageLookupByLibrary.simpleMessage("Schedule Appointments"),
+        "schedule_appointments_desc": MessageLookupByLibrary.simpleMessage(
+            "Book and manage appointments."),
+        "secure_payments":
+            MessageLookupByLibrary.simpleMessage("Secure Payments"),
+        "secure_payments_desc": MessageLookupByLibrary.simpleMessage(
+            "Encrypted transactions for safety."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("English"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "settings_tab": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -175,6 +200,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Software Developer"),
         "software_skills": MessageLookupByLibrary.simpleMessage("Software"),
         "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
+        "step_by_step_tutorials":
+            MessageLookupByLibrary.simpleMessage("Step-by-Step Tutorials"),
+        "step_by_step_tutorials_desc": MessageLookupByLibrary.simpleMessage(
+            "Learn how to use all features."),
         "stress_management":
             MessageLookupByLibrary.simpleMessage("Stress Management"),
         "tapped_on": MessageLookupByLibrary.simpleMessage("You tapped on"),
@@ -196,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Unable To Load"),
         "upcoming_events":
             MessageLookupByLibrary.simpleMessage("Upcoming Events"),
+        "user_guide": MessageLookupByLibrary.simpleMessage("User Guide"),
         "ux_ui_design_sense":
             MessageLookupByLibrary.simpleMessage("UX/UI design sense"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
@@ -203,6 +233,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View on GitHub"),
         "web": MessageLookupByLibrary.simpleMessage("Web"),
         "web_skills": MessageLookupByLibrary.simpleMessage("Web"),
+        "website": MessageLookupByLibrary.simpleMessage("Website"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "yes_delete": MessageLookupByLibrary.simpleMessage("Yes, Delete")
       };
 }

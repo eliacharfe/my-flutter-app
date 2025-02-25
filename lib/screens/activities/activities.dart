@@ -19,6 +19,18 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
   Filters selectedFilter = Filters(value: "all", label: "All", isSelected: true);
+  List<ActivityModel> filteredActivities = [];
+  // Mock Data
+  final List<ActivityModel> activities = [
+    ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataOutreaches(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataEvents(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataOutreaches(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataEvents(date: DateHelper.getTodayDate()),
+    ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
+  ];
   bool isCalendarExpanded = true;
   final ScrollController scrollController = ScrollController();
 
@@ -28,11 +40,9 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        selectedFilter = Filters(
-          value: "all",
-          label: "All".translate(context),
-          isSelected: true,
-        );
+        selectedFilter = Filters(value: "all", label: "All".translate(context), isSelected: true);
+
+        filteredActivities = List.from(activities);
       });
     });
 
@@ -68,18 +78,6 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
       Filters(value: "events", label: "Events".translate(context), isSelected: false),
       Filters(value: "outreaches", label: "Outreaches".translate(context), isSelected: false),
     ];
-    // Mock Data
-    final List<ActivityModel> activities = [
-      ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataOutreaches(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataEvents(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataOutreaches(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataEvents(date: DateHelper.getTodayDate()),
-      ActivityModel.getMockDataTransaction(date: DateHelper.getTodayDate()),
-    ];
-    List<ActivityModel> filteredActivities = List.from(activities);
 
     return Scaffold(
       backgroundColor: context.scaffoldColor,
@@ -133,15 +131,9 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
                           color: Colors.tealAccent.shade700,
                           shape: BoxShape.circle,
                         ),
-                        todayDecoration: BoxDecoration(
-                          color: Colors.teal,
-                          shape: BoxShape.circle,
-                        ),
+                        todayDecoration: BoxDecoration(color: Colors.teal, shape: BoxShape.circle),
                       ),
-                      headerStyle: HeaderStyle(
-                        formatButtonVisible: false,
-                        titleCentered: true,
-                      ),
+                      headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true),
                     ).withAnimation(),
                   )
                 : SizedBox(height: 25),
@@ -153,7 +145,6 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
                 filters.indexWhere((f) => f.label.translate(context) == selectedFilter.label.translate(context)),
             onSelect: (filter) async {
               if (filter.label == selectedFilter.label) return;
-
               setState(() {
                 selectedFilter = filter;
               });
@@ -173,15 +164,12 @@ class ActivitiesState extends State<Activities> with SingleTickerProviderStateMi
                       runSpacing: 10,
                       spacing: 10,
                       children: filteredActivities
-                          .where((activity) =>
-                              selectedFilter.label == "All".translate(context) ||
-                              isActivityTypeEqualToSelectedFilter(context, activity.type))
-                          .map(
-                            (activity) => ActivityCard(
-                              updateActivityListEvent: () {},
-                              activity: activity,
-                            ),
+                          .where(
+                            (activity) =>
+                                selectedFilter.label == "All".translate(context) ||
+                                isActivityTypeEqualToSelectedFilter(context, activity.type),
                           )
+                          .map((activity) => ActivityCard(updateActivityListEvent: () {}, activity: activity))
                           .toList(),
                     ),
             ),

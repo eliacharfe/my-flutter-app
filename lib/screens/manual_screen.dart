@@ -15,13 +15,54 @@ class ManualScreenState extends State<ManualScreen> with SingleTickerProviderSta
   Widget build(BuildContext context) {
     final isDarkMode = context.isDarkMode;
 
+    final List<FeatureCategory> featureCategories = [
+      FeatureCategory(
+        title: 'transactions'.translate(context),
+        features: [
+          AppFeature(
+              label: 'quick_transactions'.translate(context),
+              description: 'quick_transactions_desc'.translate(context)),
+          AppFeature(
+              label: 'secure_payments'.translate(context), description: 'secure_payments_desc'.translate(context)),
+        ],
+      ),
+      FeatureCategory(
+        title: 'appointments'.translate(context),
+        features: [
+          AppFeature(
+              label: 'schedule_appointments'.translate(context),
+              description: 'schedule_appointments_desc'.translate(context)),
+          AppFeature(label: 'reminders'.translate(context), description: 'reminders_desc'.translate(context)),
+        ],
+      ),
+      FeatureCategory(
+        title: 'notifications'.translate(context),
+        features: [
+          AppFeature(
+              label: 'real_time_alerts'.translate(context), description: 'real_time_alerts_desc'.translate(context)),
+          AppFeature(
+              label: 'custom_notifications'.translate(context),
+              description: 'custom_notifications_desc'.translate(context)),
+        ],
+      ),
+      FeatureCategory(
+        title: 'user_guide'.translate(context),
+        features: [
+          AppFeature(
+              label: 'step_by_step_tutorials'.translate(context),
+              description: 'step_by_step_tutorials_desc'.translate(context)),
+          AppFeature(label: 'faq'.translate(context), description: 'faq_desc'.translate(context)),
+        ],
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: context.scaffoldColor,
-      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: "Manual") : null,
+      appBar: widget.showAppBar ? WidgetStyling.buildTopAppBar(title: "Manual".translate(context)) : null,
       endDrawer: DrawersMobile(),
       body: Column(
         children: [
-          WidgetStyling.buildPageTitle('Manual').withPadding(EdgeInsets.symmetric(horizontal: 20)),
+          WidgetStyling.buildPageTitle('Manual'.translate(context)).withPadding(EdgeInsets.symmetric(horizontal: 20)),
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(16),
@@ -111,35 +152,3 @@ class AppFeature {
 
   AppFeature({required this.label, required this.description});
 }
-
-// Mock Data
-final List<FeatureCategory> featureCategories = [
-  FeatureCategory(
-    title: "Transactions",
-    features: [
-      AppFeature(label: "Quick Transactions", description: "Easily manage your transactions."),
-      AppFeature(label: "Secure Payments", description: "Encrypted transactions for safety."),
-    ],
-  ),
-  FeatureCategory(
-    title: "Appointments",
-    features: [
-      AppFeature(label: "Schedule Appointments", description: "Book and manage appointments."),
-      AppFeature(label: "Reminders", description: "Get notified about upcoming events."),
-    ],
-  ),
-  FeatureCategory(
-    title: "Notifications",
-    features: [
-      AppFeature(label: "Real-time Alerts", description: "Stay updated instantly."),
-      AppFeature(label: "Custom Notifications", description: "Set preferences for alerts."),
-    ],
-  ),
-  FeatureCategory(
-    title: "User Guide",
-    features: [
-      AppFeature(label: "Step-by-Step Tutorials", description: "Learn how to use all features."),
-      AppFeature(label: "FAQ", description: "Find answers to common questions."),
-    ],
-  ),
-];

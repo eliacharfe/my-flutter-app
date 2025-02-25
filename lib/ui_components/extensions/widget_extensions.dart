@@ -57,7 +57,7 @@ extension WidgetNavigator on Widget {
 }
 
 extension AnimationExtension on Widget {
-  Widget withAnimation({Duration duration = const Duration(seconds: 1)}) {
+  Widget withAnimation({Duration duration = const Duration(milliseconds: 700)}) {
     return _AnimatedWidgetWrapper(
       duration: duration,
       child: this,
