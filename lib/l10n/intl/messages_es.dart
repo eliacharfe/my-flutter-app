@@ -22,11 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Address": MessageLookupByLibrary.simpleMessage("Dirección"),
-        "Email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
-        "Phone": MessageLookupByLibrary.simpleMessage("Teléfono"),
-        "Website": MessageLookupByLibrary.simpleMessage("Sitio web"),
-        "Whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "about": MessageLookupByLibrary.simpleMessage("Acerca de"),
         "about_me": MessageLookupByLibrary.simpleMessage("Sobre mí"),
         "about_me_description": MessageLookupByLibrary.simpleMessage(
@@ -43,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Agregar Nueva Tarea"),
         "add_note_title": MessageLookupByLibrary.simpleMessage("Agregar Nota"),
         "add_todo_title": MessageLookupByLibrary.simpleMessage("Agregar Tarea"),
+        "address": MessageLookupByLibrary.simpleMessage("Dirección"),
         "all": MessageLookupByLibrary.simpleMessage("Todos"),
         "all_tasks_title":
             MessageLookupByLibrary.simpleMessage("Todas las Tareas"),
@@ -54,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nombre de la aplicación"),
         "app_version":
             MessageLookupByLibrary.simpleMessage("Versión de la aplicación"),
+        "appointments": MessageLookupByLibrary.simpleMessage("Citas"),
         "autodidact": MessageLookupByLibrary.simpleMessage("Autodidacta"),
         "bachelor_computer_science": MessageLookupByLibrary.simpleMessage(
             "Licenciatura en Ciencias de la Computación"),
@@ -76,6 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact_tab": MessageLookupByLibrary.simpleMessage("Contact"),
         "cooperative": MessageLookupByLibrary.simpleMessage("Cooperativo"),
         "creative": MessageLookupByLibrary.simpleMessage("Creativo"),
+        "custom_notifications": MessageLookupByLibrary.simpleMessage(
+            "Notificaciones personalizadas"),
+        "custom_notifications_desc": MessageLookupByLibrary.simpleMessage(
+            "Configura tus preferencias de alerta."),
         "customized_no_data":
             MessageLookupByLibrary.simpleMessage("Datos personalizados"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Modo oscuro 🌙"),
@@ -96,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Modal de diálogo"),
         "edit_note_title": MessageLookupByLibrary.simpleMessage("Editar Nota"),
         "education": MessageLookupByLibrary.simpleMessage("Educación"),
+        "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
         "empty_section":
             MessageLookupByLibrary.simpleMessage("No hay datos para mostrar."),
         "empty_section_title":
@@ -106,6 +108,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "event_description":
             MessageLookupByLibrary.simpleMessage("Descripción del evento"),
         "events": MessageLookupByLibrary.simpleMessage("Eventos"),
+        "faq": MessageLookupByLibrary.simpleMessage("Preguntas Frecuentes"),
+        "faq_desc": MessageLookupByLibrary.simpleMessage(
+            "Encuentra respuestas a preguntas comunes."),
         "flutter_and_dart": MessageLookupByLibrary.simpleMessage(
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
@@ -161,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nombre del paquete"),
         "parallel_programming": MessageLookupByLibrary.simpleMessage(
             "Programación paralela (C/C++)"),
+        "phone": MessageLookupByLibrary.simpleMessage("Teléfono"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacidad"),
         "privacy_settings":
             MessageLookupByLibrary.simpleMessage("Configuración de privacidad"),
@@ -168,7 +174,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Solucionador de problemas"),
         "progress": MessageLookupByLibrary.simpleMessage("Progreso"),
         "projects": MessageLookupByLibrary.simpleMessage("Proyectos"),
+        "quick_transactions":
+            MessageLookupByLibrary.simpleMessage("Transacciones rápidas"),
+        "quick_transactions_desc": MessageLookupByLibrary.simpleMessage(
+            "Administra fácilmente tus transacciones."),
+        "real_time_alerts":
+            MessageLookupByLibrary.simpleMessage("Alertas en tiempo real"),
+        "real_time_alerts_desc": MessageLookupByLibrary.simpleMessage(
+            "Mantente actualizado al instante."),
+        "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
+        "reminders_desc": MessageLookupByLibrary.simpleMessage(
+            "Recibe notificaciones sobre eventos próximos."),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
+        "schedule_appointments":
+            MessageLookupByLibrary.simpleMessage("Programar citas"),
+        "schedule_appointments_desc":
+            MessageLookupByLibrary.simpleMessage("Reserva y gestiona citas."),
+        "secure_payments":
+            MessageLookupByLibrary.simpleMessage("Pagos seguros"),
+        "secure_payments_desc": MessageLookupByLibrary.simpleMessage(
+            "Transacciones cifradas para mayor seguridad."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Español"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
         "settings_tab": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -182,6 +207,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Desarrollador de software"),
         "software_skills": MessageLookupByLibrary.simpleMessage("Software"),
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
+        "step_by_step_tutorials":
+            MessageLookupByLibrary.simpleMessage("Tutoriales paso a paso"),
+        "step_by_step_tutorials_desc": MessageLookupByLibrary.simpleMessage(
+            "Aprende a usar todas las funciones."),
         "stress_management":
             MessageLookupByLibrary.simpleMessage("Manejo del estrés"),
         "tapped_on": MessageLookupByLibrary.simpleMessage("Has pulsado en"),
@@ -203,12 +232,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No se pudo cargar"),
         "upcoming_events":
             MessageLookupByLibrary.simpleMessage("Próximos eventos"),
+        "user_guide": MessageLookupByLibrary.simpleMessage("Guía del usuario"),
         "ux_ui_design_sense":
             MessageLookupByLibrary.simpleMessage("Sentido del diseño UX/UI"),
         "version": MessageLookupByLibrary.simpleMessage("Versión"),
         "view_on_github": MessageLookupByLibrary.simpleMessage("Ver en GitHub"),
         "web": MessageLookupByLibrary.simpleMessage("Web"),
         "web_skills": MessageLookupByLibrary.simpleMessage("Web"),
+        "website": MessageLookupByLibrary.simpleMessage("Sitio web"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "yes_delete": MessageLookupByLibrary.simpleMessage("Sí, eliminar")
       };
 }

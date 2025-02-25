@@ -130,6 +130,6 @@ class TabsMobile extends StatelessWidget {
           Navigator.of(context, rootNavigator: true).pushNamed(route);
         }
       },
-    ).withAnimation(duration: Duration(milliseconds: 2000));
+    ).withAnimation(duration: Duration(milliseconds: 700));
   }
 }

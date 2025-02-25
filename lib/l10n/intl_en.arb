@@ -26,11 +26,11 @@
   "tapped_on": "You tapped on",
 
   "contact_me": "Contact Me",
-  "Phone": "Phone",
-  "Email": "Email",
-  "Whatsapp": "WhatsApp",
-  "Website": "Website",
-  "Address": "Address",
+  "phone": "Phone",
+  "email": "Email",
+  "whatsapp": "WhatsApp",
+  "website": "Website",
+  "address": "Address",
 
   "about_me": "About Me",
   "about_me_description": "I’m a passionate software developer dedicated to building high-quality apps, web apps, and websites for iOS, Android, and the Web. I specialize in crafting modern, scalable, and user-friendly solutions using the latest technologies and frameworks. Whether it's a sleek mobile app, a dynamic web platform, or a full-stack system, I thrive on turning ideas into reality with clean code and intuitive designs. Always eager to stay ahead of industry trends, I ensure that every project I work on is optimized for performance, security, and user experience.\nLet’s build something amazing together! 🔥",
@@ -135,7 +135,29 @@
   "spanish": "Spanish",
 
 
-  "event_description": "Event Description",
+  "quick_transactions": "Quick Transactions",
+  "quick_transactions_desc": "Easily manage your transactions.",
+  "secure_payments": "Secure Payments",
+  "secure_payments_desc": "Encrypted transactions for safety.",
+  "appointments": "Appointments",
+  "schedule_appointments": "Schedule Appointments",
+  "schedule_appointments_desc": "Book and manage appointments.",
+  "reminders": "Reminders",
+  "reminders_desc": "Get notified about upcoming events.",
+  "real_time_alerts": "Real-time Alerts",
+  "real_time_alerts_desc": "Stay updated instantly.",
+  "custom_notifications": "Custom Notifications",
+  "custom_notifications_desc": "Set preferences for alerts.",
+  "user_guide": "User Guide",
+  "step_by_step_tutorials": "Step-by-Step Tutorials",
+  "step_by_step_tutorials_desc": "Learn how to use all features.",
+  "faq": "FAQ",
+  "faq_desc": "Find answers to common questions.",
+
+
+
+
+"event_description": "Event Description",
   "delete_item_success": "Item deleted successfully",
   "note_added": "Note added",
   "note_edited": "Note edited",

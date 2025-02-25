@@ -93,7 +93,7 @@ class ContactMeState extends State<ContactMe> with SingleTickerProviderStateMixi
             ),
           ],
         ),
-      ).withAnimation(duration: Duration(milliseconds: widget.showAppBar ? 1000 : 1500)),
+      ).withAnimation(duration: Duration(milliseconds: widget.showAppBar ? 500 : 1100)),
     );
   }
 
