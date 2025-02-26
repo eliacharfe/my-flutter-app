@@ -1,4 +1,3 @@
-import 'package:eliachar_feig/models/to_do.dart';
 import '../../../packages/default_packages.dart';
 import '../../../packages/ui_components_packages.dart';
 import '../../../packages/utlis_packages.dart';
@@ -21,7 +20,7 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     final isDarkMode = context.isDarkMode;
-    final toDoNotifier = Provider.of<ToDoNotifier>(context);
+    final toDoNotifier = context.toDoNotifier();
 
     return Scaffold(
       backgroundColor: context.scaffoldColor,
@@ -73,7 +72,7 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
   }
 
   void showBottomSheetModalTodo(BuildContext context, int index) {
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final toDoNotifier = context.toDoNotifier(listen: false);
 
     PopupPresenter.showPopup(
       context: context,
@@ -91,9 +90,7 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
           isLoading = false;
           toDoNotifier.removeToDo(index);
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('item_deleted_successfully'.translate(context))),
-          );
+          WidgetStyling.showSnackBar(context: context, text: 'item_deleted_successfully'.translate(context));
         });
       },
       secondaryButtonColor: AppColors.red,
@@ -101,19 +98,20 @@ class _AllToDosScreenState extends State<AllToDosScreen> with SingleTickerProvid
   }
 
   void toggleMarkToDoAsComplete(int index) {
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final toDoNotifier = context.toDoNotifier(listen: false);
     final todo = toDoNotifier.todos[index];
     setState(() {
       todo.isCompleted = !todo.isCompleted;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed')),
+      WidgetStyling.showSnackBar(
+        context: context,
+        text: '${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed',
       );
     });
   }
 
   void addToDo() {
     final controller = TextEditingController();
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final toDoNotifier = context.toDoNotifier(listen: false);
 
     showDialog(
       context: context,

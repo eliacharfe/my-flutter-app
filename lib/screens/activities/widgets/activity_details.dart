@@ -46,7 +46,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
             showLogoIcon: false),
         backgroundColor: context.scaffoldColor,
         body: isLoading
-            ? WidgetStyling.getLoader()
+            ? WidgetStyling.getLoader(context)
             : Stack(
                 children: [
                   Column(
@@ -167,6 +167,11 @@ class _ActivityDetailsState extends State<ActivityDetails> {
         setState(() {
           isLoading = false;
           activityModel.completionStatus = "Completed";
+          WidgetStyling.showSnackBar(
+            context: context,
+            text: "${activityModel.title.capitalizeWords()} is completed",
+            duration: const Duration(milliseconds: 500),
+          );
         });
       },
     );

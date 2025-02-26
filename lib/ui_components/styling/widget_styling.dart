@@ -96,12 +96,12 @@ class WidgetStyling {
     );
   }
 
-  static Widget getLoader({double? height}) {
+  static Widget getLoader(BuildContext context, {double? height}) {
     return SizedBox(
       height: height,
-      child: const Center(
+      child: Center(
         child: CircularProgressIndicator(
-          color: Colors.black,
+          color: context.isDarkMode ? Colors.white : Colors.black,
         ),
       ),
     );
@@ -219,5 +219,27 @@ class WidgetStyling {
             ],
           )),
     );
+  }
+
+  static showSnackBar(
+      {required BuildContext context, required String text, Duration duration = const Duration(milliseconds: 1600)}) {
+    final SnackBar snackBar = SnackBar(
+      content: Sans(text, 14, color: context.isDarkMode ? Colors.white : Colors.black87),
+      width: null,
+      behavior: SnackBarBehavior.floating,
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        },
+        textColor: context.isDarkMode ? Colors.white : Colors.black87,
+      ),
+      margin: EdgeInsets.fromLTRB(15, 5.0, 15, 10.0),
+      backgroundColor: context.isDarkMode ? AppColors.darkGray : AppColors.lightTeal,
+      duration: duration,
+      actionOverflowThreshold: null,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

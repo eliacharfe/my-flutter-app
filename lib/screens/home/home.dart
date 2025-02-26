@@ -30,8 +30,8 @@ class _HomeContentState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final noteNotifier = Provider.of<NoteNotifier>(context);
-    final toDoNotifier = Provider.of<ToDoNotifier>(context);
+    final noteNotifier = context.noteProvider();
+    final toDoNotifier = context.toDoNotifier();
     final isDarkMode = context.isDarkMode;
 
     return Scaffold(
@@ -76,8 +76,9 @@ class _HomeContentState extends State<Home> {
                                 onDismissed: (direction) {
                                   setState(() {
                                     context.read<NoteNotifier>().removeNoteById(note.id);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('note_deleted'.translate(context))),
+                                    WidgetStyling.showSnackBar(
+                                      context: context,
+                                      text: 'note_deleted'.translate(context),
                                     );
                                   });
                                 },
@@ -271,7 +272,7 @@ class _HomeContentState extends State<Home> {
               ),
             ],
           ),
-        ).isLoading(isLoading: isLoading),
+        ).isLoading(context, isLoading: isLoading),
       ),
     );
   }
@@ -285,7 +286,7 @@ class _HomeContentState extends State<Home> {
   }
 
   void showBottomSheetModalTodo(BuildContext context, int index) {
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final toDoNotifier = context.toDoNotifier(listen: false);
 
     PopupPresenter.showPopup(
       context: context,
@@ -303,9 +304,7 @@ class _HomeContentState extends State<Home> {
           isLoading = false;
           toDoNotifier.removeToDo(index);
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('item_deleted_successfully'.translate(context))),
-          );
+          WidgetStyling.showSnackBar(context: context, text: 'item_deleted_successfully'.translate(context));
         });
       },
       secondaryButtonColor: AppColors.red,
@@ -313,13 +312,12 @@ class _HomeContentState extends State<Home> {
   }
 
   void toggleMarkToDoAsComplete(int index) {
-    final toDoNotifier = Provider.of<ToDoNotifier>(context, listen: false);
+    final toDoNotifier = context.toDoNotifier(listen: false);
     final todo = toDoNotifier.todos[index];
     setState(() {
       todo.isCompleted = !todo.isCompleted;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed')),
-      );
+      WidgetStyling.showSnackBar(
+          context: context, text: '${todo.title} ${todo.isCompleted ? " " : " un"}marked as completed');
     });
   }
 

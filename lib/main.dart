@@ -1,6 +1,7 @@
 import 'package:eliachar_feig/helpers/router_manager.dart';
 import 'package:eliachar_feig/models/to_do.dart';
 import 'package:eliachar_feig/packages/default_packages.dart';
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:flutter/services.dart';
 import 'package:eliachar_feig/helpers/logger.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = context.themeProvider();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
