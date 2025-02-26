@@ -48,17 +48,11 @@ class MyApp extends StatelessWidget {
     return Consumer<LocaleProvider>(builder: (context, localeProvider, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: themeProvider.themeMode,
         onGenerateRoute: RouterManager.generateRoute,
         initialRoute: '/',
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.black,
-            iconTheme: IconThemeData(color: Colors.white),
-            titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-        ),
         locale: localeProvider.locale,
         supportedLocales: [
           Locale('en', ''),

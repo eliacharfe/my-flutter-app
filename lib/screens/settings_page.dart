@@ -79,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                       Navigator.of(context, rootNavigator: true).pushNamed('/manual');
                     }),
                     buildTile(5, Icons.info, "about".translate(context), "app_info".translate(context), isDarkMode,
-                        onTap: () => showAppInfoDialog(isDarkMode: isDarkMode)),
+                        onTap: () => showAppInfoDialog(context: context, isDarkMode: isDarkMode)),
                   ],
                 ),
               ),
@@ -112,49 +112,28 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
     );
   }
 
-  void showAppInfoDialog({required bool isDarkMode}) async {
+  void showAppInfoDialog({required BuildContext context, required bool isDarkMode}) async {
     final packageInfo = await PackageInfo.fromPlatform();
-    if (!mounted) return;
+    if (!context.mounted) return;
 
-    showDialog(
+    PopupPresenter.showCustomDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.lightTeal,
-        titleTextStyle: TextStyle(
-          color: isDarkMode ? Colors.white : Colors.black,
-          fontSize: 20,
-        ),
-        contentTextStyle: TextStyle(
-          color: isDarkMode ? Colors.grey.shade200 : Colors.black87,
-          fontSize: 16,
-        ),
-        title: Text("app_info_title".translate(context)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${"version".translate(context)}: ${packageInfo.version}'),
-            Text('${"build_number".translate(context)}: ${packageInfo.buildNumber}'),
-            Text('${"package_name".translate(context)}: ${packageInfo.packageName}'),
-            Text('${"app_name".translate(context)}: ${packageInfo.appName}'),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: isDarkMode ? Colors.grey.shade50 : Colors.teal,
-            ),
-            child: Text("close".translate(context)),
-          ),
+      isDarkMode: isDarkMode,
+      title: "app_info_title".translate(context),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('${"version".translate(context)}: ${packageInfo.version}'),
+          Text('${"build_number".translate(context)}: ${packageInfo.buildNumber}'),
+          Text('${"package_name".translate(context)}: ${packageInfo.packageName}'),
+          Text('${"app_name".translate(context)}: ${packageInfo.appName}'),
         ],
       ),
     );
   }
 
   void showLanguagePickerMenu(BuildContext context, TapDownDetails details) {
-    final screenSize = MediaQuery.of(context).size;
-
     List<String> languages = [
       'English'.translate(context),
       'French'.translate(context),
@@ -164,31 +143,12 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
     String currentLanguage = "selectedLanguage".translate(context, isCaseInsensitive: false);
 
-    showMenu(
+    PopupPresenter.showPopupMenu(
       context: context,
-      position: RelativeRect.fromLTRB(
-        details.globalPosition.dx,
-        details.globalPosition.dy,
-        screenSize.width - details.globalPosition.dx,
-        screenSize.height - details.globalPosition.dy,
-      ),
-      color: context.isDarkMode ? Colors.black87 : AppColors.lightTeal,
-      items: languages.map((language) {
-        return PopupMenuItem(
-          value: language,
-          child: Row(
-            children: [
-              Text(language),
-              if (language == currentLanguage) ...[
-                SizedBox(width: 10),
-                Icon(Icons.check, color: context.isDarkMode ? Colors.white : Colors.black),
-              ],
-            ],
-          ),
-        );
-      }).toList(),
-    ).then((selected) {
-      if (selected != null) {
+      details: details,
+      items: languages,
+      currentItem: currentLanguage,
+      onItemSelected: (selected) {
         Locale selectedLocale;
 
         if (selected == languages[0]) {
@@ -208,7 +168,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
           localeProvider.setLocale(selectedLocale);
           localeProvider.saveLocale();
         }
-      }
-    });
+      },
+    );
   }
 }
