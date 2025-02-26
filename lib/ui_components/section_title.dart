@@ -1,6 +1,5 @@
-import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:eliachar_feig/utils/components.dart';
 import '../packages/default_packages.dart';
+import '../packages/utlis_packages.dart';
 
 class SectionTitle extends StatelessWidget {
   final Color? bgColor;

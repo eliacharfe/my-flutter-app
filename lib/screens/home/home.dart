@@ -277,31 +277,11 @@ class _HomeContentState extends State<Home> {
   }
 
   void showDialogModal(BuildContext context, {String? title, String? text, required bool isDarkMode}) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.lightTeal,
-        titleTextStyle: TextStyle(
-          color: isDarkMode ? Colors.white : Colors.black,
-          fontSize: 20,
-        ),
-        contentTextStyle: TextStyle(
-          color: isDarkMode ? Colors.grey.shade200 : Colors.black87,
-          fontSize: 16,
-        ),
-        title: Text(title ?? 'dialog_modal_title'.translate(context)),
-        content: Text(text ?? 'dialog_modal_content'.translate(context)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            style: TextButton.styleFrom(
-              foregroundColor: isDarkMode ? Colors.grey.shade50 : Colors.teal,
-            ),
-            child: Text('Close'.translate(context)),
-          ),
-        ],
-      ),
-    );
+    PopupPresenter.showCustomDialog(
+        context: context,
+        isDarkMode: isDarkMode,
+        title: title ?? 'dialog_modal_title'.translate(context),
+        message: 'dialog_modal_content'.translate(context));
   }
 
   void showBottomSheetModalTodo(BuildContext context, int index) {
@@ -347,84 +327,48 @@ class _HomeContentState extends State<Home> {
     final note = context.read<NoteNotifier>().notes.firstWhere((note) => note.id == id);
     final controller = TextEditingController(text: note.text);
 
-    showDialog(
+    PopupPresenter.showTextFieldDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
-        title: Text('edit_note_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
-        content: TextField(controller: controller),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'.translate(context))
-                .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<NoteNotifier>().editNoteById(id, controller.text);
-              Navigator.pop(context);
-            },
-            child: Text('Save'.translate(context))
-                .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
-          ),
-        ],
-      ),
+      isDarkMode: isDarkMode,
+      title: 'edit_note_title'.translate(context),
+      controller: controller,
+      cancelText: 'Cancel'.translate(context),
+      actionText: 'Save'.translate(context),
+      onAction: () {
+        context.read<NoteNotifier>().editNoteById(id, controller.text);
+      },
     );
   }
 
   void addNote(bool isDarkMode) {
     final controller = TextEditingController();
-    showDialog(
+
+    PopupPresenter.showTextFieldDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDarkMode ? AppColors.darkGray : Colors.white,
-        title: Text('add_note_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
-        content: TextField(controller: controller),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'.translate(context))
-                .applySansStyle(color: isDarkMode ? Colors.red : AppColors.red, fontWeight: FontWeight.w600),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<NoteNotifier>().addNote(controller.text);
-              Navigator.pop(context);
-            },
-            child: Text('Add'.translate(context))
-                .applySansStyle(fontWeight: FontWeight.w600, color: isDarkMode ? Colors.white : Colors.teal),
-          ),
-        ],
-      ),
+      isDarkMode: isDarkMode,
+      title: 'add_note_title'.translate(context),
+      controller: controller,
+      cancelText: 'Cancel'.translate(context),
+      actionText: 'Add'.translate(context),
+      onAction: () {
+        context.read<NoteNotifier>().addNote(controller.text);
+      },
     );
   }
 
   void addToDo() {
     final controller = TextEditingController();
 
-    showDialog(
+    PopupPresenter.showTextFieldDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: context.isDarkMode ? AppColors.darkGray : Colors.white,
-        title: Text('add_todo_title'.translate(context)).applySansStyle(size: 24, fontWeight: FontWeight.w500),
-        content: TextField(controller: controller),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'.translate(context)).applySansStyle(color: AppColors.red, fontWeight: FontWeight.w600),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<ToDoNotifier>().addToDo(controller.text);
-              Navigator.pop(context);
-            },
-            child: Text('Add'.translate(context)).applySansStyle(
-              fontWeight: FontWeight.w600,
-              color: context.isDarkMode ? Colors.white : Colors.teal,
-            ),
-          ),
-        ],
-      ),
+      isDarkMode: context.isDarkMode,
+      title: 'add_todo_title'.translate(context),
+      controller: controller,
+      cancelText: 'Cancel'.translate(context),
+      actionText: 'Add'.translate(context),
+      onAction: () {
+        context.read<ToDoNotifier>().addToDo(controller.text);
+      },
     );
   }
 

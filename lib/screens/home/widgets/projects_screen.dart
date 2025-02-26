@@ -2,7 +2,6 @@ import 'package:eliachar_feig/models/project.dart';
 import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../../packages/default_packages.dart';
 import '../../../packages/ui_components_packages.dart';
-import '../../../packages/utlis_packages.dart';
 import '../packages/home_packages.dart';
 
 class ProjectsScreen extends StatelessWidget {
