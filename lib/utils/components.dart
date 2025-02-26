@@ -1,5 +1,5 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import '../packages/default_packages.dart';
-import '../packages/utlis_packages.dart';
 
 class SansBold extends StatelessWidget {
   final String text;
@@ -26,7 +26,7 @@ class Sans extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = context.themeProvider();
 
     return Text(
       text,

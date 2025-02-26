@@ -28,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = context.themeProvider();
     final isDarkMode = context.isDarkMode;
 
     return Scaffold(
@@ -104,9 +104,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
       onTap: onTap != null
           ? () {
               onTap();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('${"tapped_on".translate(context)} $title')),
-              );
+              WidgetStyling.showSnackBar(context: context, text: '${"tapped_on".translate(context)} $title');
             }
           : null,
     );
@@ -164,7 +162,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
         }
 
         if (context.mounted) {
-          final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+          final localeProvider = context.localeProvider(listen: false);
           localeProvider.setLocale(selectedLocale);
           localeProvider.saveLocale();
         }

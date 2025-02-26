@@ -85,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete_button_title":
             MessageLookupByLibrary.simpleMessage("Eliminar tarea"),
         "delete_item_confirmation": MessageLookupByLibrary.simpleMessage(
-            "¿Estás seguro de que deseas eliminar este elemento?"),
+            "Estás seguro de que deseas eliminar este elemento?"),
         "delete_item_success": MessageLookupByLibrary.simpleMessage(
             "Elemento eliminado con éxito"),
         "delete_todo": MessageLookupByLibrary.simpleMessage("Eliminar Tarea"),

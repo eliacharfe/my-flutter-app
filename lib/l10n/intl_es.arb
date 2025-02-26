@@ -113,7 +113,7 @@
   "yes_delete": "Sí, eliminar",
   "delete_button_title": "Eliminar tarea",
   "show_all_todos": "Mostrar todas las tareas",
-  "delete_item_confirmation": "¿Estás seguro de que deseas eliminar este elemento?",
+  "delete_item_confirmation": "Estás seguro de que deseas eliminar este elemento?",
   "item_deleted_successfully": "Elemento eliminado con éxito",
   "edit_note_title": "Editar Nota",
   "add_note_title": "Agregar Nota",

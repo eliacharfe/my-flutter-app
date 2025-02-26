@@ -38,8 +38,8 @@ extension WidgetPadding on Widget {
 }
 
 extension WidgetLoading on Widget {
-  Widget isLoading({required bool isLoading, double? height}) {
-    return isLoading ? WidgetStyling.getLoader(height: height) : this;
+  Widget isLoading(BuildContext context, {required bool isLoading, double? height}) {
+    return isLoading ? WidgetStyling.getLoader(context, height: height) : this;
   }
 }
 

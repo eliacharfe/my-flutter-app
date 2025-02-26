@@ -1,3 +1,5 @@
+import 'package:eliachar_feig/packages/ui_components_packages.dart';
+
 import '../packages/default_packages.dart';
 import '../packages/utlis_packages.dart';
 
@@ -23,7 +25,7 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = context.themeProvider();
     final isDarkMode = themeProvider.themeMode == ThemeMode.dark;
 
     return Container(
