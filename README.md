@@ -24,7 +24,7 @@ This is a cross-platform Flutter application designed to work seamlessly on Andr
 
 🧑‍💻 Authentication: Login, registration, and user profile.
 
-🌙 Dark Mode: Light and Dark theme support.
+☀️ Light Mode & 🌙 Dark Mode: Light and Dark theme support.
 
 🛠️ Technologies Used
 
@@ -37,7 +37,6 @@ Dio for network requests
 Shared Preferences / Hive for local storage
 
 Firebase for push notifications
-
 
 🔄 Navigation Tabs:
 
@@ -55,7 +54,7 @@ Settings
 
 Clone the repository:
 
-git clone https://github.com/eliacharfe/my-flutter-app.git
+git clone https://github.com/yourusername/flutter-app.git
 
 Navigate into the project directory:
 
@@ -93,6 +92,6 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 For any queries, reach out to efeig15@gmail.com.
 
-Video Link: https://youtube.com/shorts/1xfpvfVj3Hk
+Video Link: https://youtube.com/shorts/QRLVWMN5pSQ
 
 
