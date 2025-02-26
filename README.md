@@ -6,6 +6,8 @@ This is a cross-platform Flutter application designed to work seamlessly on Andr
 
 ✨ Features
 
+🌍 Multi-language Support: Supports multiple languages for a global audience.
+
 🔄 Cross-platform: Supports Android, iOS, and Web.
 
 🧭 Navigation: Multi-screen navigation with named routes and bottom navigation bar.
