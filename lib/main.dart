@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/helpers/router_manager.dart';
 import 'package:eliachar_feig/models/to_do.dart';
+import 'package:eliachar_feig/models/user.dart';
 import 'package:eliachar_feig/packages/default_packages.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
@@ -24,6 +25,9 @@ void main() async {
   final localeProvider = LocaleProvider();
   await localeProvider.loadLocale();
 
+  final userProvider = UserProvider();
+  await userProvider.loadUser();
+
   runApp(
     MultiProvider(
       providers: [
@@ -31,6 +35,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => NoteNotifier()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()..loadThemePreference()),
         ChangeNotifierProvider(create: (_) => localeProvider),
+        ChangeNotifierProvider(create: (_) => userProvider),
       ],
       child: MyApp(),
     ),

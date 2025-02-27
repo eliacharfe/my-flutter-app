@@ -127,9 +127,9 @@ class FeatureItemState extends State<FeatureItem> with SingleTickerProviderState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.feature.label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text(widget.feature.label, style: GoogleFonts.openSans(fontSize: 16, fontWeight: FontWeight.w600)),
                 SizedBox(height: 4),
-                Text(widget.feature.description, style: TextStyle(fontSize: 14, color: Colors.grey)),
+                Text(widget.feature.description, style: GoogleFonts.openSans(fontSize: 14, color: Colors.grey)),
               ],
             ),
           ),

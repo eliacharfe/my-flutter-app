@@ -1,6 +1,7 @@
 import 'package:eliachar_feig/packages/default_packages.dart';
-import '../packages/ui_components_packages.dart';
-import '../packages/utlis_packages.dart';
+import 'package:eliachar_feig/screens/settings/widgets/account_settings_page.dart';
+import '../../packages/ui_components_packages.dart';
+import '../../packages/utlis_packages.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool showAppBar;
@@ -64,7 +65,11 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
                 child: Column(
                   children: [
                     buildTile(0, Icons.account_circle, "account".translate(context),
-                        "manage_account".translate(context), isDarkMode),
+                        "manage_account".translate(context), isDarkMode, onTap: () {
+                      Navigator.of(context).push(
+                        RouteWrapper(page: AccountSettingsPage()),
+                      );
+                    }),
                     buildTile(1, Icons.notifications, "notifications".translate(context),
                         "notification_preferences".translate(context), isDarkMode),
                     buildTile(
@@ -86,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> with SingleTickerProviderSt
             ),
             Text(
               appVersion,
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
+              style: GoogleFonts.openSans(fontSize: 12, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
           ],

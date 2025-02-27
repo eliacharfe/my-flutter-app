@@ -1,5 +1,4 @@
 import 'package:eliachar_feig/models/project.dart';
-import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../../packages/default_packages.dart';
 import '../../../packages/ui_components_packages.dart';
 
@@ -31,12 +30,12 @@ class ProjectDetailsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               project.title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: GoogleFonts.openSans(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
               project.description,
-              style: const TextStyle(fontSize: 16),
+              style: GoogleFonts.openSans(fontSize: 16),
             ),
             const SizedBox(height: 16),
             if (project.githubLink != null)

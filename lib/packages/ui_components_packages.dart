@@ -8,3 +8,4 @@ export 'package:eliachar_feig/ui_components/section_title.dart';
 export 'package:eliachar_feig/ui_components/extensions/text_extensions.dart';
 export 'package:eliachar_feig/ui_components/extensions/string_extensions.dart';
 export 'package:eliachar_feig/ui_components/drawers_mobile.dart';
+export 'package:eliachar_feig/ui_components/wide_rect_button.dart';

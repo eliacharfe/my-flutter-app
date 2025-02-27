@@ -50,7 +50,7 @@ class HomeHelper {
           const SizedBox(height: 4),
           Text(
             project.description,
-            style: const TextStyle(fontSize: 12),
+            style: GoogleFonts.openSans(fontSize: 12),
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
           ),

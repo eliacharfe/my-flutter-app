@@ -3,7 +3,6 @@ import 'package:eliachar_feig/packages/default_packages.dart';
 import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:eliachar_feig/screens/activities/widgets/activity_card.dart';
 import 'package:eliachar_feig/ui_components/icon_with_text.dart';
-import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../../packages/ui_components_packages.dart';
 
 class ActivityDetails extends StatefulWidget {
@@ -64,7 +63,7 @@ class _ActivityDetailsState extends State<ActivityDetails> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(height: 25),
-                                    SansBold(activityModel.title.capitalizeWords(), 18),
+                                    SansBold(activityModel.title, 18),
                                     const SizedBox(height: 20),
                                     Visibility(
                                       visible: (activityModel.badgeStatus ?? "").isNotEmpty,
@@ -152,9 +151,9 @@ class _ActivityDetailsState extends State<ActivityDetails> {
     required BuildContext context,
   }) {
     return WideRectButton(
-      bgColor: Colors.black,
-      borderColor: Colors.black,
-      textColor: Colors.white,
+      textColor: context.isDarkMode ? Colors.black : Colors.white,
+      borderColor: context.isDarkMode ? Colors.white : Colors.black,
+      bgColor: context.isDarkMode ? Colors.white : Colors.black,
       isEnabled: activityModel.completionStatus != "Completed",
       loaderColor: Colors.white,
       width: context.isLargeDevice ? 420 : null,

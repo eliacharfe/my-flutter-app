@@ -29,24 +29,31 @@ class ThemeProvider extends ChangeNotifier {
 
 final ThemeData lightTheme = ThemeData(
   primarySwatch: Colors.teal,
-  appBarTheme: const AppBarTheme(
+  textTheme: TextTheme(bodyMedium: GoogleFonts.openSans(color: Colors.black)),
+  appBarTheme: AppBarTheme(
     backgroundColor: Colors.black,
     iconTheme: IconThemeData(color: Colors.white),
-    titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+    titleTextStyle: GoogleFonts.openSans(color: Colors.white, fontSize: 20),
   ),
   popupMenuTheme: PopupMenuThemeData(
     color: AppColors.lightTeal,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    textStyle: TextStyle(color: Colors.black),
+    textStyle: GoogleFonts.openSans(color: Colors.black),
   ),
   inputDecorationTheme: InputDecorationTheme(
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.teal, width: 1.8),
+      borderSide: BorderSide(color: Colors.black87, width: 1.8),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.lightTeal, width: 1.6),
+      borderSide: BorderSide(color: AppColors.extraLightGrey, width: 1.6),
     ),
-    labelStyle: TextStyle(color: Colors.teal.shade300),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red, width: 1.8),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.redAccent, width: 2),
+    ),
+    labelStyle: GoogleFonts.openSans(color: AppColors.mediumGray),
   ),
   cardColor: Colors.teal,
   dialogTheme: DialogTheme(
@@ -54,20 +61,26 @@ final ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),
-    titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-    contentTextStyle: TextStyle(color: Colors.black87, fontSize: 16),
+    titleTextStyle: GoogleFonts.openSans(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+    contentTextStyle: GoogleFonts.openSans(color: Colors.black87, fontSize: 16),
   ),
   textSelectionTheme: TextSelectionThemeData(
-    cursorColor: Colors.teal,
-    selectionColor: Colors.teal.shade200,
-    selectionHandleColor: Colors.teal,
+    cursorColor: AppColors.darkGray,
+    selectionColor: AppColors.extraLightGrey,
+    selectionHandleColor: AppColors.darkGray,
+  ),
+  dropdownMenuTheme: DropdownMenuThemeData(
+    textStyle: GoogleFonts.openSans(color: Colors.black),
+    menuStyle: MenuStyle(
+      backgroundColor: WidgetStateProperty.all(AppColors.lightTeal),
+    ),
   ),
 );
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColors.scaffoldColor,
-  textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
+  textTheme: TextTheme(bodyMedium: GoogleFonts.openSans(color: Colors.white)),
   popupMenuTheme: PopupMenuThemeData(
     color: Colors.black87,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -78,8 +91,8 @@ final ThemeData darkTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),
-    titleTextStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-    contentTextStyle: TextStyle(color: Colors.grey.shade200, fontSize: 16),
+    titleTextStyle: GoogleFonts.openSans(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+    contentTextStyle: GoogleFonts.openSans(color: Colors.grey.shade200, fontSize: 16),
   ),
   inputDecorationTheme: InputDecorationTheme(
     focusedBorder: OutlineInputBorder(
@@ -88,11 +101,23 @@ final ThemeData darkTheme = ThemeData(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.dividerColor, width: 1.6),
     ),
-    labelStyle: TextStyle(color: Colors.white),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red, width: 1.8),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.redAccent, width: 2),
+    ),
+    labelStyle: GoogleFonts.openSans(color: Colors.white),
   ),
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: Colors.white,
     selectionColor: Colors.grey.shade700,
     selectionHandleColor: Colors.white,
+  ),
+  dropdownMenuTheme: DropdownMenuThemeData(
+    textStyle: GoogleFonts.openSans(color: Colors.black),
+    menuStyle: MenuStyle(
+      backgroundColor: WidgetStateProperty.all(Colors.black87),
+    ),
   ),
 );

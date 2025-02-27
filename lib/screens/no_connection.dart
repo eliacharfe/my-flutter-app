@@ -1,5 +1,5 @@
+import 'package:eliachar_feig/packages/default_packages.dart';
 import 'package:eliachar_feig/utils/app_colors.dart';
-import 'package:flutter/material.dart';
 
 class NoConnection extends StatelessWidget {
   const NoConnection({super.key});
@@ -22,7 +22,7 @@ class NoConnection extends StatelessWidget {
                 padding: EdgeInsets.all(5),
                 child: Text(
                   "No network connection",
-                  style: TextStyle(
+                  style: GoogleFonts.openSans(
                     color: AppColors.darkGray,
                     fontSize: 27.5,
                     fontWeight: FontWeight.w500,

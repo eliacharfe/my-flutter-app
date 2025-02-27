@@ -54,9 +54,9 @@ class ActivityCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 activity.title,
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w800,
+                style: GoogleFonts.openSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -87,13 +87,13 @@ class ActivityCard extends StatelessWidget {
             ),
             Text(
               activity.date,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: GoogleFonts.openSans(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             Visibility(
                 visible: (activity.startTime ?? "").isNotEmpty,
                 child: Text(
                   " · ${activity.startTime ?? ""}",
-                  style: const TextStyle(fontSize: 13),
+                  style: GoogleFonts.openSans(fontSize: 13),
                 )),
             const Spacer(),
             if ((activity.badgeStatus ?? "").isNotEmpty)
@@ -141,7 +141,7 @@ class ActivityCard extends StatelessWidget {
                         child: Text(activity.location ?? "",
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: const TextStyle(
+                            style: GoogleFonts.openSans(
                               fontSize: 13,
                               color: Color.fromRGBO(0, 0, 0, 0.59),
                               fontWeight: FontWeight.w500,

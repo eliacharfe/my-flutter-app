@@ -115,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Flutter & Dart, Swift/SwiftUI, C/C++, Python, Java, C#, Javascript + React.js"),
         "flutter_js_java_sql": MessageLookupByLibrary.simpleMessage(
             "Flutter, JavaScript, Java, SQL"),
+        "form": MessageLookupByLibrary.simpleMessage("Formulario"),
         "french": MessageLookupByLibrary.simpleMessage("Francés"),
         "french_native":
             MessageLookupByLibrary.simpleMessage("Francés - Nativo"),

@@ -15,6 +15,8 @@ extension DeviceInfoExtension on BuildContext {
   bool get isDarkMode => themeProvider(listen: false).themeMode == ThemeMode.dark;
 
   Color get scaffoldColor => themeProvider(listen: false).scaffoldColor;
+
+  ThemeData get theme => Theme.of(this);
 }
 
 extension NotifierExtension on BuildContext {

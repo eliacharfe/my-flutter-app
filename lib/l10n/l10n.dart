@@ -1450,6 +1450,16 @@ class S {
     );
   }
 
+  /// `Form`
+  String get form {
+    return Intl.message(
+      'Form',
+      name: 'form',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Event Description`
   String get event_description {
     return Intl.message(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //ignore: must_be_immutable
 class SelectableRectButton extends StatelessWidget {
@@ -68,7 +69,7 @@ class SelectableRectButton extends StatelessWidget {
                   ],
                   Text(
                     text,
-                    style: TextStyle(
+                    style: GoogleFonts.openSans(
                       color: isSelected ? selectedTextColor : unselectedTextColor,
                       fontSize: 14,
                       fontWeight: titleFontWeight,

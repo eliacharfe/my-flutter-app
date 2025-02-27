@@ -448,6 +448,8 @@ extension StringTranslation on String {
         return S.of(context).home_drawer;
       case 'contact_drawer':
         return S.of(context).contact_drawer;
+      case 'form':
+        return S.of(context).form;
 
       default:
         return this;

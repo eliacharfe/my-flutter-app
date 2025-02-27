@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/packages/utlis_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //ignore: must_be_immutable
 class BottomPopupMobile extends StatefulWidget {
@@ -52,7 +53,7 @@ class _BottomPopupMobileState extends State<BottomPopupMobile> {
           Expanded(
             child: Text(
               widget.title.toUpperCase(),
-              style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+              style: GoogleFonts.openSans(fontWeight: FontWeight.w800, fontSize: 16),
             ),
           ),
           const SizedBox(
@@ -88,7 +89,11 @@ class _BottomPopupMobileState extends State<BottomPopupMobile> {
                       )
                     : Text(
                         widget.primaryButtonTitle,
-                        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w800, color: widget.primaryButtonColor),
+                        style: GoogleFonts.openSans(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w800,
+                          color: widget.primaryButtonColor,
+                        ),
                       ),
               ),
               const Spacer(),
@@ -115,8 +120,8 @@ class _BottomPopupMobileState extends State<BottomPopupMobile> {
                       )
                     : Text(
                         widget.secondaryButtonTitle,
-                        style:
-                            TextStyle(fontSize: 14.0, fontWeight: FontWeight.w800, color: widget.secondaryButtonColor),
+                        style: GoogleFonts.openSans(
+                            fontSize: 14.0, fontWeight: FontWeight.w800, color: widget.secondaryButtonColor),
                       ),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../packages/utlis_packages.dart';
 
 class WidgetStyling {
@@ -20,6 +21,7 @@ class WidgetStyling {
     BuildContext? context,
     bool showLogoIcon = true,
     String? leftButtonText,
+    List<Widget>? actions,
     VoidCallback? onBackPressed,
   }) {
     return AppBar(
@@ -36,6 +38,7 @@ class WidgetStyling {
               ),
             )
           : null,
+      actions: actions,
     );
   }
 
@@ -87,7 +90,7 @@ class WidgetStyling {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("• ", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+          Text("• ", style: GoogleFonts.openSans(fontSize: 14, fontWeight: FontWeight.bold)),
           Expanded(
             child: Sans(text, 14),
           ),
@@ -159,7 +162,7 @@ class WidgetStyling {
               ),
               Text(
                 text,
-                style: TextStyle(color: isDarkMode ? Colors.white : AppColors.lightGrey, fontSize: 12),
+                style: GoogleFonts.openSans(color: isDarkMode ? Colors.white : AppColors.lightGrey, fontSize: 12),
               ),
             ],
           )),
@@ -172,7 +175,7 @@ class WidgetStyling {
       padding: EdgeInsets.all(15),
       child: Container(
           padding: const EdgeInsets.fromLTRB(0, 100, 0, 35),
-          child: const Column(
+          child: Column(
             children: [
               Icon(Icons.refresh, size: 40, color: AppColors.lightGrey),
               SizedBox(
@@ -180,7 +183,7 @@ class WidgetStyling {
               ),
               Text(
                 "Unable to load data, please try again",
-                style: TextStyle(color: AppColors.lightGrey, fontSize: 16, fontWeight: FontWeight.w800),
+                style: GoogleFonts.openSans(color: AppColors.lightGrey, fontSize: 16, fontWeight: FontWeight.w800),
               ),
             ],
           )),

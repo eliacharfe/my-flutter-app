@@ -16,10 +16,10 @@ class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMix
     final isDarkMode = context.isDarkMode;
     final sectionTitleStyle =
         GoogleFonts.openSans(fontSize: 17.5, color: isDarkMode ? Colors.grey.shade200 : Colors.grey);
-    final bulletPointSubHeadlineStyle =
-        TextStyle(color: isDarkMode ? Colors.grey.shade200 : Colors.black, fontSize: 15, fontWeight: FontWeight.w500);
-    final textStyle =
-        TextStyle(fontSize: 15, color: isDarkMode ? Colors.white : Colors.black87, fontWeight: FontWeight.w300);
+    final bulletPointSubHeadlineStyle = GoogleFonts.openSans(
+        color: isDarkMode ? Colors.grey.shade200 : Colors.black, fontSize: 15, fontWeight: FontWeight.w500);
+    final textStyle = GoogleFonts.openSans(
+        fontSize: 15, color: isDarkMode ? Colors.white : Colors.black87, fontWeight: FontWeight.w300);
 
     return Scaffold(
       backgroundColor: isDarkMode ? AppColors.darkGray : AppColors.scaffoldColor,
@@ -47,7 +47,7 @@ class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMix
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(text: 'Introduction', style: sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                     text:
                         """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes.
@@ -59,13 +59,13 @@ class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMix
                   ),
                   TextSpan(text: '\n\n\n'),
                   TextSpan(text: 'Overview', style: sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                       text:
                           """• Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes."""),
                   TextSpan(text: "\n\n\n"),
                   TextSpan(text: "Information we collect directly from you", style: sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                     text:
                         """“Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. 
@@ -87,7 +87,7 @@ class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMix
                   ),
                   TextSpan(text: '\n\n\n'),
                   buildTermsHeadline('Information we collect automatically', sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                     text:
                         'Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans. Per vicum lapideum, Emilia lenta vestigia ferebat, cogitationes eius sicut nubes errantes. ',
@@ -160,25 +160,25 @@ class _TermsPageState extends State<TermsPage> with SingleTickerProviderStateMix
                           "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans."),
                   TextSpan(text: '\n\n\n'),
                   buildTermsHeadline('Changes to our privacy policy', sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                       text:
                           "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans."),
                   TextSpan(text: '\n\n\n'),
                   buildTermsHeadline("Children's privacy", sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                       text:
                           "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans."),
                   TextSpan(text: '\n\n\n'),
                   buildTermsHeadline('Cross-Border data transfers', sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                       text:
                           "Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans."),
                   TextSpan(text: '\n\n\n'),
                   buildTermsHeadline('Contact Me', sectionTitleStyle),
-                  TextSpan(text: '\n\n', style: TextStyle(height: 0.5)),
+                  TextSpan(text: '\n\n', style: GoogleFonts.openSans(height: 0.5)),
                   TextSpan(
                       text:
                           """Aurora ruborem caeli tingebat, dum ventus leniter folia quercuum veterum susurrabat, quasi fabulas antiquitatis narrans.
