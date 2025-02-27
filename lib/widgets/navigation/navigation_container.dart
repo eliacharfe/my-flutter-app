@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:eliachar_feig/packages/ui_components_packages.dart';
 import 'package:eliachar_feig/screens/activities/activities.dart';
-import 'package:eliachar_feig/screens/settings_page.dart';
+import 'package:eliachar_feig/screens/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eliachar_feig/screens/about_me.dart';

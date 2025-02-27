@@ -129,11 +129,11 @@ class AboutMeState extends State<AboutMe> {
               const SizedBox(height: 8),
               Text(
                 'software_developer'.translate(context),
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                style: GoogleFonts.openSans(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               Text(
                 'bsc_computer_science'.translate(context),
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+                style: GoogleFonts.openSans(fontSize: 12, color: Colors.grey),
               ),
             ],
           ),

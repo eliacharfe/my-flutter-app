@@ -155,9 +155,10 @@
   "faq": "שאלות נפוצות",
   "faq_desc": "מצא תשובות לשאלות נפוצות.",
 
+  "form": "טופס",
 
 
-"event_description": "תיאור האירוע",
+  "event_description": "תיאור האירוע",
   "delete_item_success": "הפריט נמחק בהצלחה",
   "note_added": "הערה נוספה",
   "note_edited": "הערה נערכה",

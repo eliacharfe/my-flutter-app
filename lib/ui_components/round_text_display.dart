@@ -1,5 +1,6 @@
 import 'package:eliachar_feig/ui_components/icon_with_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RoundTextDisplay extends StatelessWidget {
   final String text;
@@ -63,7 +64,7 @@ class RoundTextDisplay extends StatelessWidget {
                     padding: padding ?? EdgeInsets.zero,
                     child: Text(
                       text,
-                      style: TextStyle(
+                      style: GoogleFonts.openSans(
                           color: textColor,
                           fontSize: fontSize ?? 10.0,
                           fontWeight: isBold ? FontWeight.bold : FontWeight.w500),

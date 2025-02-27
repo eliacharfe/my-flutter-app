@@ -3,7 +3,6 @@ import 'package:eliachar_feig/models/to_do.dart';
 import 'package:eliachar_feig/screens/home/packages/home_packages.dart';
 import 'package:eliachar_feig/models/project.dart';
 import 'package:eliachar_feig/screens/home/widgets/all_to_dos_screen.dart';
-import 'package:eliachar_feig/ui_components/wide_rect_button.dart';
 import '../../packages/default_packages.dart';
 import '../../packages/ui_components_packages.dart';
 import '../../packages/utlis_packages.dart';
@@ -234,7 +233,7 @@ class _HomeContentState extends State<Home> {
                 child: Center(
                   child: Text(
                     'empty_section'.translate(context),
-                    style: TextStyle(color: Colors.grey),
+                    style: GoogleFonts.openSans(color: Colors.grey),
                   ),
                 ),
                 onTap: null,
